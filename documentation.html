@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Madurai Ula — Project Documentation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Arima+Madurai:wght@700;800&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 13mm 12mm 13mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 8.5pt;
+      line-height: 1.45;
+      color: #38281B;
+      background: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    .page {
+      page-break-after: always;
+      break-after: page;
+      height: 270mm;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      color: #6A2416;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h1 { font-size: 17pt; margin-bottom: 5pt; color: #6A2416; }
+    h2 { font-size: 11.5pt; margin-top: 8pt; margin-bottom: 4pt; padding-bottom: 2pt; border-bottom: 1.5pt solid #F0C950; }
+    h3 { font-size: 9.5pt; margin-top: 6pt; margin-bottom: 3pt; color: #872E1B; }
+
+    p {
+      margin-bottom: 5pt;
+      text-align: justify;
+      color: #4A3A2C;
+    }
+
+    ul, ol {
+      margin-left: 14pt;
+      margin-bottom: 6pt;
+      color: #4A3A2C;
+    }
+
+    li {
+      margin-bottom: 2pt;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 7.5pt;
+      background: #FFF8D6;
+      color: #7A2E1D;
+      padding: 1pt 3pt;
+      border-radius: 3pt;
+      border: 0.5pt solid #E6CA65;
+    }
+
+    pre {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 7pt;
+      background: #20150F;
+      color: #F8E8C8;
+      padding: 6pt 8pt;
+      border-radius: 4pt;
+      margin-bottom: 6pt;
+      overflow-x: auto;
+      line-height: 1.35;
+      border-left: 2.5pt solid #D4AF37;
+    }
+
+    /* Cover Page */
+    .cover {
+      height: 270mm;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22mm 14mm 16mm 14mm;
+      background: 
+        radial-gradient(ellipse at 15% 10%, rgba(255, 255, 255, 0.95) 0%, transparent 40%),
+        radial-gradient(ellipse at 85% 20%, rgba(255, 228, 110, 0.5) 0%, transparent 50%),
+        linear-gradient(145deg, #FFFDEB 0%, #FFF5B8 28%, #FDE15D 60%, #FFF7C2 85%, #FDD64B 100%);
+      border: 3pt solid #D4AF37;
+      border-radius: 10pt;
+      box-shadow: inset 0 0 30pt rgba(200, 140, 20, 0.15);
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .cover-top {
+      text-align: center;
+    }
+
+    .cover-tagline {
+      display: inline-block;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #7A2E1D;
+      background: #FFFFFF;
+      padding: 3pt 10pt;
+      border-radius: 999pt;
+      border: 1pt solid #D4AF37;
+      box-shadow: 0 2pt 5pt rgba(180, 125, 15, 0.15);
+      margin-bottom: 12pt;
+    }
+
+    .cover-tamil {
+      font-family: 'Arima Madurai', cursive;
+      font-size: 38pt;
+      font-weight: 800;
+      color: #6A2416;
+      line-height: 1.1;
+      margin-bottom: 4pt;
+      text-shadow: 0 2pt 4pt rgba(122, 46, 29, 0.15);
+    }
+
+    .cover-tamil em {
+      font-style: normal;
+      color: #C99400;
+    }
+
+    .cover-title {
+      font-size: 23pt;
+      color: #2D1A10;
+      letter-spacing: -0.02em;
+      margin-bottom: 6pt;
+    }
+
+    .cover-subtitle {
+      font-size: 10pt;
+      color: #5C4533;
+      max-width: 460pt;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .cover-badge-row {
+      display: flex;
+      justify-content: center;
+      gap: 5pt;
+      margin-top: 10pt;
+      flex-wrap: wrap;
+    }
+
+    .cover-badge {
+      font-size: 7.5pt;
+      font-weight: 700;
+      padding: 2.5pt 7pt;
+      border-radius: 4pt;
+      background: #FFFFFF;
+      color: #6A2416;
+      border: 1pt solid #D4AF37;
+    }
+
+    .cover-center {
+      text-align: center;
+      margin: 12pt 0;
+    }
+
+    .cover-graphic {
+      width: 105pt;
+      height: 105pt;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFF3A8 50%, #F5C02A 100%);
+      border: 3pt solid #D4AF37;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44pt;
+      box-shadow: 0 8pt 20pt rgba(200, 140, 20, 0.28);
+    }
+
+    .cover-bottom {
+      border-top: 1.5pt solid rgba(122, 46, 29, 0.25);
+      padding-top: 10pt;
+      display: flex;
+      justify-content: space-between;
+      font-size: 8pt;
+      color: #55402D;
+    }
+
+    .cover-meta-col strong {
+      display: block;
+      color: #6A2416;
+      font-size: 8.5pt;
+      margin-bottom: 1pt;
+    }
+
+    .callout {
+      background: #FFFDF0;
+      border-left: 2.5pt solid #D4AF37;
+      border-radius: 0 4pt 4pt 0;
+      padding: 5pt 8pt;
+      margin-bottom: 6pt;
+      font-size: 8pt;
+      color: #4A3A2C;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: #6A2416;
+      margin-bottom: 2pt;
+      display: flex;
+      align-items: center;
+      gap: 3pt;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6pt;
+      margin: 6pt 0;
+    }
+
+    .metric-card {
+      background: #FFFDF4;
+      border: 1pt solid #EAD47A;
+      border-radius: 4pt;
+      padding: 5pt;
+      text-align: center;
+    }
+
+    .metric-num {
+      font-family: 'Fraunces', serif;
+      font-size: 16pt;
+      font-weight: 800;
+      color: #6A2416;
+      line-height: 1;
+    }
+
+    .metric-label {
+      font-size: 6.5pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8C6A3A;
+      margin-top: 2pt;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6pt 0 8pt;
+      font-size: 7.6pt;
+    }
+
+    th {
+      background: linear-gradient(135deg, #FFF5B8 0%, #FDE469 100%);
+      color: #6A2416;
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      text-align: left;
+      padding: 4pt 6pt;
+      border: 1pt solid #D4AF37;
+    }
+
+    td {
+      padding: 3.5pt 6pt;
+      border: 1pt solid #EAD89B;
+      color: #38281B;
+      vertical-align: middle;
+    }
+
+    tr:nth-child(even) td { background: #FFFDF4; }
+    tr:nth-child(odd) td { background: #FFFFFF; }
+
+    .section-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5pt solid #D4AF37;
+      padding-bottom: 3pt;
+      margin-bottom: 8pt;
+    }
+
+    .section-header-bar span {
+      font-size: 6.8pt;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8C6A3A;
+    }
+
+    .section-header-bar em {
+      font-style: normal;
+      font-size: 6.8pt;
+      color: #6A2416;
+      font-weight: 700;
+    }
+
+    .flow-box {
+      background: #FFFDF2;
+      border: 1.5pt solid #D4AF37;
+      border-radius: 4pt;
+      padding: 6pt;
+      margin: 6pt 0;
+    }
+
+    .flow-steps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4pt;
+    }
+
+    .flow-step {
+      flex: 1;
+      background: #FFFFFF;
+      border: 1pt solid #E6C860;
+      border-radius: 3pt;
+      padding: 4pt 3pt;
+      text-align: center;
+      font-size: 6.8pt;
+      font-weight: 600;
+      color: #6A2416;
+    }
+
+    .flow-step strong {
+      display: block;
+      font-size: 7.5pt;
+      color: #38281B;
+      margin-bottom: 1pt;
+    }
+
+    .flow-arrow {
+      color: #C99400;
+      font-weight: 900;
+      font-size: 9pt;
+    }
+
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7pt;
+      margin: 6pt 0;
+    }
+
+    .doc-footer {
+      margin-top: auto;
+      padding-top: 5pt;
+      border-top: 0.75pt solid #EAD89B;
+      display: flex;
+      justify-content: space-between;
+      font-size: 6.8pt;
+      color: #8C725C;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= PAGE 1: COVER ================= -->
+  <div class="cover">
+    <div class="cover-top">
+      <div class="cover-tagline">Project Documentation & Technical Architecture</div>
+      <div class="cover-tamil">மதுரை <em>உலா</em></div>
+      <h1 class="cover-title">Madurai Ula Explorer</h1>
+      <p class="cover-subtitle">
+        A high-performance cultural heritage, spiritual tourism, culinary scene, and modern travel web platform for the ancient temple city of Madurai, Tamil Nadu.
+      </p>
+      <div class="cover-badge-row">
+        <span class="cover-badge">Version 1.2.0</span>
+        <span class="cover-badge">Light Shiny Golden Theme</span>
+        <span class="cover-badge">Vanilla ES6+ & CSS3</span>
+        <span class="cover-badge">Leaflet & OpenStreetMap</span>
+        <span class="cover-badge">72 Curated Spots + 21 Foods</span>
+      </div>
+    </div>
+
+    <div class="cover-center">
+      <div class="cover-graphic">🛕</div>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-meta-col">
+        <strong>Author & Maintainer</strong>
+        Eswar (GitHub: @Eswar565)
+      </div>
+      <div class="cover-meta-col">
+        <strong>Repository</strong>
+        github.com/Eswar565/Madurai-Ula
+      </div>
+      <div class="cover-meta-col">
+        <strong>Platform Release</strong>
+        September 2026 (Production)
+      </div>
+      <div class="cover-meta-col">
+        <strong>Licensing & Rights</strong>
+        Open Cultural Heritage Project
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2: EXECUTIVE SUMMARY & TECH STACK ================= -->
+  <div class="page">
+    <div>
+      <div class="section-header-bar">
+        <span>Madurai Ula Documentation</span>
+        <em>Page 2 &bull; Executive Summary & System Architecture</em>
+      </div>
+
+      <h1>1. Executive Summary & Architecture</h1>
+
+      <p>
+        <strong>Madurai Ula (மதுரை உலா)</strong> is an interactive, mobile-first web platform created to preserve, celebrate, and guide visitors through the multi-millennium cultural heritage, sacred architecture, world-renowned street food, legendary dining messes, artisan cafes, and contemporary urban spaces of Madurai — Tamil Nadu's cultural capital and one of the world's oldest continuously inhabited cities.
+      </p>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-num">72</div>
+          <div class="metric-label">Curated Venues</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">21</div>
+          <div class="metric-label">Iconic Dishes</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">66</div>
+          <div class="metric-label">Real Local Photos</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">100%</div>
+          <div class="metric-label">Zero AI Placeholders</div>
+        </div>
+      </div>
+
+      <h2>1.1 Project Objectives & Core Missions</h2>
+      <ul>
+        <li><strong>Authentic Local Storytelling</strong>: Every temple, palace, monument, and dining institution is documented with historical context, architectural significance, operating hours, exact GPS coordinates, and distance from the central Meenakshi Amman Temple.</li>
+        <li><strong>Zero-Framework Extreme Performance</strong>: Engineered entirely in standard HTML5, CSS3, and modern vanilla JavaScript (ES6+). Delivers instantaneous page loads, zero compilation dependencies, and offline-resilient architecture.</li>
+        <li><strong>Light Shiny Golden Yellow Heritage Design</strong>: A bespoke visual identity reflecting temple gold leaf, radiant Dravidian morning sunlight, and temple gopuram finials. Utilizes ambient radial gradients, specular hover halos, and glassmorphic headers.</li>
+        <li><strong>Interactive Geospatial Mapping</strong>: Native OpenStreetMap and Leaflet integration with interactive category pins, one-touch Google Maps navigation directions, and dynamic embedded mini-maps.</li>
+      </ul>
+
+      <h2>1.2 High-Level Architectural Flow</h2>
+      <div class="flow-box">
+        <div class="flow-steps">
+          <div class="flow-step">
+            <strong>1. User Ingestion</strong>
+            Search &bull; Filter &bull; Locator
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <strong>2. Client Engine</strong>
+            <code>js/main.js</code> + State Router
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <strong>3. Datasets</strong>
+            <code>PLACES</code> &bull; <code>FOODS</code>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <strong>4. View Rendering</strong>
+            Cards &bull; Leaflet Map &bull; Details
+          </div>
+        </div>
+      </div>
+
+      <h2>1.3 Technology Stack Breakdown</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:24%;">Component</th>
+            <th style="width:34%;">Technology</th>
+            <th style="width:42%;">Purpose & Architectural Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Core Markup</strong></td>
+            <td>HTML5 Semantic Architecture</td>
+            <td>12 dedicated static routes with clean microdata and ARIA accessibility standards.</td>
+          </tr>
+          <tr>
+            <td><strong>Design System</strong></td>
+            <td>Vanilla CSS3 + CSS Custom Tokens</td>
+            <td>Light Shiny Golden Yellow Theme, fixed viewport multi-stop gradients, glassmorphism.</td>
+          </tr>
+          <tr>
+            <td><strong>Client Logic</strong></td>
+            <td>Vanilla JavaScript (ES6+)</td>
+            <td>Zero build tools; instant execution, dynamic query routing (<code>?id=...</code>), DOM builders.</td>
+          </tr>
+          <tr>
+            <td><strong>Interactive Maps</strong></td>
+            <td>Leaflet.js + OpenStreetMap (OSM)</td>
+            <td>Interactive multi-category map, custom pin icons, radius calculation & popups.</td>
+          </tr>
+          <tr>
+            <td><strong>Typography</strong></td>
+            <td>Google Fonts (Fraunces, Inter, Arima Madurai)</td>
+            <td>Combines classical serif elegance with authentic Tamil typography and clean sans UI.</td>
+          </tr>
+          <tr>
+            <td><strong>Photography</strong></td>
+            <td>Optimized JPEG/WebP local assets</td>
+            <td>66 verified real local photographs with graceful fallback handlers.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="doc-footer">
+      <span>Madurai Ula Technical Documentation &bull; Version 1.2.0</span>
+      <span>Page 2 &bull; https://github.com/Eswar565/Madurai-Ula</span>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 3: SITEMAP & INFORMATION ARCHITECTURE ================= -->
+  <div class="page">
+    <div>
+      <div class="section-header-bar">
+        <span>Madurai Ula Documentation</span>
+        <em>Page 3 &bull; Information Architecture & Routing</em>
+      </div>
+
+      <h1>2. Information Architecture & Sitemap</h1>
+
+      <p>
+        The platform comprises 12 interconnected HTML views structured around thematic user journeys: spiritual pilgrimage, culinary adventures, evening heritage walks, modern leisure, and stay arrangements.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:20%;">Route / File</th>
+            <th style="width:23%;">Module Name</th>
+            <th style="width:57%;">Key Content & Interactive Capabilities</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>index.html</code></td>
+            <td>Home & Hero Portal</td>
+            <td>Full-bleed animated hero slider, locator dropdown, category quick links, featured cafes preview, interactive Leaflet master map, and neighborhood explorer.</td>
+          </tr>
+          <tr>
+            <td><code>tourism.html</code></td>
+            <td>Heritage & Spiritual Guide</td>
+            <td>Directory of 30 ancient temples, palaces, monuments, Jain cave complexes, and hill waterfalls with distance filter chips.</td>
+          </tr>
+          <tr>
+            <td><code>food.html</code></td>
+            <td>Culinary Specialties & Hubs</td>
+            <td>21 traditional dishes, heritage backstory, ingredients, famous preparation styles, street food hubs, and celebrity dining table.</td>
+          </tr>
+          <tr>
+            <td><code>restaurants.html</code></td>
+            <td>Legendary Messes & Dining</td>
+            <td>22 iconic eateries, Chettinad non-veg messes (Amma, Kumar, Chandran), pure veg halls (Murugan Idli, Sree Sabarees).</td>
+          </tr>
+          <tr>
+            <td><code>cafes.html</code></td>
+            <td>Artisan Cafes & Roasteries</td>
+            <td>6 youth hangout spots, Belgian waffle bistros, speciality coffee shops, and modern bakeries with ambiance tags.</td>
+          </tr>
+          <tr>
+            <td><code>modern.html</code></td>
+            <td>Modern Madurai & Centers</td>
+            <td>6 contemporary landmarks including Kalaignar Memorial Library, Vishaal de Mall, Milan Mall, and ELCOT IT hubs.</td>
+          </tr>
+          <tr>
+            <td><code>stays.html</code></td>
+            <td>Hotels & Heritage Stays</td>
+            <td>8 heritage resorts, star luxury hotels (Gateway Pasumalai, Courtyard by Marriott), and budget pilgrim lodges.</td>
+          </tr>
+          <tr>
+            <td><code>explore.html</code></td>
+            <td>Unified Search Engine</td>
+            <td>Global filterable directory aggregating all 72 places across categories with instant search input and sort controls.</td>
+          </tr>
+          <tr>
+            <td><code>place-details.html</code></td>
+            <td>Dynamic Place Inspector</td>
+            <td>URL-parameter driven (<code>?id=...</code>) view featuring high-res imagery, embedded mini-map, Google directions link, and highlights list.</td>
+          </tr>
+          <tr>
+            <td><code>food-details.html</code></td>
+            <td>Culinary Deep-Dive</td>
+            <td>Detailed dish view with nutritional highlights, spice composition, origin history, and verified top shops in town.</td>
+          </tr>
+          <tr>
+            <td><code>about.html</code></td>
+            <td>Madurai Cultural Story</td>
+            <td>Historical chronicle covering the Sangam era, Pandyan dynasty, Nayak architecture, Chithirai festival, and Vaigai river culture.</td>
+          </tr>
+          <tr>
+            <td><code>contact.html</code></td>
+            <td>Visitor Support</td>
+            <td>Direct contact information, emergency tourism helplines, feedback form, and community contributor links.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2.1 Details Page Dynamic Resolution Flow</h2>
+      <p>
+        Both <code>place-details.html</code> and <code>food-details.html</code> utilize dynamic client-side URL parsing to render unique content without requiring a server-side templating engine:
+      </p>
+      <pre>
+// Query resolution mechanism in js/places.js & js/food.js
+const params = new URLSearchParams(window.location.search);
+const itemID = params.get("id");
+const selectedPlace = PLACES.find(p => p.id === itemID) || PLACES[0];
+
+// Populates DOM elements dynamically:
+document.getElementById("detail-image").src = selectedPlace.image;
+document.getElementById("meta-location").textContent = selectedPlace.location;
+document.getElementById("meta-timings").textContent = selectedPlace.timings;
+document.getElementById("detail-directions-btn").href = selectedPlace.mapLink;
+      </pre>
+    </div>
+
+    <div class="doc-footer">
+      <span>Madurai Ula Technical Documentation &bull; Version 1.2.0</span>
+      <span>Page 3 &bull; https://github.com/Eswar565/Madurai-Ula</span>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 4: VISUAL DESIGN SYSTEM ================= -->
+  <div class="page">
+    <div>
+      <div class="section-header-bar">
+        <span>Madurai Ula Documentation</span>
+        <em>Page 4 &bull; Visual Design System & Aesthetics</em>
+      </div>
+
+      <h1>3. Visual Design System: Light Shiny Golden Theme</h1>
+
+      <p>
+        The visual theme of Madurai Ula is inspired by the glorious temple traditions of Madurai: the beaten brass lamps (Kuthuvilakku), the gold-plated Kalasam finials of the Meenakshi Amman Temple gopurams, and the radiant warm sunlight bathing the temple city.
+      </p>
+
+      <div class="callout">
+        <div class="callout-title">🌟 Theme Philosophy & Aesthetics</div>
+        Rather than a flat or garish yellow, the "Light Shiny Golden Yellow" theme utilizes multi-stop specular radial gradients pinned to the viewport. As the user scrolls, the background shimmers gracefully, evoking a polished gold plate with ambient specular highlights.
+      </div>
+
+      <h2>3.1 Core Color Tokens (in <code>css/style.css</code>)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:18%;">Token</th>
+            <th style="width:16%;">Color / Value</th>
+            <th style="width:16%;">Swatch</th>
+            <th style="width:50%;">Usage in Interface</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--gold</code></td>
+            <td><code>#C99400</code></td>
+            <td style="background:#C99400; color:#fff; text-align:center; font-weight:700;">Gold</td>
+            <td>Primary accent borders, star ratings, active underlines, and map pin accents.</td>
+          </tr>
+          <tr>
+            <td><code>--gold-bright</code></td>
+            <td><code>#F5B800</code></td>
+            <td style="background:#F5B800; color:#000; text-align:center; font-weight:700;">Bright Gold</td>
+            <td>Hover states, glowing buttons, CTA highlights, and badge borders.</td>
+          </tr>
+          <tr>
+            <td><code>--cream</code></td>
+            <td><code>#FFF8CC</code></td>
+            <td style="background:#FFF8CC; color:#000; text-align:center; font-weight:700;">Light Gold</td>
+            <td>Default body background base, tag backgrounds, chip hover fills.</td>
+          </tr>
+          <tr>
+            <td><code>--cream-deep</code></td>
+            <td><code>#FDE68A</code></td>
+            <td style="background:#FDE68A; color:#000; text-align:center; font-weight:700;">Golden Sheen</td>
+            <td>Alternating section bands, table header highlights, map legend background.</td>
+          </tr>
+          <tr>
+            <td><code>--maroon</code></td>
+            <td><code>#7A2E1D</code></td>
+            <td style="background:#7A2E1D; color:#fff; text-align:center; font-weight:700;">Maroon</td>
+            <td>Primary headings (<code>h1..h4</code>), brand logotype, active filter chips.</td>
+          </tr>
+          <tr>
+            <td><code>--brown</code></td>
+            <td><code>#3B2A1A</code></td>
+            <td style="background:#3B2A1A; color:#fff; text-align:center; font-weight:700;">Espresso</td>
+            <td>High-contrast body text ensuring WCAG AAA accessibility across golden backgrounds.</td>
+          </tr>
+          <tr>
+            <td><code>--white</code></td>
+            <td><code>#FFFFFF</code></td>
+            <td style="background:#FFFFFF; color:#000; text-align:center; font-weight:700; border:1px solid #ccc;">White</td>
+            <td>Elevated card bodies, floating locator container, live search drawer.</td>
+          </tr>
+          <tr>
+            <td><code>--footer</code></td>
+            <td><code>#1E120A</code></td>
+            <td style="background:#1E120A; color:#fff; text-align:center; font-weight:700;">Deep Brown</td>
+            <td>Footer background framed by an upper 3.5px golden glowing border.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>3.2 Fixed Viewport Gradient Engine</h2>
+      <pre>
+body {
+  background-color: #FFF7C8;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(255, 255, 255, 0.92) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 45% at 85% 15%, rgba(255, 230, 110, 0.5) 0%, transparent 65%),
+    radial-gradient(circle 900px at 50% 50%, rgba(255, 252, 225, 0.65) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 55% at 15% 85%, rgba(255, 222, 75, 0.42) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 85%, rgba(255, 242, 145, 0.45) 0%, transparent 60%),
+    linear-gradient(135deg, #FFFDEB 0%, #FFF5B8 22%, #FDE15D 48%, #FFF7C2 72%, #FDD64B 100%);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--brown);
+}
+      </pre>
+
+      <h2>3.3 Component Elevation & Micro-Animations</h2>
+      <ul>
+        <li><strong>Cards (<code>.card</code>)</strong>: Formed with crisp <code>rgba(255, 255, 255, 0.97)</code> backdrops and a subtle 1px golden outline. On hover, the card scales by <code>1.05</code> with a multi-layered gold shadow (<code>0 18px 40px -6px rgba(215, 155, 20, 0.46), 0 0 20px rgba(255, 220, 80, 0.4)</code>).</li>
+        <li><strong>Glassmorphic Sticky Header (<code>.site-header</code>)</strong>: Uses <code>backdrop-filter: blur(14px)</code> with translucent light gold tint <code>rgba(255, 250, 225, 0.95)</code> and subtle bottom gold border.</li>
+        <li><strong>Section Bands (<code>.section.band</code>)</strong>: Alternating stripes receive a rich warm gradient with inset gold shadows for depth.</li>
+      </ul>
+    </div>
+
+    <div class="doc-footer">
+      <span>Madurai Ula Technical Documentation &bull; Version 1.2.0</span>
+      <span>Page 4 &bull; https://github.com/Eswar565/Madurai-Ula</span>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 5: GEOSPATIAL MAP ENGINE & DATA SCHEMAS ================= -->
+  <div class="page">
+    <div>
+      <div class="section-header-bar">
+        <span>Madurai Ula Documentation</span>
+        <em>Page 5 &bull; Geospatial & Data Engine</em>
+      </div>
+
+      <h1>4. Geospatial Mapping Engine & Data Schemas</h1>
+
+      <p>
+        Location and spatial awareness are critical for travelers navigating Madurai. Madurai Ula includes an interactive multi-category Leaflet.js engine on the homepage as well as contextual mini-maps on individual detail views.
+      </p>
+
+      <h2>4.1 Multi-Category Map Pin Categorization</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:20%;">Category</th>
+            <th style="width:16%;">Pin Color</th>
+            <th style="width:16%;">Pin Emoji</th>
+            <th style="width:48%;">Dataset Filter & Representation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tourism & Heritage</strong></td>
+            <td><code>#7A2E1D</code> (Maroon)</td>
+            <td>🛕 Temple</td>
+            <td>Ancient temples, palaces, museum complexes, natural getaways.</td>
+          </tr>
+          <tr>
+            <td><strong>Restaurants & Messes</strong></td>
+            <td><code>#D4AF37</code> (Gold)</td>
+            <td>🍽 Dining</td>
+            <td>Iconic dining institutions, Chettinad messes, traditional veg halls.</td>
+          </tr>
+          <tr>
+            <td><strong>Artisan Cafes</strong></td>
+            <td><code>#8D6E63</code> (Coffee)</td>
+            <td>☕ Coffee</td>
+            <td>Specialty roasteries, European style cafes, youth hangout bistros.</td>
+          </tr>
+          <tr>
+            <td><strong>Modern Madurai</strong></td>
+            <td><code>#0288D1</code> (Cyan Blue)</td>
+            <td>🏢 Modern</td>
+            <td>Air-conditioned shopping malls, libraries, state-of-the-art tech parks.</td>
+          </tr>
+          <tr>
+            <td><strong>Accommodations</strong></td>
+            <td><code>#2E7D32</code> (Forest Green)</td>
+            <td>🏨 Hotel</td>
+            <td>Heritage resorts on Pasumalai hill, star hotels, pilgrim guest houses.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>4.2 Side-by-Side Data Schemas: Places & Food</h2>
+      <div class="two-col-grid">
+        <div>
+          <h3>PLACES Schema (js/places.js)</h3>
+          <pre>
+{
+  id: "meenakshi-temple",
+  name: "Meenakshi Amman Temple",
+  category: "temples",
+  categoryLabel: "TEMPLE",
+  image: "images/meenakshi-temple.jpg",
+  imageAlt: "Meenakshi Amman Temple...",
+  rating: "4.9",
+  duration: "Allow 120 minutes",
+  distance: "0.0",
+  area: "Madurai Main",
+  taluk: "Madurai South",
+  address: "Madurai Main, Madurai...",
+  latitude: 9.9195,
+  longitude: 78.1193,
+  distanceFromMeenakshiTemple: 0.0,
+  mapLink: "https://maps.google.com/?...",
+  tagline: "The city's beating heart...",
+  description: "Meenakshi Amman Temple...",
+  location: "Netaji Road, Madurai Main",
+  timings: "5:00 AM – 12:30 PM...",
+  highlights: ["Gopurams", "Hall"]
+}
+          </pre>
+        </div>
+        <div>
+          <h3>FOODS Schema (js/food.js)</h3>
+          <pre>
+{
+  id: "jigarthanda",
+  name: "Jigarthanda",
+  category: "drinks",
+  categoryLabel: "DESSERT DRINK",
+  image: "images/jigarthanda.jpg",
+  rating: "4.8",
+  area: "East Marret Street & Simmakkal",
+  address: "Famous Jigarthanda, 97 East...",
+  latitude: 9.9168,
+  longitude: 78.1189,
+  tagline: "Madurai's legendary dessert...",
+  description: "Rich basundi, badam pisin...",
+  keyIngredients: [
+    "Badam Pisin",
+    "Nannari Syrup",
+    "Basundi Milk",
+    "Ice Cream"
+  ],
+  famousSpots: [
+    "Famous Jigarthanda (East Marret)",
+    "Murugan Jigarthanda"
+  ]
+}
+          </pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-footer">
+      <span>Madurai Ula Technical Documentation &bull; Version 1.2.0</span>
+      <span>Page 5 &bull; https://github.com/Eswar565/Madurai-Ula</span>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 6: ASSETS, OPERATIONS & ROADMAP ================= -->
+  <div class="page">
+    <div>
+      <div class="section-header-bar">
+        <span>Madurai Ula Documentation</span>
+        <em>Page 6 &bull; Asset Pipeline, Operations & Roadmap</em>
+      </div>
+
+      <h1>5. Photography Pipeline & Verification</h1>
+
+      <p>
+        Unlike conventional tourist templates that rely on artificial intelligence or generic placeholder graphics, <strong>Madurai Ula enforces a strict real-photography policy</strong>. Every visual asset in the <code>images/</code> directory represents genuine documentation of the physical site or dish.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:24%;">Category / Group</th>
+            <th style="width:14%;">Image Count</th>
+            <th style="width:18%;">Average Size</th>
+            <th style="width:44%;">Representative Highlights</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Heritage Temples</strong></td>
+            <td>12 Assets</td>
+            <td>240 KB</td>
+            <td>Meenakshi Temple gopurams, Alagar Kovil, Thirupparankundram, Koodal Azhagar.</td>
+          </tr>
+          <tr>
+            <td><strong>Monuments & Nature</strong></td>
+            <td>18 Assets</td>
+            <td>265 KB</td>
+            <td>Thirumalai Nayak Palace, Keeladi Museum, Gandhi Museum, Kutladampatti Falls.</td>
+          </tr>
+          <tr>
+            <td><strong>Culinary Dishes</strong></td>
+            <td>21 Assets</td>
+            <td>210 KB</td>
+            <td>Jigarthanda, Kari Dosa, Bun Parotta, Malli Idli, Mutton Chukka, Paruthi Paal.</td>
+          </tr>
+          <tr>
+            <td><strong>Restaurants & Messes</strong></td>
+            <td>8 Assets</td>
+            <td>230 KB</td>
+            <td>Amma Mess, Kumar Mess, Chandran Mess, Murugan Idli Shop, Konar Kadai.</td>
+          </tr>
+          <tr>
+            <td><strong>Cafes & Modern</strong></td>
+            <td>7 Assets</td>
+            <td>280 KB</td>
+            <td>Café Coffee Day signature cup, Bistro 1427, Brownie Heaven, Kalaignar Library.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>5.1 Graceful Fallback Engine (Zero Broken Images)</h2>
+      <pre>
+// In js/main.js & js/places.js:
+function handleImageFallback(imgEl, title) {
+  imgEl.onerror = null; // Prevent recursion
+  imgEl.style.display = 'none';
+  const parent = imgEl.parentElement;
+  if (parent) {
+    const badge = document.createElement('div');
+    badge.className = 'img-fallback-badge';
+    badge.innerHTML = '&lt;span style="font-size:1.8rem;"&gt;🛕&lt;/span&gt;&lt;strong&gt;' + title + '&lt;/strong&gt;';
+    parent.appendChild(badge);
+  }
+}
+      </pre>
+
+      <h1>6. Setup, Local Execution & Git Workflow</h1>
+      <pre>
+# Run locally using Python or Node.js:
+python -m http.server 8000   # Option 1: Python
+npx serve .                  # Option 2: Node.js npx serve
+
+# Git Management:
+git clone https://github.com/Eswar565/Madurai-Ula.git
+git add .
+git commit -m "Update feature or documentation"
+git push origin main
+      </pre>
+
+      <h2>6.1 Project Roadmap & Future Enhancements</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:24%;">Phase</th>
+            <th style="width:28%;">Feature</th>
+            <th style="width:48%;">Technical Implementation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Phase 2 (Q4 2026)</strong></td>
+            <td>Tamil / English Language Toggle</td>
+            <td>Full i18n JSON translation dictionary with bilingual instant toggle in navbar.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2 (Q4 2026)</strong></td>
+            <td>Progressive Web App (PWA)</td>
+            <td>Service Worker caching for offline map viewing and tourist itinerary access.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3 (2027)</strong></td>
+            <td>Audio Storytelling Guides</td>
+            <td>Web Audio API embedded player with narration for top 15 Meenakshi Temple shrines.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3 (2027)</strong></td>
+            <td>Live Bus & Auto Fare Calculator</td>
+            <td>Madurai City Bus (Periyar & Mattuthavani) route mapping with distance estimates.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="doc-footer">
+      <span>Madurai Ula Technical Documentation &bull; Version 1.2.0</span>
+      <span>Page 6 &bull; Author: Eswar (@Eswar565) &bull; https://github.com/Eswar565/Madurai-Ula</span>
+    </div>
+  </div>
+
+</body>
+</html>

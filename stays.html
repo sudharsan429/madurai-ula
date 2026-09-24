@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curated Stays & Resorts — Madurai Explorer</title>
+  <meta name="description"
+    content="Find the best stays in Madurai: Geoffrey Bawa-designed luxury villas, hilltop Taj heritage resorts, mid-range family hotels, and pilgrim lodges." />
+  
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    #stays-grid .btn-view-map {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tourism.html">Tourism</a>
+        <a href="food.html">Foods</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="cafes.html">Cafes</a>
+        <a href="modern.html">Modern Madurai</a>
+        <a href="stays.html" class="active">Stays</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO BANNER ============ -->
+  <section class="section" style="padding-bottom:1rem; padding-top:2.5rem;">
+    <div class="container">
+      <p class="eyebrow">ACCOMMODATION & HERITAGE RETREATS</p>
+      <h2>Curated Stays in Madurai</h2>
+      <p style="color:var(--muted); margin-top:0.4rem; max-width:820px;">
+        From Geoffrey Bawa-designed luxury resorts and hilltop Taj colonial retreats to cozy mid-range hotels and clean pilgrim lodges steps away from the Meenakshi Amman Temple sanctum.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <section class="section" style="padding-top:0.5rem;">
+    <div class="container">
+
+      <!-- Sort & Location Filter Bar -->
+      <div class="sort-and-near-bar">
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="talukSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Filter Taluk:</label>
+          <select id="talukSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Filter by Taluk">
+            <option value="all">All Taluks in Madurai</option>
+            <option value="Madurai South">Madurai South (City Centre, Meenakshi Temple)</option>
+            <option value="Madurai North">Madurai North (Alagar Kovil Road, Race Course)</option>
+            <option value="Madurai West">Madurai West (Kochadai)</option>
+            <option value="Tirupparankundram">Tirupparankundram & Pasumalai</option>
+          </select>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="sortSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Sort:</label>
+          <select id="sortSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Sort stays">
+            <option value="default">Featured</option>
+            <option value="distance">Distance from Meenakshi Temple</option>
+            <option value="rating">Top Rated (★ High to Low)</option>
+          </select>
+
+          <button type="button" id="nearMeBtn" class="btn-near-me">📍 Near Me</button>
+        </div>
+      </div>
+
+      <!-- Search & Category Filters -->
+      <div class="filter-bar" style="margin: 1.5rem 0 1.25rem 0;">
+        <input type="search" id="staySearchInput" placeholder="Filter by name, area, or amenities (e.g. Pool, Taj, Temple, Bawa)..."
+          style="padding:0.6rem 1.2rem; border-radius:var(--radius-pill); border:1.5px solid var(--gold); background:var(--white); font-size:0.9rem; min-width:280px; flex:1; max-width:450px;" />
+        <button class="chip active" data-filter="all">✨ All Stays</button>
+        <button class="chip" data-filter="luxury">👑 Luxury Resorts</button>
+        <button class="chip" data-filter="mid-range">🛏️ Mid-Range</button>
+        <button class="chip" data-filter="budget">🏷️ Budget & Lodges</button>
+      </div>
+
+      <!-- Stays Grid -->
+      <div class="grid" id="stays-grid"></div>
+      <div class="empty-state" id="stays-empty">No stays match your search or filter criteria.</div>
+
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <p>Made for curious travellers, pilgrims, and guests seeking peaceful rest across Madurai District.</p>
+      <div class="footer-copy">&copy; 2026 &bull; Madurai District Guide</div>
+      <p class="photo-credits-text">
+        Photo credits: Sourced from free open-access cultural archives including Wikimedia Commons, Unsplash, and Pexels. All hotel and resort brand trademarks belong to their respective proprietors.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/main.js"></script>
+  <script src="js/places.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Render all stays
+      if (typeof renderStaysGrid === "function") {
+        renderStaysGrid("#stays-grid");
+      } else if (typeof STAYS !== "undefined") {
+        const grid = document.querySelector("#stays-grid");
+        if (grid) grid.innerHTML = STAYS.map(stayCardHTML).join("");
+      }
+
+      function refresh() {
+        applyVisibility("#stays-grid .card", "#stays-empty");
+      }
+
+      // 2. Wire Search, Filter Chips, Taluk Select & Distance Controls
+      wireSearch("#staySearchInput", "#stays-grid .card", "h3", refresh);
+      wireFilters(".filter-bar .chip", "#stays-grid .card", refresh);
+      wireTalukFilter("#talukSelect", "#stays-grid .card", refresh);
+      initDistanceControls("#stays-grid");
+    });
+  </script>
+</body>
+
+</html>

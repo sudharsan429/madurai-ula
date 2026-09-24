@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madurai Explorer — A local's guide to Madurai's food, stays & places</title>
+  <meta name="description"
+    content="Taste the soul and walk through history. A curated local guide to Madurai district's tourism, foods, restaurants, cafes, modern spots, and stays." />
+  
+  <!-- Leaflet CSS for Interactive District Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- ============ HEADER (Fixed, Transparent over Hero, Golden on Scroll) ============ -->
+  <header class="site-header header-transparent" id="siteHeader">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="tourism.html">Tourism</a>
+        <a href="food.html">Foods</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="cafes.html">Cafes</a>
+        <a href="modern.html">Modern Madurai</a>
+        <a href="stays.html">Stays</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ 1. FULL-WIDTH & FULL-SCREEN HERO WITH FULL-BLEED SLIDER ============ -->
+  <section class="hero-fullscreen" id="heroSliderWrap" aria-label="Madurai Culture & Heritage Showcase">
+    <!-- Full-bleed background image slider -->
+    <div class="hero-slider-bg">
+      <!-- Slide 1: Jallikattu -->
+      <div class="slider-slide active" data-slide="0">
+        <img src="images/jallikattu.jpg" alt="Alanganallur Jallikattu bull taming arena crowd" loading="eager" onerror="handleImageFallback(this, 'Alanganallur Jallikattu')" />
+      </div>
+
+      <!-- Slide 2: Meenakshi Thirukalyanam -->
+      <div class="slider-slide" data-slide="1">
+        <img src="images/thirukalyanam.jpg" alt="Meenakshi Amman Thirukalyanam divine wedding festival procession" loading="lazy" onerror="handleImageFallback(this, 'Meenakshi Thirukalyanam')" />
+      </div>
+
+      <!-- Slide 3: Thirumalai Nayakkar Mahal -->
+      <div class="slider-slide" data-slide="2">
+        <img src="images/thirumalai-nayak-palace.jpg" alt="Thirumalai Nayakkar Mahal grand pillared arcades" loading="lazy" onerror="handleImageFallback(this, 'Thirumalai Nayakkar Mahal')" />
+      </div>
+
+      <!-- Slide 4: Chithirai Thiruvizha -->
+      <div class="slider-slide" data-slide="3">
+        <img src="images/chithirai-festival.jpg" alt="Chithirai Thiruvizha chariot festival crowd near Meenakshi Temple" loading="lazy" onerror="handleImageFallback(this, 'Chithirai Thiruvizha')" />
+      </div>
+
+      <!-- Slide 5: Vandiyur Mariamman Theppakulam -->
+      <div class="slider-slide" data-slide="4">
+        <img src="images/theppakulam.jpg" alt="Vandiyur Mariamman Theppakulam illuminated temple tank" loading="lazy" onerror="handleImageFallback(this, 'Vandiyur Theppakulam')" />
+      </div>
+    </div>
+
+    <!-- Soft dark-to-transparent gradient overlay -->
+    <div class="hero-gradient-overlay"></div>
+
+    <!-- Slider arrow navigation controls -->
+    <button type="button" class="slider-arrow prev" id="sliderPrev" aria-label="Previous slide">&#10094;</button>
+    <button type="button" class="slider-arrow next" id="sliderNext" aria-label="Next slide">&#10095;</button>
+    <div class="slider-dots" id="sliderDots"></div>
+
+    <!-- Centered Content on Top of Hero with Golden Accents -->
+    <div class="hero-centered-content">
+      <div class="hero-slide-badge">🏛️ MADURAI DISTRICT CULTURAL ODYSSEY</div>
+      <p class="eyebrow">EXPLORE MADURAI DISTRICT</p>
+      <h1><em class="serif-italic">தூங்கா நகரம், தொடரும் வரலாறு</em></h1>
+      <p class="lead">
+        A complete local guide to temples, Jallikattu arenas, iconic messes, cozy cafes, modern libraries & malls, and heritage stays across Madurai district.
+      </p>
+
+      <!-- Hero Action Buttons -->
+      <div class="hero-cta-group">
+        <a href="#explore" class="btn btn-yellow" style="padding:0.85rem 2rem; font-size:1.02rem; font-weight:700;">Explore Madurai &darr;</a>
+        <a href="tourism.html" class="btn btn-outline-hero" style="padding:0.85rem 2rem; font-size:1.02rem; font-weight:700;">Discover Tourism &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. TWO-COLUMN SPLIT: HIGHLIGHTS & INTERACTIVE MAP ============ -->
+  <section class="section" id="explore" style="padding-top:3rem;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">DISTRICT-WIDE DIRECTORY & INTERACTIVE MAP</p>
+          <h2>Explore Madurai District</h2>
+        </div>
+        <p>Browse places by taluk, check real distances, and track them directly on the interactive map.</p>
+      </div>
+
+      <!-- Sort & Geolocation Bar -->
+      <div class="sort-and-near-bar">
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="talukSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Filter Taluk:</label>
+          <select id="talukSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Filter by Taluk">
+            <option value="all">All Taluks (Madurai District)</option>
+            <option value="Madurai South">Madurai South (City Centre, Meenakshi Temple, Periyar)</option>
+            <option value="Madurai North">Madurai North (Simmakkal, Alagar Hills, Tallakulam)</option>
+            <option value="Madurai West">Madurai West (Keelakuyilkudi, Kochadai)</option>
+            <option value="Vadipatti">Vadipatti (Alanganallur, Palamedu, Sholavandan, Vaigai)</option>
+            <option value="Tirupparankundram">Tirupparankundram & Pasumalai</option>
+            <option value="Melur">Melur Taluk</option>
+            <option value="Thirumangalam">Thirumangalam Taluk</option>
+            <option value="Usilampatti">Usilampatti Taluk</option>
+            <option value="Peraiyur">Peraiyur Taluk</option>
+          </select>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="sortSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Sort:</label>
+          <select id="sortSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Sort items">
+            <option value="default">Featured</option>
+            <option value="distance">Sort by Distance from Meenakshi Temple</option>
+            <option value="rating">Top Rated (★ High to Low)</option>
+          </select>
+
+          <!-- "Near Me" Geolocation button -->
+          <button type="button" id="nearMeBtn" class="btn-near-me">📍 Near Me</button>
+        </div>
+      </div>
+
+      <!-- TWO COLUMN LAYOUT: Left = Highlights, Right = Leaflet Map -->
+      <div class="split-map-section">
+        
+        <!-- Left Column: Curated Cards Grid -->
+        <div>
+          <div class="filter-bar" style="margin-bottom:1.25rem;">
+            <input type="search" id="exploreSearchInput" placeholder="Filter highlights by name, dish or area..."
+              style="padding:0.5rem 1.1rem; border-radius:var(--radius-pill); border:1.5px solid var(--gold); background:var(--white); font-size:0.86rem; min-width:240px; flex:1; max-width:340px;" />
+            <button class="chip active" data-filter="all">Everything</button>
+            <button class="chip" data-filter="tourism">🛕 Tourism Places</button>
+            <button class="chip" data-filter="food">🍛 Iconic Foods</button>
+            <button class="chip" data-filter="restaurants">🍽 Messes & Eateries</button>
+            <button class="chip" data-filter="cafes">☕ Cafes</button>
+            <button class="chip" data-filter="modern">🏢 Modern Madurai</button>
+            <button class="chip" data-filter="stays">🏨 Stays & Resorts</button>
+          </div>
+
+          <div class="grid" id="curated-grid"></div>
+          <div class="empty-state" id="curated-empty">No places match this taluk or category filter.</div>
+        </div>
+
+        <!-- Right Column: Interactive Leaflet District Map -->
+        <div class="map-box-wrapper split-map-sticky">
+          <div class="map-header-bar">
+            <div class="map-header-title">
+              <span>🗺️</span>
+              <span>Madurai District Interactive Map</span>
+            </div>
+            <span style="font-size:0.8rem; color:var(--gold-soft);">Leaflet + OSM</span>
+          </div>
+
+          <!-- Interactive Legend with Checkboxes (New Categories Included) -->
+          <div class="map-legend-pills">
+            <span style="font-size:0.78rem; text-transform:uppercase; color:var(--muted); letter-spacing:0.08em;">Layers:</span>
+            <label class="legend-checkbox-label">
+              <input type="checkbox" data-map-category="tourism" checked />
+              <span class="legend-color-dot legend-dot-tourism"></span>
+              <span>Tourism (🛕)</span>
+            </label>
+            <label class="legend-checkbox-label">
+              <input type="checkbox" data-map-category="restaurants" checked />
+              <span class="legend-color-dot legend-dot-food"></span>
+              <span>Messes (🍽)</span>
+            </label>
+            <label class="legend-checkbox-label">
+              <input type="checkbox" data-map-category="cafes" checked />
+              <span class="legend-color-dot legend-dot-cafes"></span>
+              <span>Cafes (☕)</span>
+            </label>
+            <label class="legend-checkbox-label">
+              <input type="checkbox" data-map-category="modern" checked />
+              <span class="legend-color-dot legend-dot-modern"></span>
+              <span>Modern (🏢)</span>
+            </label>
+            <label class="legend-checkbox-label">
+              <input type="checkbox" data-map-category="stays" checked />
+              <span class="legend-color-dot legend-dot-stays"></span>
+              <span>Stays (🏨)</span>
+            </label>
+          </div>
+
+          <!-- Leaflet Map Canvas -->
+          <div id="homeDistrictMap" class="map-canvas"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. FEATURED SECTION: CAFES TO TRY ============ -->
+  <section class="section" id="featured-cafes" style="background:var(--cream-deep); padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <p class="eyebrow">CONTEMPORARY BREWS & DESSERT HANGOUTS</p>
+          <h2>Cafes to Try</h2>
+          <p style="color:var(--muted); margin-top:0.4rem;">
+            Charming coffee shops, artisanal dessert parlors, study-friendly spaces, and late-night waffle spots in Madurai.
+          </p>
+        </div>
+        <a href="cafes.html" class="btn btn-outline-gold" style="font-size:0.88rem;">Explore all cafes &rarr;</a>
+      </div>
+
+      <div class="grid" id="home-cafes-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ 4. FEATURED SECTION: KALAIGNAR LIBRARY & MODERN MADURAI ============ -->
+  <section class="section" id="featured-modern" style="padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <p class="eyebrow">CENTRES FOR KNOWLEDGE & ENTERTAINMENT </p>
+          <h2>Relaxacing Spots</h2>
+          <p style="color:var(--muted); margin-top:0.4rem;">
+            Discover the landmark 3.3-lakh sq ft public library, leading shopping malls, lush corporation parks, and entertainment complexes.
+          </p>
+        </div>
+        <a href="modern.html" class="btn btn-outline-gold" style="font-size:0.88rem;">Explore Modern Madurai &rarr;</a>
+      </div>
+
+      <div class="grid" id="home-modern-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ SPLIT FOOD FEATURE ============ -->
+  <section class="food-split-section" id="food" style="margin-top:2rem;">
+    <div class="food-split-inner">
+      <div class="food-split-img">
+        <img src="images/bun-parotta.jpg" alt="Authentic crispy bun parotta on fresh banana leaf with curry"
+          loading="lazy" onerror="handleImageFallback(this, 'Madurai Bun Parotta')" />
+      </div>
+      <div class="food-split-content">
+        <p class="eyebrow">EAT LIKE A LOCAL</p>
+        <h2>One city.<br><span class="serif-italic">A thousand flavours.</span></h2>
+        <p>From smoky roadside kothu parotta and flaky bun parotta to chilled Jigarthanda and Ayira Meen Kuzhambu, Madurai's best stories are served on a banana leaf.
+        </p>
+        <div class="food-tags">
+          <span>BUN PAROTTA</span>
+          <span>JIGARTHANDA</span>
+          <span>KARI DOSA</span>
+          <span>KOLA URUNDAI</span>
+          <span>MALLI IDLI</span>
+        </div>
+        <a href="food.html" class="btn btn-orange">Explore local food &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLACES MOSAIC ============ -->
+  <section class="section" id="places">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">BEYOND THE PLATE</p>
+          <h2>Places that hold Madurai's stories</h2>
+        </div>
+        <p>Ancient rock-cut shrines, royal Nayak halls, Jallikattu arenas, and museums worth slowing down for.</p>
+      </div>
+
+      <div class="places-mosaic">
+        <a href="place-details.html?id=meenakshi-temple" class="mosaic-tile"
+          aria-label="Explore Meenakshi Amman Temple">
+          <img src="images/meenakshi-temple.jpg" alt="Meenakshi Amman Temple towers at sunset" loading="lazy" onerror="handleImageFallback(this, 'Meenakshi Temple')" />
+          <div class="overlay">
+            <span class="badge">SACRED SKYLINE</span>
+            <h3>Meenakshi Amman Temple</h3>
+            <p>Fourteen carved gopurams rising above the old city — the heart Madurai beats around.</p>
+          </div>
+        </a>
+        <div class="mosaic-stack">
+          <a href="place-details.html?id=thirumalai-nayak-palace" class="mosaic-tile"
+            aria-label="Explore Thirumalai Nayakkar Palace">
+            <img src="images/thirumalai-nayak-palace.jpg" alt="Thirumalai Nayakkar Palace grand arches"
+              loading="lazy" onerror="handleImageFallback(this, 'Thirumalai Nayakkar Palace')" />
+            <div class="overlay">
+              <span class="badge">ROYAL ARCHITECTURE</span>
+              <h3>Thirumalai Nayakkar Palace</h3>
+              <p>Grand arcades from the Nayak era.</p>
+            </div>
+          </a>
+          <a href="place-details.html?id=gandhi-museum" class="mosaic-tile" aria-label="Explore Gandhi Memorial Museum">
+            <img src="images/gandhi-museum.jpg" alt="Gandhi Memorial Museum" loading="lazy" onerror="handleImageFallback(this, 'Gandhi Memorial Museum')" />
+            <div class="overlay">
+              <span class="badge">HISTORY MUSEUM</span>
+              <h3>Gandhi Memorial Museum</h3>
+              <p>The freedom struggle, housed in a historic palace.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPLORE BY AREA ============ -->
+  <section class="section" id="areas" style="background:var(--cream-deep); padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <p class="eyebrow">DISTRICT NEIGHBOURHOODS</p>
+          <h2>Explore by Area</h2>
+          <p style="color:var(--muted); margin-top:0.4rem;">
+            From the bustling Masi streets around Meenakshi Temple to the night food of Simmakkal and the ancient excavations of Keeladi.
+          </p>
+        </div>
+        <a href="tourism.html" class="btn btn-outline-gold" style="font-size:0.88rem;">View all 17 areas &rarr;</a>
+      </div>
+
+      <div class="area-explorer-grid">
+        <a href="tourism.html" class="area-guide-card">
+          <div class="area-guide-name"><span>Madurai Main</span> <span>🏛️</span></div>
+          <p class="area-guide-attraction">Meenakshi Temple, historic streets, jasmine flower markets, and ancient core.</p>
+        </a>
+        <a href="restaurants.html" class="area-guide-card">
+          <div class="area-guide-name"><span>Simmakkal</span> <span>🥘</span></div>
+          <p class="area-guide-attraction">Traditional food + markets; Kari dosa, hot mutton soup, parotta, and night stalls.</p>
+        </a>
+        <a href="tourism.html" class="area-guide-card">
+          <div class="area-guide-name"><span>Masi Streets</span> <span>🧵</span></div>
+          <p class="area-guide-attraction">Temple streets + shopping + food; Madurai Sungudi sarees, brassware, and tiffin.</p>
+        </a>
+        <a href="tourism.html" class="area-guide-card">
+          <div class="area-guide-name"><span>Teppakulam</span> <span>🌊</span></div>
+          <p class="area-guide-attraction">Teppakulam + evening food; 16-acre temple tank, float festival, and lakeside strolls.</p>
+        </a>
+        <a href="restaurants.html" class="area-guide-card">
+          <div class="area-guide-name"><span>Anna Nagar</span> <span>🍽️</span></div>
+          <p class="area-guide-attraction">Modern restaurants + shopping; Zaitoon Middle Eastern grills, cafes, and upscale avenues.</p>
+        </a>
+        <a href="modern.html" class="area-guide-card">
+          <div class="area-guide-name"><span>KK Nagar</span> <span>🏢</span></div>
+          <p class="area-guide-attraction">Restaurants + hotels; Madurai Kitchen, family restaurants, and commercial centres.</p>
+        </a>
+        <a href="restaurants.html" class="area-guide-card">
+          <div class="area-guide-name"><span>Tallakulam</span> <span>🍛</span></div>
+          <p class="area-guide-attraction">Messes + restaurants; Famous Chandran Mess, kola urundai, and biryani houses.</p>
+        </a>
+        <a href="tourism.html" class="area-guide-card">
+          <div class="area-guide-name"><span>Mattuthavani</span> <span>🚌</span></div>
+          <p class="area-guide-attraction">Integrated bus terminal + Central wholesale flower and produce market.</p>
+        </a>
+        <a href="place-details.html?id=thirupparankundram" class="area-guide-card">
+          <div class="area-guide-name"><span>Thirupparankundram</span> <span>🛕</span></div>
+          <p class="area-guide-attraction">Murugan Temple + heritage; First Arupadaiveedu, rock-cut shrines, and Jain cave beds.</p>
+        </a>
+        <a href="place-details.html?id=alagar-kovil" class="area-guide-card">
+          <div class="area-guide-name"><span>Azhagar Kovil</span> <span>⛰️</span></div>
+          <p class="area-guide-attraction">Lord Kallazhagar Temple + forested hills + Pazhamudircholai Murugan shrine.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FESTIVALS & CELEBRITY CALLOUT ============ -->
+  <section class="section" style="padding:3.5rem 0;">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:2rem;">
+        
+        <!-- Festivals Teaser -->
+        <div style="background:var(--white); border-radius:var(--radius-card); border:1px solid var(--line); padding:2rem; box-shadow:var(--shadow-sm); display:flex; flex-direction:column;">
+          <p class="eyebrow">CULTURAL CELEBRATIONS</p>
+          <h3 style="margin-bottom:0.75rem; font-size:1.45rem;">🎉 Chithirai, Teppam & Jallikattu</h3>
+          <p style="color:var(--brown-soft); font-size:0.92rem; line-height:1.5; margin-bottom:1.5rem; flex:1;">
+            Experience the thunderous roar of Jallikattu in Alanganallur, the celestial Meenakshi Thirukalyanam wedding, and Lord Alagar entering the Vaigai river on a golden horse.
+          </p>
+          <a href="tourism.html" class="btn btn-outline-gold" style="font-size:0.88rem; align-self:flex-start;">Explore festivals &rarr;</a>
+        </div>
+
+        <!-- Celebrity Food Connection Teaser -->
+        <div style="background:var(--white); border-radius:var(--radius-card); border:1px solid var(--line); padding:2rem; box-shadow:var(--shadow-sm); display:flex; flex-direction:column;">
+          <p class="eyebrow">EVIDENCE-BASED CHRONICLES</p>
+          <h3 style="margin-bottom:0.75rem; font-size:1.45rem;">🎬 Cinema & Celebrity Food Spots</h3>
+          <p style="color:var(--brown-soft); font-size:0.92rem; line-height:1.5; margin-bottom:1.5rem; flex:1;">
+            Actor Soori's Amman Restaurant, Sivakarthikeyan's verified restaurant inaugurations, Vishnu Vishal's visits, and historical film legends documented at traditional messes.
+          </p>
+          <a href="restaurants.html" class="btn btn-outline-gold" style="font-size:0.88rem; align-self:flex-start;">View celebrity spots &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REST WELL CTA ============ -->
+  <section class="stay-band" id="stays">
+    <div class="container stay-band-inner">
+      <div>
+        <p class="eyebrow">REST WELL</p>
+        <h2>Stay close to the city's rhythm.</h2>
+        <p>Heritage villas, Bawa-designed resorts, and comfortable pilgrim lodges across Madurai district.</p>
+      </div>
+      <a href="stays.html" class="btn btn-yellow">Find a stay 🏨</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <p>Made for curious travellers, pilgrims, and hungry hearts across Madurai District.</p>
+      <div class="footer-copy">&copy; 2026 &bull; Madurai District Guide</div>
+      <p class="photo-credits-text">
+        Photo credits: Sourced from free open-access cultural archives including Wikimedia Commons, Unsplash, and Pexels. All local institution names and registered trademarks are properties of their respective owners.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/places.js"></script>
+  <script src="js/food.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Initialize Ken Burns Full-Screen Slider
+      initKenBurnsSlider();
+
+      // 2. Initialize Live Multi-Category Search
+      initLiveMultiSearch();
+
+      // 3. Initialize Interactive Leaflet District Map on Home Page
+      initLeafletDistrictMap("homeDistrictMap", { zoom: 11 });
+
+      // 4. Render Curated Grid Highlights
+      const curatedGrid = document.querySelector("#curated-grid");
+      if (curatedGrid) {
+        const topPlaces = (typeof PLACES !== "undefined" ? PLACES.slice(0, 3) : []).map(p => {
+          const div = document.createElement("div");
+          div.innerHTML = placeCardHTML(p);
+          div.firstElementChild.dataset.category = "tourism";
+          return div.innerHTML;
+        });
+
+        const topFoods = (typeof FOODS !== "undefined" ? FOODS.slice(0, 3) : []).map(f => {
+          const div = document.createElement("div");
+          div.innerHTML = foodCardHTML(f);
+          div.firstElementChild.dataset.category = "food";
+          return div.innerHTML;
+        });
+
+        const topRestaurants = (typeof RESTAURANTS !== "undefined" ? RESTAURANTS.slice(0, 2) : []).map(r => restaurantCardHTML(r));
+        const topCafes = (typeof CAFES !== "undefined" ? CAFES.slice(0, 2) : []).map(c => cafeCardHTML(c));
+        const topModern = (typeof MODERN_SPOTS !== "undefined" ? MODERN_SPOTS.slice(0, 2) : []).map(m => modernSpotCardHTML(m));
+        const topStays = (typeof STAYS !== "undefined" ? STAYS.slice(0, 2) : []).map(s => stayCardHTML(s));
+
+        curatedGrid.innerHTML = [...topPlaces, ...topFoods, ...topRestaurants, ...topCafes, ...topModern, ...topStays].join("");
+      }
+
+      // 5. Render Featured Cafes Section
+      const homeCafes = document.querySelector("#home-cafes-grid");
+      if (homeCafes && typeof CAFES !== "undefined") {
+        homeCafes.innerHTML = CAFES.slice(0, 4).map(c => cafeCardHTML(c)).join("");
+      }
+
+      // 6. Render Featured Modern Madurai Section
+      const homeModern = document.querySelector("#home-modern-grid");
+      if (homeModern && typeof MODERN_SPOTS !== "undefined") {
+        homeModern.innerHTML = MODERN_SPOTS.slice(0, 4).map(m => modernSpotCardHTML(m)).join("");
+      }
+
+      // 7. Wire Category Filter Chips on Curated Highlights
+      const chips = document.querySelectorAll(".filter-bar .chip");
+      chips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          chips.forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+          const filter = chip.dataset.filter;
+
+          document.querySelectorAll("#curated-grid .card").forEach(card => {
+            const cat = card.dataset.category;
+            const matches = filter === "all" || cat === filter;
+            card.dataset.matchesFilter = matches ? "1" : "0";
+          });
+          applyVisibility("#curated-grid .card", "#curated-empty");
+        });
+      });
+
+      // 8. Wire Taluk Filter
+      wireTalukFilter("#talukSelect", "#curated-grid .card", () => {
+        applyVisibility("#curated-grid .card", "#curated-empty");
+      });
+
+      // 9. Wire Search Input for Highlights
+      wireSearch("#exploreSearchInput", "#curated-grid .card", "h3", () => {
+        applyVisibility("#curated-grid .card", "#curated-empty");
+      });
+
+      // 10. Distance & Geolocation Controls
+      initDistanceControls("#curated-grid");
+    });
+  </script>
+</body>
+
+</html>

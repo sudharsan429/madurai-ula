@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madurai Food — Madurai Explorer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tourism.html">Tourism</a>
+        <a href="food.html" class="active">Foods</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="cafes.html">Cafes</a>
+        <a href="modern.html">Modern Madurai</a>
+        <a href="stays.html">Stays</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section" style="padding-bottom:1rem;">
+    <div class="container">
+      <p class="eyebrow">TASTE OF THE TEMPLE CITY &bull; TAMIL NADU TOURISM & INCREDIBLE INDIA HIGHLIGHT</p>
+      <h2>Madurai Food & Local Delicacies</h2>
+      <p style="color:var(--muted); margin-top:0.4rem; max-width:860px;">
+        Madurai's food culture is one of its strongest tourist attractions. <strong>Tamil Nadu Tourism</strong> specifically highlights Jigarthanda, parotta, spicy curries, and traditional street food, while <strong>Incredible India</strong> highlights Kari Dosai, Paruthipal, Kothu Parotta, Jigarthanda, and Appam. Explore all fourteen must-try culinary icons below.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0.5rem;">
+    <div class="container">
+
+      <!-- Sort & Geolocation Bar -->
+      <div class="sort-and-near-bar">
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="sortSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Sort:</label>
+          <select id="sortSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Sort dishes">
+            <option value="default">Featured</option>
+            <option value="distance">Sort by Distance from Temple</option>
+            <option value="rating">Top Rated (★ High to Low)</option>
+          </select>
+          <button type="button" id="nearMeBtn" class="btn-near-me">📍 Near Me</button>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <button class="chip active" data-filter="all">✨ All 14 Must-Try Foods</button>
+        <button class="chip" data-filter="breakfast">🍳 Breakfast & Tiffin (Appam, Idiyappam)</button>
+        <button class="chip" data-filter="lunch">🍛 Lunch & Non-Veg (Kari Dosa, Chukka, Biryani)</button>
+        <button class="chip" data-filter="snacks">🍢 Street Snacks (Bun Parotta, Paniyaram, Bajji)</button>
+        <button class="chip" data-filter="drinks">🥤 Drinks & Sweets (Jigarthanda, Paruthi Paal, Rose Milk)</button>
+        <div class="filter-search">
+          <span>🔍</span>
+          <input id="food-search" type="search" placeholder="Search dish, ingredient, or area..." aria-label="Search food">
+        </div>
+      </div>
+
+      <div class="grid" id="food-grid"></div>
+      <div class="empty-state" id="food-empty">No dishes match your search yet — try a different keyword or filter.</div>
+    </div>
+  </section>
+
+  <!-- ============ 6. JIGARTHANDA & SWEET SHOPS SPOTLIGHT ============ -->
+  <section class="section" style="background:var(--cream-deep); padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">MADURAI'S SIGNATURE CHILLED ICON</p>
+          <h2>Jigarthanda & Sweet Heritage</h2>
+        </div>
+        <p style="max-width:760px;">
+          Jigarthanda is one of the foods most strongly associated with Madurai, specifically celebrated by Tamil Nadu Tourism and Incredible India as the city's cooling nectar.
+        </p>
+      </div>
+
+      <!-- Important Distinction Alert Box -->
+      <div class="policy-callout">
+        <span class="policy-callout-icon">🥤</span>
+        <div class="policy-callout-text">
+          <h4>Important Distinction: Multiple Jigarthanda Establishments</h4>
+          <p>
+            There are multiple independent Jigarthanda shops and brand kiosks operating across Madurai (including Famous Jigarthanda on East Marret Street and Raja Jigarthanda in Simmakkal). If a celebrity or visitor is reported as visiting "a Jigarthanda shop", do not automatically identify it as a particular Famous Jigarthanda branch unless the reliable source explicitly names that exact shop.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem; margin-top:1.5rem;">
+        <div class="card" style="background:var(--white);">
+          <div class="thumb" style="height:200px;">
+            <img src="images/famous-jigarthanda.jpg" alt="Famous Jigarthanda Central Madurai" loading="lazy" onerror="handleImageFallback(this, 'Famous Jigarthanda')" />
+            <span class="badge">SIGNATURE SWEET</span>
+          </div>
+          <div class="body">
+            <h3 style="margin-bottom:0.25rem;">Famous Jigarthanda</h3>
+            <p style="font-size:0.82rem; color:var(--muted); font-weight:600; margin-bottom:0.5rem;">📍 Central Madurai / East Marret Street</p>
+            <p style="font-size:0.88rem; color:var(--brown-soft); line-height:1.4;">
+              Hand-reduced full-cream milk simmered for hours into golden basundi, chilled almond gum (badam pisin), botanical nannari syrup, and crowned with hand-churned vanilla scoop.
+            </p>
+            <div class="card-divider"></div>
+            <a href="food-details.html?id=jigarthanda" class="view">View dish details &rarr;</a>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--white);">
+          <div class="thumb" style="height:200px;">
+            <img src="images/paruthi-paal.jpg" alt="Traditional Paruthi Paal cotton seed milk" loading="lazy" onerror="handleImageFallback(this, 'Paruthi Paal')" />
+            <span class="badge">TRADITIONAL TONIC</span>
+          </div>
+          <div class="body">
+            <h3 style="margin-bottom:0.25rem;">Paruthi Paal</h3>
+            <p style="font-size:0.82rem; color:var(--muted); font-weight:600; margin-bottom:0.5rem;">📍 Simmakkal & West Masi Street</p>
+            <p style="font-size:0.88rem; color:var(--brown-soft); line-height:1.4;">
+              A cherished ancient Tamil street health drink made using pure cottonseed extract, raw unrefined cane jaggery, crushed dry ginger (sukku), and aromatic cardamom.
+            </p>
+            <div class="card-divider"></div>
+            <a href="food-details.html?id=paruthi-paal" class="view">View dish details &rarr;</a>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--white);">
+          <div class="thumb" style="height:200px;">
+            <img src="images/jigarthanda.jpg" alt="Madurai Rose Milk chilled drink" loading="lazy" onerror="handleImageFallback(this, 'Madurai Rose Milk')" />
+            <span class="badge">CHILLED REFRESHMENT</span>
+          </div>
+          <div class="body">
+            <h3 style="margin-bottom:0.25rem;">Madurai Rose Milk</h3>
+            <p style="font-size:0.82rem; color:var(--muted); font-weight:600; margin-bottom:0.5rem;">📍 Vilakkuthoon & Town Hall Road</p>
+            <p style="font-size:0.88rem; color:var(--brown-soft); line-height:1.4;">
+              A popular sweet chilled drink served across street kiosks and bakeries, blending rich cold milk with fragrant rose essence and shaved ice to beat the southern heat.
+            </p>
+            <div class="card-divider"></div>
+            <a href="food-details.html?id=rose-milk" class="view">View dish details &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <p>Made for curious travellers, pilgrims and hungry hearts.</p>
+      <div class="footer-copy">&copy; 2026 &bull; Madurai Explorer Guide</div>
+      <p class="photo-credits-text">
+        Photo credits: Sourced from free open-access cultural archives including Wikimedia Commons, Unsplash, and Pexels.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/food.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderFoodGrid("#food-grid", FOODS);
+
+      function refresh() {
+        applyVisibility("#food-grid .card", "#food-empty");
+      }
+
+      wireSearch("#food-search", "#food-grid .card", "h3", refresh);
+      wireFilters(".filter-bar .chip", "#food-grid .card", refresh);
+      initDistanceControls("#food-grid");
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Madurai — Madurai Explorer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tourism.html">Tourism</a>
+        <a href="food.html">Foods</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="cafes.html">Cafes</a>
+        <a href="modern.html">Modern Madurai</a>
+        <a href="stays.html">Stays</a>
+        <a href="about.html" class="active">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container" style="max-width:920px;">
+      <p class="eyebrow">THE LIVING HERITAGE</p>
+      <h2>About Madurai District</h2>
+      <div class="about-hero-img-wrap" style="margin-top:1.25rem;">
+        <img src="images/about-madurai.jpg" alt="Madurai Vaigai River and cityscape at sunset" class="about-hero-img" />
+      </div>
+      <p>Madurai sits on the banks of the sacred Vaigai river in southern Tamil Nadu and is one of the oldest continuously inhabited cities in the world, with documented references spanning over 2,500 years in Tamil Sangam literature. Its ancient street layout radiates outward from the Meenakshi Amman Temple in concentric lotus-petal squares.</p>
+      <p>Beyond the sacred skyline, the broader Madurai district encompasses rich agrarian plains, granite hills with 2,000-year-old Jain carvings at Samanar Malai, world-famous Jallikattu arenas at Alanganallur, Palamedu, and Avaniyapuram, and historic taluks like Melur, Vadipatti, Thirumangalam, and Usilampatti.</p>
+
+      <div class="stat-row">
+        <div class="stat"><b>2,500+</b><span>years of continuous settlement</span></div>
+        <div class="stat"><b>14</b><span>carved gopurams at Meenakshi Temple</span></div>
+        <div class="stat"><b>11</b><span>taluks across Madurai district</span></div>
+        <div class="stat"><b>1636</b><span>year Nayakkar Palace was built</span></div>
+      </div>
+
+      <!-- 7. INTERACTIVE MADURAI DISTRICT MAP ON ABOUT PAGE -->
+      <div style="margin-top:3.5rem;">
+        <p class="eyebrow">DISTRICT EXPLORATION MAP</p>
+        <h3 style="margin-bottom:0.6rem;">Madurai District Interactive Map</h3>
+        <p style="color:var(--muted); margin-bottom:1.2rem;">
+          Explore temples, Jallikattu grounds, hills, messes, and stays across Madurai district. Centered on [9.9252, 78.1198]. Click any pin for photo, details, and driving directions.
+        </p>
+
+        <div class="map-box-wrapper">
+          <div class="map-header-bar">
+            <div class="map-header-title">
+              <span>🗺️</span>
+              <span>Madurai District Map (Leaflet + OpenStreetMap)</span>
+            </div>
+            <span style="font-size:0.8rem; color:var(--gold-soft);">Interactive GPS Coordinates</span>
+          </div>
+
+          <!-- Interactive Legend with Checkboxes (Section 7) -->
+          <div class="map-legend-pills">
+            <span style="font-size:0.78rem; text-transform:uppercase; color:var(--muted); letter-spacing:0.08em;">Categories:</span>
+            <label class="legend-checkbox-label">
+              <input type="checkbox" data-map-category="tourism" checked />
+              <span class="legend-color-dot legend-dot-tourism"></span>
+              <span>Tourism Places (🛕)</span>
+            </label>
+            <label class="legend-checkbox-label">
+              <input type="checkbox" data-map-category="restaurants" checked />
+              <span class="legend-color-dot legend-dot-food"></span>
+              <span>Messes & Eateries (🍽)</span>
+            </label>
+            <label class="legend-checkbox-label">
+              <input type="checkbox" data-map-category="stays" checked />
+              <span class="legend-color-dot legend-dot-stays"></span>
+              <span>Stays & Resorts (🏨)</span>
+            </label>
+          </div>
+
+          <!-- Full Page Map Canvas -->
+          <div id="districtMap" class="map-canvas full-page-map"></div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:3rem; margin-bottom:0.75rem;">Getting around the District</h3>
+      <p>City attractions — Meenakshi Temple, Thirumalai Nayakkar Palace, Puthu Mandapam, Kazimar Mosque — are situated within convenient walking or auto-rickshaw distance. Sights across the taluks (Alagar Kovil, Pazhamudhir Solai, Alanganallur, Samanar Hills, and Vaigai Dam) are comfortably accessible via local buses and rental cars along NH44 and the Madurai ring roads.</p>
+
+      <h3 style="margin-top:2rem; margin-bottom:0.75rem;">Best time to visit</h3>
+      <p>October through March offers the most pleasant weather for temple trails and heritage walks. In January, the Pongal Jallikattu festivals at Avaniyapuram, Palamedu, and Alanganallur present unmatched rural energy, while April–May hosts the legendary Chithirai Thiruvizha.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <p>Made for curious travellers, pilgrims and hungry hearts.</p>
+      <div class="footer-copy">&copy; 2026 &bull; Madurai Explorer Guide</div>
+      <p class="photo-credits-text">
+        Photo credits: Sourced from free open-access cultural archives including Wikimedia Commons, Unsplash, and Pexels.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/places.js"></script>
+  <script src="js/food.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Centered on 9.9252, 78.1198 with district overview zoom
+      initLeafletDistrictMap("districtMap", { zoom: 11 });
+    });
+  </script>
+</body>
+
+</html>

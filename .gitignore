@@ -1,0 +1,11 @@
+# IDE & System files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary files & session logs
+*.log
+*.tmp
+realistic-track-pant-preserving-tshirt-model.json

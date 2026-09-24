@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourism in Madurai — Madurai Explorer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tourism.html" class="active">Tourism</a>
+        <a href="food.html">Foods</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="cafes.html">Cafes</a>
+        <a href="modern.html">Modern Madurai</a>
+        <a href="stays.html">Stays</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section" style="padding-bottom:1rem;">
+    <div class="container">
+      <p class="eyebrow">DISCOVER SIGHTS ACROSS MADURAI DISTRICT</p>
+      <h2>Tourism in Madurai</h2>
+      <p style="color:var(--muted); margin-top:0.4rem;">
+        Eighteen landmark destinations across the district — iconic gopurams, Pandya rock-cut shrines, 2,000-year-old Jain caves, the Vaigai dam, and the thrilling Jallikattu grounds of Alanganallur and Palamedu.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0.5rem;">
+    <div class="container">
+
+      <!-- Sort & Location Filter Bar -->
+      <div class="sort-and-near-bar">
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="talukSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Filter Taluk:</label>
+          <select id="talukSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Filter by Taluk">
+            <option value="all">All Taluks (Madurai District)</option>
+            <option value="Madurai South">Madurai South (Meenakshi Temple, Palace, Theppakulam)</option>
+            <option value="Madurai North">Madurai North (Alagar Hills, Tamukkam, Riverfront)</option>
+            <option value="Madurai West">Madurai West (Keelakuyilkudi / Samanar Malai)</option>
+            <option value="Vadipatti">Vadipatti (Alanganallur, Palamedu, Sholavandan, Vaigai Dam)</option>
+            <option value="Tirupparankundram">Tirupparankundram Murugan Temple</option>
+            <option value="Madurai East">Madurai East (Thirumohur)</option>
+          </select>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="sortSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Sort:</label>
+          <select id="sortSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Sort places">
+            <option value="default">Featured</option>
+            <option value="distance">Sort by Distance from Meenakshi Temple</option>
+            <option value="rating">Top Rated (★ High to Low)</option>
+          </select>
+          <button type="button" id="nearMeBtn" class="btn-near-me">📍 Near Me</button>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <button class="chip active" data-filter="all">✨ Everything</button>
+        <button class="chip" data-filter="historical">🏛️ Historic Places & Museums</button>
+        <button class="chip" data-filter="temples">🛕 Famous Temples</button>
+        <button class="chip" data-filter="nature">🌿 Nature, Hills & Dams</button>
+        <button class="chip" data-filter="shopping">🛍️ Shopping & Bazaars</button>
+        <div class="filter-search">
+          <span>🔍</span>
+          <input id="place-search" type="search" placeholder="Search places, taluks, highlights..." aria-label="Search places">
+        </div>
+      </div>
+
+      <div class="grid" id="places-grid"></div>
+      <div class="empty-state" id="places-empty">No places match your search or filter yet.</div>
+    </div>
+  </section>
+
+  <!-- ============ 2. MAJOR TEMPLES DIRECTORY TABLE ============ -->
+  <section class="section" style="background:var(--cream-deep); padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">SACRED ARCHITECTURE & LIVING TRADITIONS</p>
+          <h2>Famous Temples of Madurai</h2>
+        </div>
+        <p style="max-width:760px;">
+          From the soaring gopurams of Meenakshi Amman Temple to rock-cut cave shrines and guardian folk deities, Madurai's sacred landscape reflects millennia of continuous worship.
+        </p>
+      </div>
+
+      <div class="celebrity-table-wrap">
+        <table class="celebrity-table">
+          <thead>
+            <tr>
+              <th>Temple</th>
+              <th>Area</th>
+              <th>Known for</th>
+              <th>Significance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="star-name"><a href="place-details.html?id=meenakshi-temple" style="color:var(--maroon); text-decoration:underline;">Meenakshi Amman Temple</a></td>
+              <td>Madurai Main</td>
+              <td><strong>Meenakshi & Sundareswarar</strong></td>
+              <td>Central landmark of Madurai; 14 colossal gopurams and Thousand Pillar Hall.</td>
+            </tr>
+            <tr>
+              <td class="star-name"><a href="place-details.html?id=thirupparankundram" style="color:var(--maroon); text-decoration:underline;">Thirupparankundram Murugan Temple</a></td>
+              <td>Thirupparankundram</td>
+              <td><strong>Lord Murugan</strong></td>
+              <td>First of the Arupadaiveedu; rock-cut cave architecture & ancient Jain heritage around the hill.</td>
+            </tr>
+            <tr>
+              <td class="star-name"><a href="place-details.html?id=alagar-kovil" style="color:var(--maroon); text-decoration:underline;">Azhagar Kovil</a></td>
+              <td>Azhagar Hills</td>
+              <td><strong>Lord Alagar (Vishnu)</strong></td>
+              <td>Celebrated temple nestled in forested hills; focal deity of the Chithirai Vaigai festival.</td>
+            </tr>
+            <tr>
+              <td class="star-name"><a href="place-details.html?id=pazhamudhir-solai" style="color:var(--maroon); text-decoration:underline;">Pazhamudircholai</a></td>
+              <td>Azhagar Hills</td>
+              <td><strong>Lord Murugan</strong></td>
+              <td>Sixth abode of Lord Murugan, set amidst lush forested hills and natural mountain springs.</td>
+            </tr>
+            <tr>
+              <td class="star-name"><a href="place-details.html?id=koodal-azhagar-temple" style="color:var(--maroon); text-decoration:underline;">Koodal Azhagar Temple</a></td>
+              <td>Madurai</td>
+              <td><strong>Lord Vishnu</strong></td>
+              <td>Ancient three-tiered sanctum showing Lord Vishnu in standing, seated and reclining postures.</td>
+            </tr>
+            <tr>
+              <td class="star-name"><a href="place-details.html?id=immaiyilum-nanmai-tharuvar" style="color:var(--maroon); text-decoration:underline;">Immaiyilum Nanmai Tharuvar Temple</a></td>
+              <td>Periyar</td>
+              <td><strong>Lord Shiva</strong></td>
+              <td>Identifiable historic temple where Lord Shiva is depicted worshipping a Shiva Lingam.</td>
+            </tr>
+            <tr>
+              <td class="star-name"><a href="place-details.html?id=pandi-muneeswaran-temple" style="color:var(--maroon); text-decoration:underline;">Pandi Muneeswaran Temple</a></td>
+              <td>Madurai (Melamadai)</td>
+              <td><strong>Local Deity Tradition</strong></td>
+              <td>Revered guardian deity shrine representing authentic folk devotion, bell offerings, and vows.</td>
+            </tr>
+            <tr>
+              <td class="star-name"><a href="place-details.html?id=vandiyur-theppakulam" style="color:var(--maroon); text-decoration:underline;">Mariamman Teppakulam</a></td>
+              <td>Teppakulam</td>
+              <td><strong>Mariamman / Float Festival</strong></td>
+              <td>16-acre sacred square reservoir built in 1645 by King Thirumalai Nayak with island pavilion.</td>
+            </tr>
+            <tr>
+              <td class="star-name"><a href="place-details.html?id=thiruvedagam-temple" style="color:var(--maroon); text-decoration:underline;">Thiruvedagam Temple</a></td>
+              <td>Near Madurai (Sholavandan)</td>
+              <td><strong>Shiva Temple (Edaganathar)</strong></td>
+              <td>Historic Paadal Petra Shiva temple along the Vaigai where palm manuscripts swam upstream.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. CULTURE & FESTIVALS SHOWCASE ============ -->
+  <section class="section" style="padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">LIVING HERITAGE & SPECTACLES</p>
+          <h2>Culture & Festivals of Madurai</h2>
+        </div>
+        <p style="max-width:760px;">
+          Tamil Nadu Tourism lists the Chithirai Festival, Float Festival, and Jallikattu among Madurai's major cultural attractions, drawing millions of visitors from across the globe.
+        </p>
+      </div>
+
+      <div class="festivals-grid">
+        <div class="festival-card">
+          <div class="festival-card-img">
+            <img src="images/chithirai-festival.jpg" alt="Chithirai Festival Madurai" loading="lazy" onerror="handleImageFallback(this, 'Chithirai Festival')" />
+            <span class="festival-card-badge">GRAND CARNIVAL</span>
+          </div>
+          <div class="festival-card-body">
+            <h3>Chithirai Festival</h3>
+            <div class="festival-card-timing">📅 Tamil Month of Chithirai (April – May)</div>
+            <p>
+              One of Madurai's most important cultural and religious celebrations, uniting Shaivite and Vaishnavite traditions with majestic wooden temple chariots, street processions, and ecstatic citywide devotion.
+            </p>
+            <div class="festival-tags">
+              <span class="festival-tag">Meenakshi</span>
+              <span class="festival-tag">Sundareswarar</span>
+              <span class="festival-tag">Alagar</span>
+              <span class="festival-tag">Processions</span>
+              <span class="festival-tag">Temple ceremonies</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="festival-card">
+          <div class="festival-card-img">
+            <img src="images/thirukalyanam.jpg" alt="Meenakshi Thirukalyanam divine wedding" loading="lazy" onerror="handleImageFallback(this, 'Meenakshi Thirukalyanam')" />
+            <span class="festival-card-badge">SACRED NUPTIALS</span>
+          </div>
+          <div class="festival-card-body">
+            <h3>Meenakshi Thirukalyanam</h3>
+            <div class="festival-card-timing">📅 10th Day of Chithirai Festival</div>
+            <p>
+              The celestial wedding of Goddess Meenakshi and Lord Sundareswarar. A major highlight of the Chithirai celebrations, attended by hundreds of thousands of devotees who renew their marriage vows.
+            </p>
+            <div class="festival-tags">
+              <span class="festival-tag">Divine Wedding</span>
+              <span class="festival-tag">Silk & Jewels</span>
+              <span class="festival-tag">Sacred Ceremony</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="festival-card">
+          <div class="festival-card-img">
+            <img src="images/vaigai-river.jpg" alt="Alagar Vaigai River Entry event" loading="lazy" onerror="handleImageFallback(this, 'Alagar Vaigai Entry')" />
+            <span class="festival-card-badge">RIVERSIDE SPECTACLE</span>
+          </div>
+          <div class="festival-card-body">
+            <h3>Alagar Vaigai River Event</h3>
+            <div class="festival-card-timing">📅 Chitra Pournami (Full Moon)</div>
+            <p>
+              A major festival event involving Lord Kallazhagar's traditional journey from the Azhagar Hills mounted on a golden horse, entering the sacred waters of the river Vaigai amidst a sea of cheering devotees.
+            </p>
+            <div class="festival-tags">
+              <span class="festival-tag">Vaigai River</span>
+              <span class="festival-tag">Golden Horse</span>
+              <span class="festival-tag">Alagar Entry</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="festival-card">
+          <div class="festival-card-img">
+            <img src="images/theppakulam.jpg" alt="Float Festival Teppam at Vandiyur Mariamman Theppakulam" loading="lazy" onerror="handleImageFallback(this, 'Float Festival')" />
+            <span class="festival-card-badge">ILLUMINATED WATERS</span>
+          </div>
+          <div class="festival-card-body">
+            <h3>Float Festival / Teppam</h3>
+            <div class="festival-card-timing">📅 Thai Poosam (January – February)</div>
+            <p>
+              Associated with the Mariamman Teppakulam. The deities of Meenakshi and Sundareswarar are drawn on a brightly illuminated floating raft (teppam) adorned with thousands of flowers and lamps across the 16-acre tank.
+            </p>
+            <div class="festival-tags">
+              <span class="festival-tag">Teppakulam</span>
+              <span class="festival-tag">Illuminated Raft</span>
+              <span class="festival-tag">Island Mandapam</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="festival-card">
+          <div class="festival-card-img">
+            <img src="images/jallikattu.jpg" alt="Jallikattu bull taming arena crowd" loading="lazy" onerror="handleImageFallback(this, 'Jallikattu')" />
+            <span class="festival-card-badge">TAMIL VALOUR</span>
+          </div>
+          <div class="festival-card-body">
+            <h3>Jallikattu</h3>
+            <div class="festival-card-timing">📅 Mattu Pongal Season (Mid-January)</div>
+            <p>
+              A major traditional Tamil cultural event celebrated with thunderous passion across the Madurai region, held at legendary historic arenas in Alanganallur, Palamedu, and Avaniyapuram.
+            </p>
+            <div class="festival-tags">
+              <span class="festival-tag">Pongal Season</span>
+              <span class="festival-tag">Alanganallur</span>
+              <span class="festival-tag">Palamedu</span>
+              <span class="festival-tag">Avaniyapuram</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11. MADURAI AREAS GUIDE ============ -->
+  <section class="section" style="background:var(--cream-deep); padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">NEIGHBOURHOOD DIRECTORY & WHAT EACH AREA IS FAMOUS FOR</p>
+          <h2>Madurai Areas — What Each Area Is Known For</h2>
+        </div>
+        <p style="max-width:760px;">
+          Understand Madurai district's unique character by exploring its distinct quarters, heritage streets, modern retail nodes, and archaeological sites.
+        </p>
+      </div>
+
+      <div class="area-explorer-grid">
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Madurai Main</span> <span>🏛️</span></div>
+          <p class="area-guide-attraction">Meenakshi Temple, historic streets, jasmine flower markets, and ancient core.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Mahal Area</span> <span>🏰</span></div>
+          <p class="area-guide-attraction">Thirumalai Nayakkar Mahal, Indo-Saracenic pillars, light & sound show, and street snacks.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Masi Streets</span> <span>🧵</span></div>
+          <p class="area-guide-attraction">Temple streets + shopping + food; Madurai Sungudi sarees, brassware, and tiffin.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Simmakkal</span> <span>🥘</span></div>
+          <p class="area-guide-attraction">Traditional food + markets; Kari dosa, hot mutton bone soup, parotta, and night stalls.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Town Hall Road</span> <span>🥬</span></div>
+          <p class="area-guide-attraction">Restaurants + shopping; Vegetarian tiffin, sweet shops, clothing, and everyday bustle.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Vilakkuthoon</span> <span>🥤</span></div>
+          <p class="area-guide-attraction">Food + commercial streets; Historic 1840 lamp post, chilled Jigarthanda, and tailoring.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Teppakulam</span> <span>🌊</span></div>
+          <p class="area-guide-attraction">Teppakulam + evening food; 16-acre temple tank, float festival, and lakeside strolls.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Tallakulam</span> <span>🍛</span></div>
+          <p class="area-guide-attraction">Messes + restaurants; Famous Chandran Mess, kola urundai, and biryani houses.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Anna Nagar</span> <span>🍽️</span></div>
+          <p class="area-guide-attraction">Modern restaurants + shopping; Zaitoon Middle Eastern grills, cafes, and upscale avenues.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>KK Nagar</span> <span>🏢</span></div>
+          <p class="area-guide-attraction">Restaurants + hotels; Madurai Kitchen, family restaurants, and commercial centres.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Goripalayam</span> <span>🕌</span></div>
+          <p class="area-guide-attraction">Historic Dargah + food + commercial area; Sulthan parotta and buzzing street life.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Avaniyapuram</span> <span>🐂</span></div>
+          <p class="area-guide-attraction">Restaurants + airport-side area; Jallikattu arena, Ayyan restaurant, and airport corridor.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Mattuthavani</span> <span>🚌</span></div>
+          <p class="area-guide-attraction">Integrated bus terminal + hotels + Central wholesale flower and produce market.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Thirupparankundram</span> <span>🛕</span></div>
+          <p class="area-guide-attraction">Murugan Temple + heritage; First Arupadaiveedu, rock-cut shrines, and Jain cave beds.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Azhagar Kovil</span> <span>⛰️</span></div>
+          <p class="area-guide-attraction">Lord Kallazhagar Temple + forested hills + Pazhamudircholai Murugan shrine.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Keelakuyilkudi</span> <span>🧗</span></div>
+          <p class="area-guide-attraction">Samanar Hills (Samanar Malai); 2,000-year-old rock beds, Jain bas-reliefs, and lotus pond.</p>
+        </div>
+        <div class="area-guide-card">
+          <div class="area-guide-name"><span>Keeladi</span> <span>🏺</span></div>
+          <p class="area-guide-attraction">Archaeology; 2,600-year-old Sangam-era urban civilization excavation and modern museum.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <p>Made for curious travellers, pilgrims and hungry hearts.</p>
+      <div class="footer-copy">&copy; 2026 &bull; Madurai Explorer Guide</div>
+      <p class="photo-credits-text">
+        Photo credits: Sourced from free open-access cultural archives including Wikimedia Commons, Unsplash, and Pexels.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/places.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderPlacesGrid("#places-grid", PLACES);
+
+      function refresh() {
+        applyVisibility("#places-grid .card", "#places-empty");
+      }
+
+      wireSearch("#place-search", "#places-grid .card", "h3", refresh);
+      wireFilters(".filter-bar .chip", "#places-grid .card", refresh);
+      wireTalukFilter("#talukSelect", "#places-grid .card", refresh);
+      initDistanceControls("#places-grid");
+    });
+  </script>
+</body>
+
+</html>

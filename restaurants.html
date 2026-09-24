@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legendary Messes & Restaurants — Madurai Explorer</title>
+  <meta name="description"
+    content="Explore legendary banana leaf messes, tender mutton chukka, spicy kari dosai, crispy bun parotta stalls, and highway eateries across Madurai district." />
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    #restaurants-grid .btn-view-map {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tourism.html">Tourism</a>
+        <a href="food.html">Foods</a>
+        <a href="restaurants.html" class="active">Restaurants</a>
+        <a href="cafes.html">Cafes</a>
+        <a href="modern.html">Modern Madurai</a>
+        <a href="stays.html">Stays</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section" style="padding-bottom:1.5rem;">
+    <div class="container">
+      <p class="eyebrow">DISTRICT MESSES & BANANA LEAF EATERIES</p>
+      <h2>Where Locals Eat: Messes & Restaurants</h2>
+      <p style="color:var(--muted); margin-top:0.4rem; max-width:820px;">
+        Legendary banana leaf messes, tender mutton chukka, piping hot ayira meen kulambu, flaky bun parotta stalls, and authentic highway eateries across Melur, Thirumangalam, Vadipatti, and Madurai city.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      
+      <!-- Sort & Filter Controls -->
+      <div class="sort-and-near-bar" style="margin-bottom:1.25rem;">
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="talukSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Filter Taluk:</label>
+          <select id="talukSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Filter by Taluk">
+            <option value="all">All Taluks</option>
+            <option value="Madurai South">Madurai South (Main City)</option>
+            <option value="Madurai North">Madurai North (Simmakkal, Tallakulam)</option>
+            <option value="Madurai West">Madurai West (Kochadai)</option>
+            <option value="Vadipatti">Vadipatti & Sholavandan</option>
+            <option value="Tirupparankundram">Tirupparankundram & Pasumalai</option>
+            <option value="Melur">Melur Taluk</option>
+            <option value="Thirumangalam">Thirumangalam Taluk</option>
+            <option value="Usilampatti">Usilampatti Taluk</option>
+          </select>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="sortSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Sort:</label>
+          <select id="sortSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Sort items">
+            <option value="default">Featured</option>
+            <option value="distance">Sort by Distance from Temple</option>
+            <option value="rating">Top Rated (★ High to Low)</option>
+          </select>
+          <button type="button" id="nearMeBtn" class="btn-near-me">📍 Near Me</button>
+        </div>
+      </div>
+
+      <!-- Filter Chips -->
+      <div class="filter-bar" style="margin-bottom:1.5rem;">
+        <button class="chip active" data-filter="all">✨ All Eateries</button>
+        <button class="chip" data-filter="non-veg">🍗 Non-Veg Messes</button>
+        <button class="chip" data-filter="veg">🥗 Pure Vegetarian</button>
+        <button class="chip" data-filter="street">🌮 Street Food & Stalls</button>
+        <button class="chip" data-filter="parotta">🫓 Parotta Stalls</button>
+        <button class="chip" data-filter="celebrity">🎬 Celebrity Connections</button>
+        <button class="chip" data-filter="highway">🚗 Highway & Taluk Messes</button>
+        <div class="filter-search">
+          <span>🔍</span>
+          <input id="restaurant-search" type="search" placeholder="Search by name, dish or area..." aria-label="Search restaurants and messes">
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid" id="restaurants-grid"></div>
+      <div class="empty-state" id="restaurants-empty">No eateries match your search or filter criteria.</div>
+    </div>
+  </section>
+
+  <!-- ============ 5. STREET FOOD HUBS SECTION ============ -->
+  <section class="section" style="background:var(--cream-deep); padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">ROADSIDE STALLS, MESSES & NIGHT FOOD</p>
+          <h2>Important Street-Food Areas</h2>
+        </div>
+        <p style="max-width:760px;">
+          Madurai's food culture extends far beyond sit-down restaurants into lively roadside stalls, corner messes, and buzzing night-food alleys. Tamil Nadu Tourism recommends exploring Madurai through its evening messes and street stalls.
+        </p>
+      </div>
+
+      <div class="street-hubs-grid">
+        <div class="street-hub-card">
+          <div class="street-hub-header">
+            <div class="street-hub-icon">🥘</div>
+            <div>
+              <h3 class="street-hub-title">Simmakkal</h3>
+              <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">Night Food & Mess Epicentre</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0;">
+            The undisputed late-night haven for meat lovers, piping-hot broths, and sizzling griddles.
+          </p>
+          <div style="font-size:0.82rem; font-weight:700; color:var(--maroon); margin-top:auto;">Known for:</div>
+          <ul class="street-hub-items">
+            <li class="street-hub-item">Kari Dosa</li>
+            <li class="street-hub-item">Parotta</li>
+            <li class="street-hub-item">Mutton Soup</li>
+            <li class="street-hub-item">Non-Veg Dishes</li>
+          </ul>
+        </div>
+
+        <div class="street-hub-card">
+          <div class="street-hub-header">
+            <div class="street-hub-icon">🛕</div>
+            <div>
+              <h3 class="street-hub-title">Masi Streets</h3>
+              <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">Concentric Temple Rings</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0;">
+            Historic concentric streets bustling with tiffin vendors, tea shops, and evening snacks right around the temple.
+          </p>
+          <div style="font-size:0.82rem; font-weight:700; color:var(--maroon); margin-top:auto;">Known for:</div>
+          <ul class="street-hub-items">
+            <li class="street-hub-item">Traditional Snacks</li>
+            <li class="street-hub-item">Tiffin & Idli</li>
+            <li class="street-hub-item">Street Food</li>
+            <li class="street-hub-item">Shops around Temple</li>
+          </ul>
+        </div>
+
+        <div class="street-hub-card">
+          <div class="street-hub-header">
+            <div class="street-hub-icon">🥬</div>
+            <div>
+              <h3 class="street-hub-title">Town Hall Road</h3>
+              <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">Tiffin & Sweet Bazaar</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0;">
+            A sensory corridor connecting the railway station to West Tower, packed with heritage vegetarian food.
+          </p>
+          <div style="font-size:0.82rem; font-weight:700; color:var(--maroon); margin-top:auto;">Known for:</div>
+          <ul class="street-hub-items">
+            <li class="street-hub-item">Vegetarian Restaurants</li>
+            <li class="street-hub-item">Snacks & Vadai</li>
+            <li class="street-hub-item">Tiffin</li>
+            <li class="street-hub-item">Halwa & Sweets</li>
+          </ul>
+        </div>
+
+        <div class="street-hub-card">
+          <div class="street-hub-header">
+            <div class="street-hub-icon">🥤</div>
+            <div>
+              <h3 class="street-hub-title">Vilakkuthoon</h3>
+              <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">Historic Lamp Post Quarter</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0;">
+            The birth hub of chilled Jigarthanda, buzzing with evening crowds, snack stalls, and traditional shops.
+          </p>
+          <div style="font-size:0.82rem; font-weight:700; color:var(--maroon); margin-top:auto;">Known for:</div>
+          <ul class="street-hub-items">
+            <li class="street-hub-item">Jigarthanda</li>
+            <li class="street-hub-item">Evening Snacks</li>
+            <li class="street-hub-item">Traditional Shops</li>
+            <li class="street-hub-item">Night Refreshments</li>
+          </ul>
+        </div>
+
+        <div class="street-hub-card">
+          <div class="street-hub-header">
+            <div class="street-hub-icon">🌊</div>
+            <div>
+              <h3 class="street-hub-title">Teppakulam</h3>
+              <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">Lakeside Evening Promenade</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0;">
+            The cool stone perimeter of the 16-acre temple tank comes alive at dusk with family street carts.
+          </p>
+          <div style="font-size:0.82rem; font-weight:700; color:var(--maroon); margin-top:auto;">Known for:</div>
+          <ul class="street-hub-items">
+            <li class="street-hub-item">Evening Snacks</li>
+            <li class="street-hub-item">Fast Food & Bhel</li>
+            <li class="street-hub-item">Bajji & Bonda</li>
+            <li class="street-hub-item">Local Street Stalls</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. CINEMA & CELEBRITY FOOD CONNECTIONS ============ -->
+  <section class="section" style="padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">EVIDENCE-BASED CULINARY CHRONICLES</p>
+          <h2>Cinema & Celebrity Food Connections</h2>
+        </div>
+        <p style="max-width:760px;">
+          Madurai's legendary messes have drawn film personalities for decades. We maintain a strictly verified, evidence-based standard to distinguish confirmed partnerships and reported visits from casual wall photos.
+        </p>
+      </div>
+
+      <!-- Policy Disclaimer Callout -->
+      <div class="policy-callout">
+        <span class="policy-callout-icon">🔍</span>
+        <div class="policy-callout-text">
+          <h4>Editorial Verification Standard</h4>
+          <p>
+            Important guideline for our readers: We do not write "Actor X visited Restaurant Y" just because an eatery displays a celebrity photograph on its walls. Every item below is transparently labelled <strong>Confirmed</strong> (verified ownership/event), <strong>Reported</strong> (backed by reliable reports), or <strong>Unverified</strong> (no primary source verification).
+          </p>
+        </div>
+      </div>
+
+      <!-- Table View -->
+      <div class="celebrity-table-wrap">
+        <table class="celebrity-table">
+          <thead>
+            <tr>
+              <th>Celebrity</th>
+              <th>Food / Restaurant Connection</th>
+              <th>Verification Status</th>
+              <th>Details & Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="star-name">Actor Soori</td>
+              <td><strong>Amman Restaurant</strong> (Multiple Madurai locations)</td>
+              <td><span class="status-badge confirmed">🟢 Confirmed</span></td>
+              <td>Confirmed brand owner and promoter; deeply associated with the restaurant venture.</td>
+            </tr>
+            <tr>
+              <td class="star-name">Sivakarthikeyan</td>
+              <td><strong>Soori's Restaurant Inauguration</strong> (Ayyan Restaurant, Avaniyapuram)</td>
+              <td><span class="status-badge confirmed">🟢 Reported / Confirmed Event</span></td>
+              <td>Reported and photographed attending the grand opening of Actor Soori's restaurant venture.</td>
+            </tr>
+            <tr>
+              <td class="star-name">Vishnu Vishal</td>
+              <td><strong>Amman Restaurant</strong></td>
+              <td><span class="status-badge confirmed">🟢 Reported Visit</span></td>
+              <td>Report-based visit documented during local film shoot schedules in Madurai.</td>
+            </tr>
+            <tr>
+              <td class="star-name">Sivakarthikeyan</td>
+              <td><strong>Jigarthanda shop in Madurai</strong></td>
+              <td><span class="status-badge confirmed">🟢 Reported Visit</span></td>
+              <td>Reported enjoying Madurai's iconic Jigarthanda; exact shop branch should not be assumed without verified citation.</td>
+            </tr>
+            <tr>
+              <td class="star-name">Tamil Film Celebrities</td>
+              <td><strong>Amma Mess</strong> (West Perumal Maistry Street)</td>
+              <td><span class="status-badge reported">🟡 Reported Photos</span></td>
+              <td>Celebrity photographs and visits widely reported in media; celebrated non-veg haven for visiting film crews.</td>
+            </tr>
+            <tr>
+              <td class="star-name">Vijay / Ajith / Suriya / Rajinikanth</td>
+              <td><strong>Specific Madurai food shops</strong></td>
+              <td><span class="status-badge unverified">⚪ Unverified</span></td>
+              <td>No specific restaurant visit verified in authoritative sources checked; framed photos often represent fan tributes.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <p>Made for curious travellers and hungry hearts across Madurai District.</p>
+      <div class="footer-copy">&copy; 2026 &bull; Madurai Explorer Guide</div>
+      <p class="photo-credits-text">
+        Photo credits: Sourced from free open-access cultural archives including Wikimedia Commons, Unsplash, and Pexels.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/places.js"></script>
+  <script src="js/food.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Render restaurants only
+      renderRestaurantsGrid("#restaurants-grid", RESTAURANTS);
+
+      function refresh() {
+        applyVisibility("#restaurants-grid .card", "#restaurants-empty");
+      }
+
+      // 2. Wire Search
+      wireSearch("#restaurant-search", "#restaurants-grid .card", "h3", refresh);
+
+      // 3. Wire Category Filter Chips
+      const chips = document.querySelectorAll(".filter-bar .chip");
+      chips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          chips.forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+          const filter = chip.dataset.filter;
+
+          document.querySelectorAll("#restaurants-grid .card").forEach(card => {
+            const hay = (card.dataset.name || "").toLowerCase();
+            let matches = true;
+            if (filter === "all") matches = true;
+            else if (filter === "non-veg") matches = hay.includes("non-veg") || hay.includes("mutton") || hay.includes("chukka") || hay.includes("chicken") || hay.includes("kola") || hay.includes("fish") || hay.includes("soup");
+            else if (filter === "veg") matches = hay.includes("vegetarian") || hay.includes("bhavan") || hay.includes("sabarees") || hay.includes("gowri krishna") || hay.includes("idli");
+            else if (filter === "street") matches = hay.includes("street") || hay.includes("soup") || hay.includes("dosai kadai") || hay.includes("chaat") || hay.includes("panipuri") || hay.includes("jigarthanda");
+            else if (filter === "parotta") matches = hay.includes("parotta");
+            else if (filter === "celebrity") matches = hay.includes("soori") || hay.includes("sivakarthikeyan") || hay.includes("vishnu vishal") || hay.includes("celebrity") || hay.includes("amma mess");
+            else if (filter === "highway") matches = hay.includes("highway") || hay.includes("rural") || hay.includes("taluk");
+            card.dataset.matchesFilter = matches ? "1" : "0";
+          });
+          refresh();
+        });
+      });
+
+      // 4. Wire Taluk Filter
+      wireTalukFilter("#talukSelect", "#restaurants-grid .card", refresh);
+
+      // 5. Wire Distance Sorting & Near Me
+      initDistanceControls("#restaurants-grid");
+    });
+  </script>
+</body>
+
+</html>

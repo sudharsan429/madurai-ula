@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafes & Dessert Lounges in Madurai — Madurai Explorer</title>
+  <meta name="description"
+    content="Explore popular cafes, coffee shops, artisanal bakeries, study-friendly work cafes, and dessert parlors across Madurai city." />
+  
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    #cafes-grid .btn-view-map {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tourism.html">Tourism</a>
+        <a href="food.html">Foods</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="cafes.html" class="active">Cafes</a>
+        <a href="modern.html">Modern Madurai</a>
+        <a href="stays.html">Stays</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ BANNER ============ -->
+  <section class="section" style="padding-bottom:1rem; padding-top:2.5rem;">
+    <div class="container">
+      <p class="eyebrow">CONTEMPORARY BREWS & DESSERT HANGOUTS</p>
+      <h2>Popular Cafes in Madurai</h2>
+      <p style="color:var(--muted); margin-top:0.4rem; max-width:800px;">
+        Whether you are seeking a quiet study-friendly corner with high-speed WiFi, artisanal filter coffee, sizzling brownie fondue, or late-night waffles with friends, explore the best cafe spots across Madurai city.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <section class="section" style="padding-top:0.5rem;">
+    <div class="container">
+
+      <!-- Sort & Location Filter Bar -->
+      <div class="sort-and-near-bar">
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="talukSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Filter Area:</label>
+          <select id="talukSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Filter by Area">
+            <option value="all">All Areas in Madurai</option>
+            <option value="KK Nagar">KK Nagar (80 Feet Road)</option>
+            <option value="Bypass Road">Bypass Road / Ponmeni</option>
+            <option value="Chokkikulam">Chokkikulam / Tallakulam</option>
+            <option value="Town Hall Road">Town Hall Road (Central)</option>
+          </select>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <label for="sortSelect" style="font-weight:700; font-size:0.88rem; color:var(--maroon);">Sort:</label>
+          <select id="sortSelect" class="pin-select" style="padding:0.4rem 0.8rem; border-radius:var(--radius-pill); border:1px solid var(--gold); font-size:0.85rem;" aria-label="Sort cafes">
+            <option value="default">Featured</option>
+            <option value="distance">Distance from Meenakshi Temple</option>
+            <option value="rating">Top Rated (★ High to Low)</option>
+          </select>
+
+          <button type="button" id="nearMeBtn" class="btn-near-me">📍 Near Me</button>
+        </div>
+      </div>
+
+      <!-- Search & Category Filters -->
+      <div class="filter-bar" style="margin: 1.5rem 0 1.25rem 0;">
+        <input type="search" id="cafeSearchInput" placeholder="Filter by name, specialty, or tags (e.g. Waffles, WiFi, Brownie)..."
+          style="padding:0.6rem 1.2rem; border-radius:var(--radius-pill); border:1.5px solid var(--gold); background:var(--white); font-size:0.9rem; min-width:280px; flex:1; max-width:450px;" />
+        <button class="chip active" data-filter="all">All Cafes</button>
+        <button class="chip" data-filter="coffee">☕ Coffee & Chai</button>
+        <button class="chip" data-filter="dessert">🍫 Chocolate & Desserts</button>
+        <button class="chip" data-filter="waffles">🧇 Waffles & Bakery</button>
+        <button class="chip" data-filter="study">💻 Study & WiFi</button>
+      </div>
+
+      <!-- Cafes Grid -->
+      <div class="grid" id="cafes-grid"></div>
+      <div class="empty-state" id="cafes-empty">No cafes match your search or filter criteria.</div>
+
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <p>Made for curious travellers, pilgrims, students, and hungry hearts across Madurai District.</p>
+      <div class="footer-copy">&copy; 2026 &bull; Madurai District Guide</div>
+      <p class="photo-credits-text">
+        Photo credits: Sourced from free open-access cultural archives including Wikimedia Commons, Unsplash, and Pexels. All local cafe trademarks belong to their respective owners.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/main.js"></script>
+  <script src="js/places.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Render cafes grid
+      renderCafesGrid("#cafes-grid", CAFES);
+
+      // 2. Search Filter
+      const searchInput = document.querySelector("#cafeSearchInput");
+      if (searchInput) {
+        searchInput.addEventListener("input", () => {
+          const q = searchInput.value.trim().toLowerCase();
+          document.querySelectorAll("#cafes-grid .card").forEach(card => {
+            const text = (card.dataset.name || "").toLowerCase();
+            const matches = !q || text.includes(q);
+            card.dataset.matchesSearch = matches ? "1" : "0";
+          });
+          applyVisibility("#cafes-grid .card", "#cafes-empty");
+        });
+      }
+
+      // 3. Category Chips Filter
+      const chips = document.querySelectorAll(".filter-bar .chip");
+      chips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          chips.forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+          const filter = chip.dataset.filter;
+
+          document.querySelectorAll("#cafes-grid .card").forEach(card => {
+            const hay = (card.dataset.name || "").toLowerCase();
+            let matches = true;
+            if (filter === "coffee") matches = hay.includes("coffee") || hay.includes("chai") || hay.includes("tea");
+            else if (filter === "dessert") matches = hay.includes("chocolate") || hay.includes("brownie") || hay.includes("shake");
+            else if (filter === "waffles") matches = hay.includes("waffle") || hay.includes("bakery");
+            else if (filter === "study") matches = hay.includes("wifi") || hay.includes("seating") || hay.includes("work");
+            card.dataset.matchesFilter = matches ? "1" : "0";
+          });
+          applyVisibility("#cafes-grid .card", "#cafes-empty");
+        });
+      });
+
+      // 4. Area Filter
+      const areaSelect = document.querySelector("#talukSelect");
+      if (areaSelect) {
+        areaSelect.addEventListener("change", () => {
+          const area = areaSelect.value.toLowerCase();
+          document.querySelectorAll("#cafes-grid .card").forEach(card => {
+            const cardArea = (card.dataset.name || "").toLowerCase();
+            const matches = area === "all" || cardArea.includes(area);
+            card.dataset.matchesTaluk = matches ? "1" : "0";
+          });
+          applyVisibility("#cafes-grid .card", "#cafes-empty");
+        });
+      }
+
+      // 5. Proximity & Distance Sorting
+      initDistanceControls("#cafes-grid");
+    });
+  </script>
+</body>
+
+</html>

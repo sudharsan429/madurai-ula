@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Place Details — Madurai Explorer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tourism.html" class="active">Tourism</a>
+        <a href="food.html">Foods</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="cafes.html">Cafes</a>
+        <a href="modern.html">Modern Madurai</a>
+        <a href="stays.html">Stays</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="tourism.html">Tourism</a> / <span id="detail-crumb">Place</span></div>
+      <div style="font-size:2.4rem; margin-bottom:8px;" id="detail-icon" aria-hidden="true">🛕</div>
+      <h1 id="detail-title">Place name</h1>
+      <p class="lede" id="detail-tagline">Tagline</p>
+    </div>
+  </section>
+
+  <section class="detail-body">
+    <div class="container">
+      <div class="detail-grid" id="place-detail">
+        <div>
+          <div class="detail-media-wrap">
+            <img id="detail-image" src="" alt="" class="detail-hero-img" />
+          </div>
+          
+          <ul class="meta-list">
+            <li>📍 <b>Location & Address</b> <span id="meta-location"></span></li>
+            <li>🕐 <b>Timings</b> <span id="meta-timings"></span></li>
+            <li>🏛️ <b>Category & Taluk</b> <span id="meta-category"></span></li>
+          </ul>
+
+          <!-- 3. Get Directions Button -->
+          <div style="margin: 1.25rem 0;">
+            <a id="detail-directions-btn" href="#" target="_blank" rel="noopener" class="btn btn-orange" style="box-shadow: 0 4px 12px rgba(122, 46, 29, 0.3);">
+              🗺️ Get Directions on Google Maps
+            </a>
+          </div>
+
+          <!-- 3. Embedded Mini Map -->
+          <h3 style="margin-top:2rem;">Location Map</h3>
+          <div id="place-mini-map" class="mini-map-canvas"></div>
+
+          <h3>About this place</h3>
+          <p id="detail-description" style="color:var(--brown); line-height:1.75; font-size:1.05rem;"></p>
+          
+          <h3 style="margin-top:2rem;">Highlights</h3>
+          <ul class="highlight-list" id="highlight-list"></ul>
+          
+          <div style="margin-top:2rem;">
+            <a href="tourism.html" class="back-link">&larr; Back to Tourism</a>
+          </div>
+        </div>
+        
+        <aside class="side-card">
+          <h4>More places to see</h4>
+          <ul class="side-list" id="more-places"></ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <p>Made for curious travellers and hungry hearts.</p>
+      <div class="footer-copy">&copy; 2026 &bull; Madurai Explorer Guide</div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/places.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderPlaceDetail();
+    });
+  </script>
+</body>
+
+</html>

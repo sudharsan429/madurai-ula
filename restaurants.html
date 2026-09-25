@@ -7,12 +7,8 @@
   <title>Legendary Messes & Restaurants — Madurai Explorer</title>
   <meta name="description"
     content="Explore legendary banana leaf messes, tender mutton chukka, spicy kari dosai, crispy bun parotta stalls, and highway eateries across Madurai district." />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    #restaurants-grid .btn-view-map {
-      display: none;
-    }
-  </style>
 </head>
 
 <body>
@@ -73,21 +69,21 @@
             <option value="distance">Sort by Distance from Temple</option>
             <option value="rating">Top Rated (★ High to Low)</option>
           </select>
-          <button type="button" id="nearMeBtn" class="btn-near-me">📍 Near Me</button>
+          <button type="button" id="nearMeBtn" class="btn-near-me">Near Me</button>
         </div>
       </div>
 
       <!-- Filter Chips -->
       <div class="filter-bar" style="margin-bottom:1.5rem;">
-        <button class="chip active" data-filter="all">✨ All Eateries</button>
-        <button class="chip" data-filter="non-veg">🍗 Non-Veg Messes</button>
-        <button class="chip" data-filter="veg">🥗 Pure Vegetarian</button>
-        <button class="chip" data-filter="street">🌮 Street Food & Stalls</button>
-        <button class="chip" data-filter="parotta">🫓 Parotta Stalls</button>
-        <button class="chip" data-filter="celebrity">🎬 Celebrity Connections</button>
-        <button class="chip" data-filter="highway">🚗 Highway & Taluk Messes</button>
+        <button class="chip active" data-filter="all">All Eateries</button>
+        <button class="chip" data-filter="non-veg">Non-Veg Messes</button>
+        <button class="chip" data-filter="veg">Pure Vegetarian</button>
+        <button class="chip" data-filter="street">Street Food & Stalls</button>
+        <button class="chip" data-filter="parotta">Parotta Stalls</button>
+        <button class="chip" data-filter="celebrity">Celebrity Connections</button>
+        <button class="chip" data-filter="highway">Highway & Taluk Messes</button>
         <div class="filter-search">
-          <span>🔍</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity:0.55;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           <input id="restaurant-search" type="search" placeholder="Search by name, dish or area..." aria-label="Search restaurants and messes">
         </div>
       </div>
@@ -114,7 +110,6 @@
       <div class="street-hubs-grid">
         <div class="street-hub-card">
           <div class="street-hub-header">
-            <div class="street-hub-icon">🥘</div>
             <div>
               <h3 class="street-hub-title">Simmakkal</h3>
               <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">Night Food & Mess Epicentre</span>
@@ -134,7 +129,6 @@
 
         <div class="street-hub-card">
           <div class="street-hub-header">
-            <div class="street-hub-icon">🛕</div>
             <div>
               <h3 class="street-hub-title">Masi Streets</h3>
               <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">Concentric Temple Rings</span>
@@ -154,7 +148,6 @@
 
         <div class="street-hub-card">
           <div class="street-hub-header">
-            <div class="street-hub-icon">🥬</div>
             <div>
               <h3 class="street-hub-title">Town Hall Road</h3>
               <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">Tiffin & Sweet Bazaar</span>
@@ -174,7 +167,6 @@
 
         <div class="street-hub-card">
           <div class="street-hub-header">
-            <div class="street-hub-icon">🥤</div>
             <div>
               <h3 class="street-hub-title">Vilakkuthoon</h3>
               <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">Historic Lamp Post Quarter</span>
@@ -194,7 +186,6 @@
 
         <div class="street-hub-card">
           <div class="street-hub-header">
-            <div class="street-hub-icon">🌊</div>
             <div>
               <h3 class="street-hub-title">Teppakulam</h3>
               <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">Lakeside Evening Promenade</span>
@@ -230,7 +221,9 @@
 
       <!-- Policy Disclaimer Callout -->
       <div class="policy-callout">
-        <span class="policy-callout-icon">🔍</span>
+        <span class="policy-callout-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </span>
         <div class="policy-callout-text">
           <h4>Editorial Verification Standard</h4>
           <p>
@@ -254,37 +247,37 @@
             <tr>
               <td class="star-name">Actor Soori</td>
               <td><strong>Amman Restaurant</strong> (Multiple Madurai locations)</td>
-              <td><span class="status-badge confirmed">🟢 Confirmed</span></td>
+              <td><span class="status-badge confirmed">Confirmed</span></td>
               <td>Confirmed brand owner and promoter; deeply associated with the restaurant venture.</td>
             </tr>
             <tr>
               <td class="star-name">Sivakarthikeyan</td>
               <td><strong>Soori's Restaurant Inauguration</strong> (Ayyan Restaurant, Avaniyapuram)</td>
-              <td><span class="status-badge confirmed">🟢 Reported / Confirmed Event</span></td>
+              <td><span class="status-badge confirmed">Reported / Confirmed Event</span></td>
               <td>Reported and photographed attending the grand opening of Actor Soori's restaurant venture.</td>
             </tr>
             <tr>
               <td class="star-name">Vishnu Vishal</td>
               <td><strong>Amman Restaurant</strong></td>
-              <td><span class="status-badge confirmed">🟢 Reported Visit</span></td>
+              <td><span class="status-badge confirmed">Reported Visit</span></td>
               <td>Report-based visit documented during local film shoot schedules in Madurai.</td>
             </tr>
             <tr>
               <td class="star-name">Sivakarthikeyan</td>
               <td><strong>Jigarthanda shop in Madurai</strong></td>
-              <td><span class="status-badge confirmed">🟢 Reported Visit</span></td>
+              <td><span class="status-badge confirmed">Reported Visit</span></td>
               <td>Reported enjoying Madurai's iconic Jigarthanda; exact shop branch should not be assumed without verified citation.</td>
             </tr>
             <tr>
               <td class="star-name">Tamil Film Celebrities</td>
               <td><strong>Amma Mess</strong> (West Perumal Maistry Street)</td>
-              <td><span class="status-badge reported">🟡 Reported Photos</span></td>
+              <td><span class="status-badge reported">Reported Photos</span></td>
               <td>Celebrity photographs and visits widely reported in media; celebrated non-veg haven for visiting film crews.</td>
             </tr>
             <tr>
               <td class="star-name">Vijay / Ajith / Suriya / Rajinikanth</td>
               <td><strong>Specific Madurai food shops</strong></td>
-              <td><span class="status-badge unverified">⚪ Unverified</span></td>
+              <td><span class="status-badge unverified">Unverified</span></td>
               <td>No specific restaurant visit verified in authoritative sources checked; framed photos often represent fan tributes.</td>
             </tr>
           </tbody>
@@ -306,6 +299,7 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/main.js"></script>
   <script src="js/places.js"></script>
   <script src="js/food.js"></script>

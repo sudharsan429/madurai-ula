@@ -33,7 +33,6 @@
   <section class="detail-hero">
     <div class="container">
       <div class="breadcrumb"><a href="tourism.html">Tourism</a> / <span id="detail-crumb">Place</span></div>
-      <div style="font-size:2.4rem; margin-bottom:8px;" id="detail-icon" aria-hidden="true">🛕</div>
       <h1 id="detail-title">Place name</h1>
       <p class="lede" id="detail-tagline">Tagline</p>
     </div>
@@ -48,17 +47,20 @@
           </div>
           
           <ul class="meta-list">
-            <li>📍 <b>Location & Address</b> <span id="meta-location"></span></li>
-            <li>🕐 <b>Timings</b> <span id="meta-timings"></span></li>
-            <li>🏛️ <b>Category & Taluk</b> <span id="meta-category"></span></li>
+            <li><b>Location & Address:</b> <span id="meta-location"></span></li>
+            <li><b>Timings:</b> <span id="meta-timings"></span></li>
+            <li><b>Category & Taluk:</b> <span id="meta-category"></span></li>
           </ul>
 
           <!-- 3. Get Directions Button -->
           <div style="margin: 1.25rem 0;">
             <a id="detail-directions-btn" href="#" target="_blank" rel="noopener" class="btn btn-orange" style="box-shadow: 0 4px 12px rgba(122, 46, 29, 0.3);">
-              🗺️ Get Directions on Google Maps
+              Get Directions on Google Maps
             </a>
           </div>
+
+          <!-- Direct Booking & Tour Portals Container -->
+          <div id="detail-booking-container"></div>
 
           <!-- 3. Embedded Mini Map -->
           <h3 style="margin-top:2rem;">Location Map</h3>

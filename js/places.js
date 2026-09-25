@@ -1130,7 +1130,7 @@ const RESTAURANTS = [
     distanceFromMeenakshiTemple: 0.9,
     mapLink: "https://maps.google.com/?q=9.9178,78.1128",
     tagline: "Traditional non-veg food, mutton and fish preparations.",
-    description: "One of the food establishments strongly associated with Madurai's traditional food culture. Famous for traditional non-veg food, mutton and fish preparations, bone marrow omelette, and crab gravies. (Celebrity connection: 🟡 Reported visits & photo connections of Tamil cinema stars).",
+    description: "One of the food establishments strongly associated with Madurai's traditional food culture. Famous for traditional non-veg food, mutton and fish preparations, bone marrow omelette, and crab gravies. (Celebrity connection: Reported visits & photo connections of Tamil cinema stars).",
     specialties: "Traditional Non-Veg Meals, Mutton Preparations, Fish Curries, Bone Marrow Omelette"
   },
   {
@@ -1383,7 +1383,7 @@ const RESTAURANTS = [
     distanceFromMeenakshiTemple: 3.5,
     mapLink: "https://maps.google.com/?q=9.9120,78.1050",
     tagline: "Famous non-vegetarian food associated with Actor Soori.",
-    description: "Amman Restaurant is well-known across multiple Madurai locations for non-vegetarian food. Celebrity connection: 🟢 Confirmed: Actor Soori is associated with the restaurant. 🟢 Confirmed/report-based: Vishnu Vishal has been reported visiting the restaurant.",
+    description: "Amman Restaurant is well-known across multiple Madurai locations for non-vegetarian food. Celebrity connection: Confirmed: Actor Soori is associated with the restaurant. Confirmed/report-based: Vishnu Vishal has been reported visiting the restaurant.",
     specialties: "Non-Vegetarian Food, Country Chicken, Mutton Biryani, Parotta"
   },
   {
@@ -1406,7 +1406,7 @@ const RESTAURANTS = [
     distanceFromMeenakshiTemple: 5.5,
     mapLink: "https://maps.google.com/?q=9.8780,78.1180",
     tagline: "South Indian / non-vegetarian food in Avaniyapuram.",
-    description: "Located in Avaniyapuram, Ayyan Restaurant is famous for South Indian and non-vegetarian food. Celebrity: 🟢 Sivakarthikeyan was reported at the inauguration of Soori's restaurant venture.",
+    description: "Located in Avaniyapuram, Ayyan Restaurant is famous for South Indian and non-vegetarian food. Celebrity: Sivakarthikeyan was reported at the inauguration of Soori's restaurant venture.",
     specialties: "South Indian Food, Non-Vegetarian Meals, Spicy Mutton Chukka"
   },
   {
@@ -1800,14 +1800,14 @@ const STAYS = [
 ];
 
 const CATEGORY_ICONS = {
-  temples: "🛕",
-  historical: "🏛",
-  nature: "🌿",
-  shopping: "🧵",
-  restaurants: "🍽",
-  cafes: "☕",
-  modern: "🏢",
-  stays: "🏨"
+  temples: "",
+  historical: "",
+  nature: "",
+  shopping: "",
+  restaurants: "",
+  cafes: "",
+  modern: "",
+  stays: ""
 };
 
 // =========================================================================
@@ -1828,18 +1828,19 @@ function placeCardHTML(place) {
           <span class="rating">★ ${place.rating}</span>
         </div>
         <div class="card-location-row">
-          <span class="pin-text">📍 ${place.area}</span>
-          <span class="badge" style="position:static; padding:0.2rem 0.5rem; font-size:0.7rem;">${place.taluk}</span>
+          <span class="pin-text">${place.area}</span>
+          <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem;">${place.taluk}</span>
         </div>
         <div class="meta-duration">${place.duration}</div>
-        <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0; line-height:1.4;">${place.tagline}</p>
+        <p class="card-desc">${place.tagline}</p>
         <div class="card-divider"></div>
         <div class="card-footer-row">
           <a href="place-details.html?id=${place.id}" class="view">View details <span class="arrow">&rarr;</span></a>
+          <button type="button" class="btn-book-action" onclick="window.openBookingModal && window.openBookingModal('${place.id}', 'place')">Book Tickets</button>
         </div>
         <div class="card-actions">
-          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">🗺️ Get Directions</a>
-          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${place.id}', ${place.latitude}, ${place.longitude})">📍 View on Map</button>
+          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
+          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${place.id}', ${place.latitude}, ${place.longitude})">View on Map</button>
         </div>
       </div>
     </article>`;
@@ -1860,16 +1861,20 @@ function cafeCardHTML(c) {
           <span class="rating">★ ${c.rating}</span>
         </div>
         <div class="card-location-row">
-          <span class="pin-text">📍 ${c.area}</span>
-          <span class="badge" style="position:static; padding:0.2rem 0.5rem; font-size:0.7rem;">${c.priceRange}</span>
+          <span class="pin-text">${c.area}</span>
+          <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem;">${c.priceRange}</span>
         </div>
         <div class="cafe-tags">${tagsHtml}</div>
-        <div class="meta-duration">🕒 ${c.timings}</div>
-        <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0; line-height:1.4;">${c.tagline}</p>
+        <div class="meta-duration">${c.timings}</div>
+        <p class="card-desc">${c.tagline}</p>
         <div class="card-divider"></div>
+        <div class="card-footer-row">
+          <span class="card-price-pill">${c.priceRange}</span>
+          <button type="button" class="btn-book-action btn-book-food" onclick="window.openBookingModal && window.openBookingModal('${c.id}', 'cafe')">Order / Table</button>
+        </div>
         <div class="card-actions">
-          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">🗺️ Get Directions</a>
-          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${c.id}', ${c.latitude}, ${c.longitude})">📍 View on Map</button>
+          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
+          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${c.id}', ${c.latitude}, ${c.longitude})">View on Map</button>
         </div>
       </div>
     </article>`;
@@ -1890,16 +1895,20 @@ function modernSpotCardHTML(m) {
           <span class="rating">★ ${m.rating}</span>
         </div>
         <div class="card-location-row">
-          <span class="pin-text">📍 ${m.area}</span>
-          <span class="badge" style="position:static; padding:0.2rem 0.5rem; font-size:0.7rem; background:var(--gold-soft); color:var(--brown);">${m.entryFee}</span>
+          <span class="pin-text">${m.area}</span>
+          <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem; background:var(--gold-soft); color:var(--brown);">${m.entryFee}</span>
         </div>
         <div class="cafe-tags">${facHtml}</div>
-        <div class="meta-duration">🕒 ${m.openingHours}</div>
-        <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0; line-height:1.4;">${m.tagline}</p>
+        <div class="meta-duration">${m.openingHours}</div>
+        <p class="card-desc">${m.tagline}</p>
         <div class="card-divider"></div>
+        <div class="card-footer-row">
+          <span class="card-price-pill">${m.entryFee}</span>
+          <button type="button" class="btn-book-action" onclick="window.openBookingModal && window.openBookingModal('${m.id}', 'modern')">Book Entry</button>
+        </div>
         <div class="card-actions">
-          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">🗺️ Get Directions</a>
-          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${m.id}', ${m.latitude}, ${m.longitude})">📍 View on Map</button>
+          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
+          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${m.id}', ${m.latitude}, ${m.longitude})">View on Map</button>
         </div>
       </div>
     </article>`;
@@ -1919,18 +1928,19 @@ function restaurantCardHTML(r) {
           <span class="rating">★ ${r.rating}</span>
         </div>
         <div class="card-location-row">
-          <span class="pin-text">📍 ${r.area}</span>
-          <span class="badge" style="position:static; padding:0.2rem 0.5rem; font-size:0.7rem;">${r.taluk}</span>
+          <span class="pin-text">${r.area}</span>
+          <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem;">${r.taluk}</span>
         </div>
         <div class="meta-duration">${r.duration}</div>
-        <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0; line-height:1.4;">${r.tagline}</p>
+        <p class="card-desc">${r.tagline}</p>
         <div class="card-divider"></div>
         <div class="card-footer-row">
           <a href="food.html" class="view">Explore food <span class="arrow">&rarr;</span></a>
+          <button type="button" class="btn-book-action btn-book-food" onclick="window.openBookingModal && window.openBookingModal('${r.id}', 'restaurant')">Order / Table</button>
         </div>
         <div class="card-actions">
-          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">🗺️ Get Directions</a>
-          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${r.id}', ${r.latitude}, ${r.longitude})">📍 View on Map</button>
+          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
+          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${r.id}', ${r.latitude}, ${r.longitude})">View on Map</button>
         </div>
       </div>
     </article>`;
@@ -1950,15 +1960,19 @@ function stayCardHTML(s) {
           <span class="rating">★ ${s.rating}</span>
         </div>
         <div class="card-location-row">
-          <span class="pin-text">📍 ${s.area}</span>
-          <span class="badge" style="position:static; padding:0.2rem 0.5rem; font-size:0.7rem;">${s.taluk}</span>
+          <span class="pin-text">${s.area}</span>
+          <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem;">${s.taluk}</span>
         </div>
-        <div class="meta-duration">💰 ${s.priceRange}</div>
-        <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0; line-height:1.4;">${s.tagline}</p>
+        <div class="meta-duration">${s.priceRange}</div>
+        <p class="card-desc">${s.tagline}</p>
         <div class="card-divider"></div>
+        <div class="card-footer-row">
+          <span class="card-price-pill">${s.priceRange}</span>
+          <button type="button" class="btn-book-action btn-book-stay" onclick="window.openBookingModal && window.openBookingModal('${s.id}', 'stay')">Book Stay</button>
+        </div>
         <div class="card-actions">
-          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">🗺️ Get Directions</a>
-          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${s.id}', ${s.latitude}, ${s.longitude})">📍 View on Map</button>
+          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
+          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${s.id}', ${s.latitude}, ${s.longitude})">View on Map</button>
         </div>
       </div>
     </article>`;
@@ -2036,7 +2050,7 @@ function renderPlaceDetail() {
   const tagline = document.querySelector("#detail-tagline");
   if (tagline) tagline.textContent = place.tagline;
   const icon = document.querySelector("#detail-icon");
-  if (icon) icon.textContent = CATEGORY_ICONS[place.category] || "🛕";
+  if (icon) icon.style.display = "none";
 
   const detailImg = document.querySelector("#detail-image");
   if (detailImg) {
@@ -2080,6 +2094,34 @@ function renderPlaceDetail() {
     dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${place.latitude},${place.longitude}`;
   }
 
+  // Direct Booking & Tour Portals on Detail Page
+  const bookingContainer = mount.querySelector("#detail-booking-container");
+  if (bookingContainer && typeof getBookingOptionsFor === "function") {
+    const opts = getBookingOptionsFor(place, place.category);
+    bookingContainer.innerHTML = `
+      <div class="detail-booking-section">
+        <h3>Direct Booking & Official Tour Passes</h3>
+        <p style="color:var(--muted); font-size:0.86rem; margin-bottom:1rem;">Verified government e-seva portals, official guided circuits, and direct transport links for ${place.name}.</p>
+        <div class="booking-options-grid">
+          ${opts.map(opt => `
+            <div class="booking-option-card">
+              <div class="booking-option-info">
+                <div class="booking-option-top">
+                  <span class="platform-badge ${opt.tagClass}">${opt.badge}</span>
+                  <h4 class="booking-option-title">${opt.title}</h4>
+                </div>
+                <p class="booking-option-desc">${opt.desc}</p>
+              </div>
+              <a href="${opt.actionUrl}" target="_blank" rel="noopener noreferrer" class="btn-booking-action ${opt.btnClass}">
+                ${opt.actionText}
+              </a>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    `;
+  }
+
   // "More places" side list
   const others = PLACES.filter(p => p.id !== place.id).slice(0, 4);
   const sideEl = mount.querySelector("#more-places");
@@ -2100,4 +2142,13 @@ function renderPlaceDetail() {
         </li>`)
       .join("");
   }
+}
+
+// Expose collections globally for cross-page interactive map & modal
+if (typeof window !== "undefined") {
+  window.PLACES = PLACES;
+  window.CAFES = CAFES;
+  window.MODERN_SPOTS = MODERN_SPOTS;
+  window.RESTAURANTS = RESTAURANTS;
+  window.STAYS = STAYS;
 }

@@ -8,12 +8,8 @@
   <meta name="description"
     content="Find the best stays in Madurai: Geoffrey Bawa-designed luxury villas, hilltop Taj heritage resorts, mid-range family hotels, and pilgrim lodges." />
   
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    #stays-grid .btn-view-map {
-      display: none;
-    }
-  </style>
 </head>
 
 <body>
@@ -74,18 +70,32 @@
             <option value="rating">Top Rated (★ High to Low)</option>
           </select>
 
-          <button type="button" id="nearMeBtn" class="btn-near-me">📍 Near Me</button>
+          <button type="button" id="nearMeBtn" class="btn-near-me">Near Me</button>
+        </div>
+      </div>
+
+      <!-- Direct Booking Partners Bar -->
+      <div style="background:rgba(255,255,255,0.92); border:1px solid var(--gold); border-radius:var(--radius-card); padding:0.75rem 1.25rem; margin-top:1.25rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; box-shadow:0 3px 10px rgba(180, 125, 15, 0.08);">
+        <div style="display:flex; align-items:center; gap:0.6rem; font-size:0.86rem; color:var(--brown);">
+          <span style="background:var(--maroon); color:#fff; font-size:0.7rem; font-weight:800; padding:0.2rem 0.55rem; border-radius:var(--radius-pill); text-transform:uppercase;">Direct Booking</span>
+          <span>Compare real-time rates and book instantly on verified partner portals:</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap;">
+          <span class="platform-badge badge-mmt">MakeMyTrip</span>
+          <span class="platform-badge badge-booking">Booking.com</span>
+          <span class="platform-badge badge-agoda">Agoda</span>
+          <span class="platform-badge badge-direct">Direct Reception</span>
         </div>
       </div>
 
       <!-- Search & Category Filters -->
-      <div class="filter-bar" style="margin: 1.5rem 0 1.25rem 0;">
+      <div class="filter-bar" style="margin: 1.25rem 0 1.25rem 0;">
         <input type="search" id="staySearchInput" placeholder="Filter by name, area, or amenities (e.g. Pool, Taj, Temple, Bawa)..."
           style="padding:0.6rem 1.2rem; border-radius:var(--radius-pill); border:1.5px solid var(--gold); background:var(--white); font-size:0.9rem; min-width:280px; flex:1; max-width:450px;" />
-        <button class="chip active" data-filter="all">✨ All Stays</button>
-        <button class="chip" data-filter="luxury">👑 Luxury Resorts</button>
-        <button class="chip" data-filter="mid-range">🛏️ Mid-Range</button>
-        <button class="chip" data-filter="budget">🏷️ Budget & Lodges</button>
+        <button class="chip active" data-filter="all">All Stays</button>
+        <button class="chip" data-filter="luxury">Luxury Resorts</button>
+        <button class="chip" data-filter="mid-range">Mid-Range</button>
+        <button class="chip" data-filter="budget">Budget & Lodges</button>
       </div>
 
       <!-- Stays Grid -->
@@ -110,6 +120,7 @@
   </footer>
 
   <!-- ============ SCRIPTS ============ -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/main.js"></script>
   <script src="js/places.js"></script>
   <script>

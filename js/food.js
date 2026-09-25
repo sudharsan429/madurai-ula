@@ -622,10 +622,10 @@ const FOODS = [
 ];
 
 const FOOD_ICONS = {
-  drinks: "🥤",
-  breakfast: "🍳",
-  lunch: "🍛",
-  snacks: "🍢"
+  drinks: "",
+  breakfast: "",
+  lunch: "",
+  snacks: ""
 };
 
 function foodCardHTML(food) {
@@ -642,18 +642,19 @@ function foodCardHTML(food) {
           <span class="rating">★ ${food.rating}</span>
         </div>
         <div class="card-location-row">
-          <span class="pin-text">📍 ${food.area}</span>
-          <span class="badge" style="position:static; padding:0.2rem 0.5rem; font-size:0.7rem;">${food.priceRange}</span>
+          <span class="pin-text">${food.area}</span>
+          <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem;">${food.priceRange}</span>
         </div>
         <div class="meta-duration">${food.duration} · ${food.priceRange}</div>
-        <p style="font-size:0.88rem; color:var(--brown-soft); margin:0 0 0.5rem 0; line-height:1.4;">${food.tagline}</p>
+        <p class="card-desc">${food.tagline}</p>
         <div class="card-divider"></div>
         <div class="card-footer-row">
           <a href="food-details.html?id=${food.id}" class="view">View details <span class="arrow">&rarr;</span></a>
+          <button type="button" class="btn-book-action btn-book-food" onclick="window.openBookingModal && window.openBookingModal('${food.id}', 'food')">Order Online</button>
         </div>
         <div class="card-actions">
-          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">🗺️ Get Directions</a>
-          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${food.id}', ${food.latitude}, ${food.longitude})">📍 View on Map</button>
+          <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
+          <button type="button" class="btn-view-map" onclick="window.zoomToMapMarker && window.zoomToMapMarker('${food.id}', ${food.latitude}, ${food.longitude})">View on Map</button>
         </div>
       </div>
     </article>`;
@@ -679,7 +680,7 @@ function renderFoodDetail() {
   const tagline = document.querySelector("#detail-tagline");
   if (tagline) tagline.textContent = food.tagline;
   const icon = document.querySelector("#detail-icon");
-  if (icon) icon.textContent = FOOD_ICONS[food.category] || "🍽";
+  if (icon) icon.style.display = "none";
 
   const detailImg = document.querySelector("#detail-image");
   if (detailImg) {
@@ -719,6 +720,34 @@ function renderFoodDetail() {
     dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${food.latitude},${food.longitude}`;
   }
 
+  // Direct Order & Table Booking Section on Food Detail Page
+  const bookingContainer = mount.querySelector("#food-booking-container");
+  if (bookingContainer && typeof getBookingOptionsFor === "function") {
+    const opts = getBookingOptionsFor(food, "food");
+    bookingContainer.innerHTML = `
+      <div class="detail-booking-section">
+        <h3>Direct Order & Table Reservation</h3>
+        <p style="color:var(--muted); font-size:0.86rem; margin-bottom:1rem;">Order ${food.name} directly online or reserve a dining table at recommended eateries.</p>
+        <div class="booking-options-grid">
+          ${opts.map(opt => `
+            <div class="booking-option-card">
+              <div class="booking-option-info">
+                <div class="booking-option-top">
+                  <span class="platform-badge ${opt.tagClass}">${opt.badge}</span>
+                  <h4 class="booking-option-title">${opt.title}</h4>
+                </div>
+                <p class="booking-option-desc">${opt.desc}</p>
+              </div>
+              <a href="${opt.actionUrl}" target="_blank" rel="noopener noreferrer" class="btn-booking-action ${opt.btnClass}">
+                ${opt.actionText}
+              </a>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+    `;
+  }
+
   const others = FOODS.filter(f => f.id !== food.id).slice(0, 4);
   const moreEl = mount.querySelector("#more-foods");
   if (moreEl) {
@@ -738,4 +767,9 @@ function renderFoodDetail() {
         </li>`)
       .join("");
   }
+}
+
+// Expose FOODS globally for cross-page interactive map & modal
+if (typeof window !== "undefined") {
+  window.FOODS = FOODS;
 }

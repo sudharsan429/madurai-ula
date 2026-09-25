@@ -8,12 +8,8 @@
   <meta name="description"
     content="Explore popular cafes, coffee shops, artisanal bakeries, study-friendly work cafes, and dessert parlors across Madurai city." />
   
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    #cafes-grid .btn-view-map {
-      display: none;
-    }
-  </style>
 </head>
 
 <body>
@@ -74,7 +70,7 @@
             <option value="rating">Top Rated (★ High to Low)</option>
           </select>
 
-          <button type="button" id="nearMeBtn" class="btn-near-me">📍 Near Me</button>
+          <button type="button" id="nearMeBtn" class="btn-near-me">Near Me</button>
         </div>
       </div>
 
@@ -83,10 +79,10 @@
         <input type="search" id="cafeSearchInput" placeholder="Filter by name, specialty, or tags (e.g. Waffles, WiFi, Brownie)..."
           style="padding:0.6rem 1.2rem; border-radius:var(--radius-pill); border:1.5px solid var(--gold); background:var(--white); font-size:0.9rem; min-width:280px; flex:1; max-width:450px;" />
         <button class="chip active" data-filter="all">All Cafes</button>
-        <button class="chip" data-filter="coffee">☕ Coffee & Chai</button>
-        <button class="chip" data-filter="dessert">🍫 Chocolate & Desserts</button>
-        <button class="chip" data-filter="waffles">🧇 Waffles & Bakery</button>
-        <button class="chip" data-filter="study">💻 Study & WiFi</button>
+        <button class="chip" data-filter="coffee">Coffee & Chai</button>
+        <button class="chip" data-filter="dessert">Chocolate & Desserts</button>
+        <button class="chip" data-filter="waffles">Waffles & Bakery</button>
+        <button class="chip" data-filter="study">Study & WiFi</button>
       </div>
 
       <!-- Cafes Grid -->
@@ -111,6 +107,7 @@
   </footer>
 
   <!-- ============ SCRIPTS ============ -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/main.js"></script>
   <script src="js/places.js"></script>
   <script>

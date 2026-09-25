@@ -8,12 +8,8 @@
   <meta name="description"
     content="Explore Modern Madurai: Kalaignar Centenary Library, Vishaal de Mall, Milan'em Mall, Corporation Eco Park, Rajaji Park, and modern attractions." />
   
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    #modern-grid .btn-view-map {
-      display: none;
-    }
-  </style>
 </head>
 
 <body>
@@ -74,7 +70,7 @@
             <option value="rating">Top Rated (★ High to Low)</option>
           </select>
 
-          <button type="button" id="nearMeBtn" class="btn-near-me">📍 Near Me</button>
+          <button type="button" id="nearMeBtn" class="btn-near-me">Near Me</button>
         </div>
       </div>
 
@@ -83,10 +79,10 @@
         <input type="search" id="modernSearchInput" placeholder="Filter by name, facility or type (e.g. Library, Multiplex, Park)..."
           style="padding:0.6rem 1.2rem; border-radius:var(--radius-pill); border:1.5px solid var(--gold); background:var(--white); font-size:0.9rem; min-width:280px; flex:1; max-width:450px;" />
         <button class="chip active" data-filter="all">All Places</button>
-        <button class="chip" data-filter="library">📚 Public Library</button>
-        <button class="chip" data-filter="mall">🛍️ Shopping Malls</button>
-        <button class="chip" data-filter="park">🌳 Parks & Nature</button>
-        <button class="chip" data-filter="fun">🎢 Theme Parks & Fun</button>
+        <button class="chip" data-filter="library">Public Library</button>
+        <button class="chip" data-filter="mall">Shopping Malls</button>
+        <button class="chip" data-filter="park">Parks & Nature</button>
+        <button class="chip" data-filter="fun">Theme Parks & Fun</button>
       </div>
 
       <!-- FULL-WIDTH MODERN SPOTS GRID -->
@@ -111,6 +107,7 @@
   </footer>
 
   <!-- ============ SCRIPTS ============ -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/main.js"></script>
   <script src="js/places.js"></script>
   <script>

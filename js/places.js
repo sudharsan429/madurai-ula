@@ -2471,8 +2471,9 @@ function placeCardHTML(place) {
         <div class="card-divider"></div>
         <div class="card-footer-row">
           <span class="card-price-pill" title="Entry: ${place.entryFee || 'Free Entry'}">${place.entryFeeShort || 'Free Entry'}</span>
-          <div style="display:flex; align-items:center; gap:0.35rem; min-width:0;">
+          <div style="display:flex; align-items:center; gap:0.35rem; min-width:0; flex-wrap:wrap;">
             <a href="place-details.html?id=${place.id}" class="view">Details <span class="arrow">&rarr;</span></a>
+            <button type="button" class="btn-support-local" onclick="window.openSupportLocalModal && window.openSupportLocalModal('${place.id}', 'place')">💚 Support Local</button>
             <button type="button" class="btn-book-action ${(place.id === 'meenakshi-temple' || place.id === 'thirumalai-nayak-palace' || place.id === 'keeladi-museum' || place.id === 'thirupparankundram-temple' || place.id === 'alagar-kovil') ? '' : 'btn-book-free'}" onclick="window.openBookingModal && window.openBookingModal('${place.id}', 'place')">${(place.id === 'meenakshi-temple' || place.id === 'thirumalai-nayak-palace' || place.id === 'keeladi-museum' || place.id === 'thirupparankundram-temple' || place.id === 'alagar-kovil') ? 'Passes' : 'Entry Info'}</button>
           </div>
         </div>
@@ -2508,7 +2509,10 @@ function cafeCardHTML(c) {
         <div class="card-divider"></div>
         <div class="card-footer-row">
           <span class="card-price-pill">${c.priceRange}</span>
-          <button type="button" class="btn-book-action btn-book-food" onclick="window.openBookingModal && window.openBookingModal('${c.id}', 'cafe')">Order / Table</button>
+          <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
+            <button type="button" class="btn-support-local" onclick="window.openSupportLocalModal && window.openSupportLocalModal('${c.id}', 'cafe')">💚 Support Local</button>
+            <button type="button" class="btn-book-action btn-book-food" onclick="window.openBookingModal && window.openBookingModal('${c.id}', 'cafe')">Order / Table</button>
+          </div>
         </div>
         <div class="card-actions">
           <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
@@ -2556,7 +2560,10 @@ function modernSpotCardHTML(m) {
         <div class="card-divider"></div>
         <div class="card-footer-row">
           <span class="card-price-pill" title="Entry: ${m.entryFee}">${feeLabel}</span>
-          ${actionBtnHtml}
+          <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
+            <button type="button" class="btn-support-local" onclick="window.openSupportLocalModal && window.openSupportLocalModal('${m.id}', 'modern')">💚 Support Local</button>
+            ${actionBtnHtml}
+          </div>
         </div>
         <div class="card-actions">
           <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
@@ -2588,7 +2595,10 @@ function restaurantCardHTML(r) {
         <div class="card-divider"></div>
         <div class="card-footer-row">
           <a href="food.html" class="view">Explore food <span class="arrow">&rarr;</span></a>
-          <button type="button" class="btn-book-action btn-book-food" onclick="window.openBookingModal && window.openBookingModal('${r.id}', 'restaurant')">Order / Table</button>
+          <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
+            <button type="button" class="btn-support-local" onclick="window.openSupportLocalModal && window.openSupportLocalModal('${r.id}', 'restaurant')">💚 Support Local</button>
+            <button type="button" class="btn-book-action btn-book-food" onclick="window.openBookingModal && window.openBookingModal('${r.id}', 'restaurant')">Order / Table</button>
+          </div>
         </div>
         <div class="card-actions">
           <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
@@ -2620,7 +2630,10 @@ function stayCardHTML(s) {
         <div class="card-divider"></div>
         <div class="card-footer-row">
           <span class="card-price-pill">${s.priceRange}</span>
-          <button type="button" class="btn-book-action btn-book-stay" onclick="window.openBookingModal && window.openBookingModal('${s.id}', 'stay')">Book Stay</button>
+          <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
+            <button type="button" class="btn-support-local" onclick="window.openSupportLocalModal && window.openSupportLocalModal('${s.id}', 'stay')">💚 Support Local</button>
+            <button type="button" class="btn-book-action btn-book-stay" onclick="window.openBookingModal && window.openBookingModal('${s.id}', 'stay')">Book Stay</button>
+          </div>
         </div>
         <div class="card-actions">
           <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>

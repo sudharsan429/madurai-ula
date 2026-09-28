@@ -650,7 +650,10 @@ function foodCardHTML(food) {
         <div class="card-divider"></div>
         <div class="card-footer-row">
           <a href="food-details.html?id=${food.id}" class="view">View details <span class="arrow">&rarr;</span></a>
-          <button type="button" class="btn-book-action btn-book-food" onclick="window.openBookingModal && window.openBookingModal('${food.id}', 'food')">Order Online</button>
+          <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
+            <button type="button" class="btn-support-local" onclick="window.openSupportLocalModal && window.openSupportLocalModal('${food.id}', 'food')">💚 Support Local</button>
+            <button type="button" class="btn-book-action btn-book-food" onclick="window.openBookingModal && window.openBookingModal('${food.id}', 'food')">Order Online</button>
+          </div>
         </div>
         <div class="card-actions">
           <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>

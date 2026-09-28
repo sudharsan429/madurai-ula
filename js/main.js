@@ -993,6 +993,292 @@ window.openBookingModal = function(id, itemType) {
   document.body.style.overflow = "hidden";
 };
 
+// =========================================================================
+// SUPPORT LOCAL & CSR COMMUNITY IMPACT CONTROLLER
+// =========================================================================
+function getSupportLocalDetails(item, itemType) {
+  const type = (itemType || item.category || "").toLowerCase();
+  const name = item.name || "Local Establishment";
+  const area = item.area || item.address || "Madurai";
+
+  // Specific tailored details for key landmarks and foods
+  if (item.id === "jigarthanda" || name.toLowerCase().includes("jigarthanda")) {
+    return {
+      pillar1: "Direct Dairy & Herbal Supply Chain",
+      desc1: "Supports local dairy farmers supplying fresh full-cream milk, rural gum collectors harvesting badam pisin (almond gum), and indigenous herbal extractors of nannari (sarsaparilla) roots.",
+      pillar2: "Culinary GI Heritage",
+      desc2: "Recognized as Madurai's distinct culinary icon, preserving a 50+ year legacy founded by local micro-entrepreneurs on East Marret Street and Simmakkal.",
+      pillar3: "Responsible Traveler Tip",
+      desc3: "Drink from reusable glass tumblers at physical counters rather than disposable plastic cups. Pay directly via UPI/Cash to eliminate third-party commission."
+    };
+  }
+
+  if (item.id === "paruthi-paal" || name.toLowerCase().includes("paruthi")) {
+    return {
+      pillar1: "Cotton Farmer & Spice Livelihoods",
+      desc1: "Raw cottonseeds are sourced directly from Tamil Nadu cotton farmers, sweetened with unrefined country jaggery and dry ginger (sukku) milled by small local traders.",
+      pillar2: "Ancient Tamil Wellness Drink",
+      desc2: "Centuries-old indigenous recipe passed down through generations of roadside vendors in Simmakkal, offering natural cooling and wellness without industrial preservatives.",
+      pillar3: "Responsible Traveler Tip",
+      desc3: "Savor it warm in traditional brass tumblers or earthenware cups. Support evening street vendors whose livelihood depends on daily sales."
+    };
+  }
+
+  if (item.id === "kari-dosai" || item.id === "bun-parotta" || name.toLowerCase().includes("parotta") || name.toLowerCase().includes("dosai") || name.toLowerCase().includes("mess")) {
+    return {
+      pillar1: "Family-Owned Heritage Kitchens",
+      desc1: "Madurai's messes are generational micro-enterprises employing master parotta/dosai masters, shallot peelers, and local staff across South and North taluks.",
+      pillar2: "Indigenous Food Culture",
+      desc2: "Cast-iron griddle cooking, fresh stone-ground spice masalas, and country gingelly oil sustain the uncommercialized gastronomic fabric of Madurai.",
+      pillar3: "Responsible Traveler Tip",
+      desc3: "Dine on traditional fresh banana leaves; banana leaves are 100% biodegradable and enrich local farmers while reducing single-use plastic waste."
+    };
+  }
+
+  if (type.includes("food") || type.includes("restaurant") || type.includes("cafe")) {
+    return {
+      pillar1: "Direct Local Economic Retention",
+      desc1: "Over 88% of your spend stays within the local Madurai economy, sustaining cooks, helpers, and market vendors in Masi and Marret streets.",
+      pillar2: "Living Culinary Traditions",
+      desc2: "Authentic regional flavors prepared using locally sourced country spices, cold-pressed oils, and fresh grains rather than processed global foods.",
+      pillar3: "Responsible Traveler Tip",
+      desc3: "Order directly at the establishment or call their direct counter to save 25–30% intermediary commission for the local business family."
+    };
+  }
+
+  if (item.id === "meenakshi-temple" || item.id === "thirupparankundram-temple" || item.id === "alagar-kovil" || type.includes("tourism") || type.includes("temple")) {
+    return {
+      pillar1: "Temple Artisan & Vendor Ecosystem",
+      desc1: "Sustains hundreds of garland knotters stringing GI Madurai Malli (jasmine), brass lamp makers in Puthu Mandapam, and local heritage guides.",
+      pillar2: "2,500+ Years Living Heritage",
+      desc2: "Protects ancient Pandya, Nayak, and Sangam stone architecture, intricate granite gopurams, and traditional ritual ecosystems.",
+      pillar3: "Responsible Traveler Tip",
+      desc3: "Adhere to the traditional dress code, deposit shoes at official stands, avoid disposable plastic around temple perimeters, and purchase authentic flower garlands."
+    };
+  }
+
+  return {
+    pillar1: "Local Employment & Community Value",
+    desc1: `Visiting ${name} directly sustains indigenous jobs and community livelihoods across ${area}, keeping economic resources in Madurai.`,
+    pillar2: "Cultural Preservation",
+    desc2: "Contributes to protecting Madurai's unique cultural landscape, architectural identity, and regional pride.",
+    pillar3: "Conscious Visitor Tip",
+    desc3: "Travel respectfully, utilize walking trails or shared green transit, and support indigenous artisans and vendors located nearby."
+  };
+}
+
+function ensureSupportLocalModal() {
+  let modal = document.getElementById("supportLocalModal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "supportLocalModal";
+    modal.className = "support-local-backdrop";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-hidden", "true");
+    modal.innerHTML = `
+      <div class="support-local-card">
+        <div class="support-local-header">
+          <div class="support-local-title-group">
+            <span class="support-local-badge"><span class="badge-leaf">🌱</span> CSR & LOCAL COMMUNITY</span>
+            <h3 id="modalSupportTitle">Support Local</h3>
+            <p id="modalSupportSubtitle">Discover and support local restaurants, artisans and small businesses in Madurai.</p>
+          </div>
+          <button type="button" class="support-modal-close" id="modalSupportCloseBtn" aria-label="Close">&times;</button>
+        </div>
+        <div class="support-local-body">
+          <div class="support-banner">
+            <div class="support-banner-icon">🤝</div>
+            <div class="support-banner-text">
+              <strong>Direct Community Impact & CSR</strong>
+              <p>When you discover and support local establishments, over 90% of your spend directly sustains Madurai families, generational artisans, and regional farmers.</p>
+            </div>
+          </div>
+          <div class="support-impact-pillars" id="modalSupportPillars"></div>
+          <div class="support-actions-row">
+            <a href="csr.html" class="btn-support-portal">Explore CSR & Community Guide &rarr;</a>
+            <a href="#" id="modalSupportDirectionsBtn" target="_blank" rel="noopener" class="btn-support-nav">Get Directions &rarr;</a>
+          </div>
+        </div>
+        <div class="support-local-footer">
+          <button type="button" class="btn-modal-dismiss" id="modalSupportDismissBtn">Close</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const closeModal = () => {
+      modal.classList.remove("active");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+
+    modal.querySelector("#modalSupportCloseBtn").addEventListener("click", closeModal);
+    modal.querySelector("#modalSupportDismissBtn").addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("active")) {
+        closeModal();
+      }
+    });
+  }
+  return modal;
+}
+
+window.openSupportLocalModal = function(id, itemType) {
+  const item = findPlaceOrFoodItem(id);
+  if (!item) {
+    console.warn("Item not found for support local:", id);
+    return;
+  }
+  const modal = ensureSupportLocalModal();
+  const name = item.name || "Local Destination";
+  const area = item.area || item.address || "Madurai";
+
+  document.getElementById("modalSupportTitle").textContent = name;
+  document.getElementById("modalSupportSubtitle").textContent = `${area} · Direct Local Community & Heritage Support`;
+
+  const details = getSupportLocalDetails(item, itemType);
+  const pillarsEl = document.getElementById("modalSupportPillars");
+  if (pillarsEl) {
+    pillarsEl.innerHTML = `
+      <div class="support-impact-pillar">
+        <div class="support-pillar-icon">👨‍👩‍👧‍👦</div>
+        <div class="support-pillar-content">
+          <h4>${details.pillar1}</h4>
+          <p>${details.desc1}</p>
+        </div>
+      </div>
+      <div class="support-impact-pillar">
+        <div class="support-pillar-icon">🏛️</div>
+        <div class="support-pillar-content">
+          <h4>${details.pillar2}</h4>
+          <p>${details.desc2}</p>
+        </div>
+      </div>
+      <div class="support-impact-pillar">
+        <div class="support-pillar-icon">💡</div>
+        <div class="support-pillar-content">
+          <h4>${details.pillar3}</h4>
+          <p>${details.desc3}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  const dirBtn = document.getElementById("modalSupportDirectionsBtn");
+  if (dirBtn) {
+    dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${item.latitude},${item.longitude}`;
+  }
+
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+};
+
+// =========================================================================
+// CSR & COMMUNITY PAGE CONTROLLERS (Pledge, Calculator, Directory)
+// =========================================================================
+function initCsrPage() {
+  // 1. Interactive Pledge Controller
+  const pledgeBtn = document.getElementById("btnTakePledge");
+  const pledgeCountEl = document.getElementById("pledgeCounterNum");
+  const pledgeCertEl = document.getElementById("pledgeCertBadge");
+  const baseCount = 1482;
+  const storedPledges = parseInt(localStorage.getItem("madurai_csr_pledges") || "0", 10);
+  const totalPledges = baseCount + storedPledges;
+
+  if (pledgeCountEl) {
+    pledgeCountEl.textContent = totalPledges.toLocaleString();
+  }
+
+  if (localStorage.getItem("madurai_visitor_pledged") === "1" && pledgeCertEl) {
+    pledgeCertEl.classList.add("active");
+    if (pledgeBtn) {
+      pledgeBtn.textContent = "✓ Pledge Taken (Thank You!)";
+      pledgeBtn.disabled = true;
+      pledgeBtn.style.background = "#2E7D32";
+    }
+  }
+
+  if (pledgeBtn) {
+    pledgeBtn.addEventListener("click", () => {
+      const checkboxes = document.querySelectorAll(".csr-pledge-item input[type='checkbox']");
+      let allChecked = true;
+      checkboxes.forEach(cb => {
+        if (!cb.checked) allChecked = false;
+      });
+
+      if (!allChecked) {
+        alert("Please tick all 5 responsible visitor commitments to sign the official pledge.");
+        return;
+      }
+
+      const newStored = storedPledges + 1;
+      localStorage.setItem("madurai_csr_pledges", String(newStored));
+      localStorage.setItem("madurai_visitor_pledged", "1");
+
+      if (pledgeCountEl) {
+        pledgeCountEl.textContent = (baseCount + newStored).toLocaleString();
+      }
+
+      if (pledgeCertEl) {
+        pledgeCertEl.classList.add("active");
+      }
+
+      pledgeBtn.textContent = "✓ Pledge Signed Successfully!";
+      pledgeBtn.disabled = true;
+      pledgeBtn.style.background = "#2E7D32";
+    });
+  }
+
+  // 2. Economic Impact Calculator Controller
+  const slider = document.getElementById("csrSpendSlider");
+  const spendValEl = document.getElementById("csrSpendVal");
+  const retainedValEl = document.getElementById("csrRetainedVal");
+  const familiesValEl = document.getElementById("csrFamiliesVal");
+  const co2ValEl = document.getElementById("csrCo2Val");
+
+  function updateCalculator(val) {
+    if (spendValEl) spendValEl.textContent = `₹${val.toLocaleString()}`;
+    const retained = Math.round(val * 0.91);
+    if (retainedValEl) retainedValEl.textContent = `₹${retained.toLocaleString()}`;
+    const families = Math.max(1, Math.round(val / 650));
+    if (familiesValEl) familiesValEl.textContent = `${families} Families`;
+    const co2Saved = Math.min(95, Math.round(15 + (val / 150)));
+    if (co2ValEl) co2ValEl.textContent = `${co2Saved} kg CO₂`;
+  }
+
+  if (slider) {
+    slider.addEventListener("input", (e) => {
+      updateCalculator(parseInt(e.target.value, 10));
+    });
+    updateCalculator(parseInt(slider.value, 10));
+  }
+
+  // 3. Artisan Directory Filter Chips
+  const chips = document.querySelectorAll(".artisan-filters .chip");
+  const artisanCards = document.querySelectorAll(".artisan-card");
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      chips.forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      const filter = chip.dataset.filter || "all";
+      artisanCards.forEach(card => {
+        const cat = card.dataset.category || "";
+        if (filter === "all" || cat === filter) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+}
+window.initCsrPage = initCsrPage;
+
 // Full Master Leaflet District Map (Used on Home and About pages)
 function initLeafletDistrictMap(containerId = "districtMap", options = {}) {
   const container = document.getElementById(containerId);

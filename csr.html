@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSR & Community — Madurai Explorer Guide</title>
+  <meta name="description" content="Corporate Social Responsibility (CSR), heritage protection, artisan empowerment, and sustainable community tourism across Madurai District.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ============ SITE HEADER ============ -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tourism.html">Tourism</a>
+        <a href="food.html">Foods</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="cafes.html">Cafes</a>
+        <a href="modern.html">Modern Madurai</a>
+        <a href="stays.html">Stays</a>
+        <a href="csr.html" class="active">CSR & Community</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO BANNER ============ -->
+  <section class="section" style="padding-bottom:1.5rem;">
+    <div class="container">
+      <div class="csr-hero-banner">
+        <div class="csr-hero-content">
+          <span class="csr-hero-eyebrow">🌱 SUSTAINABLE TOURISM & COMMUNITY PRESERVATION</span>
+          <h1>CSR & Community: Sustainable Madurai</h1>
+          <p>
+            Tourism is only truly meaningful when it enriches the communities whose heritage we come to admire. In Madurai—a living cultural capital for more than 2,500 continuous years—our CSR initiative bridges mindful travelers with indigenous artisans, family-run mess kitchens, sacred heritage sites, and river ecology across all 11 administrative taluks.
+          </p>
+          <div class="csr-stats-grid">
+            <div class="csr-stat-card">
+              <b>91%</b>
+              <span>Direct Local Spend Retention</span>
+            </div>
+            <div class="csr-stat-card">
+              <b>2,500+</b>
+              <span>Years Living Cultural Heritage</span>
+            </div>
+            <div class="csr-stat-card">
+              <b>600+</b>
+              <span>Artisan & Handloom Families</span>
+            </div>
+            <div class="csr-stat-card">
+              <b>100%</b>
+              <span>Plastic-Free Temple Perimeters</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6-PILLAR CSR HIERARCHY TREE ============ -->
+  <section class="section" style="padding-top:0.5rem; padding-bottom:2rem;">
+    <div class="container">
+      <div class="csr-tree-nav">
+        <div class="csr-tree-nav-header">
+          <div>
+            <p class="eyebrow" style="margin-bottom:0.25rem;">SIX GUIDING ACTION PILLARS</p>
+            <h3><span>🌿</span> The Madurai CSR & Community Framework</h3>
+          </div>
+          <span class="badge" style="background:var(--cream); color:var(--maroon); border:1px solid var(--gold); padding:0.35rem 0.8rem;">Aligned with UN Sustainable Development Goals</span>
+        </div>
+
+        <p style="color:var(--muted); font-size:0.92rem; margin-bottom:1.75rem; max-width:880px;">
+          Rather than viewing CSR as a static paragraph or corporate obligation, our portal turns CSR into an active, functional feature across every food dish, monument, stay, and traditional market in Madurai.
+        </p>
+
+        <div class="csr-tree-grid">
+          <!-- Pillar 1: Support Local Businesses -->
+          <div class="csr-pillar-card pillar-gold">
+            <div class="csr-pillar-header">
+              <div class="csr-pillar-icon">🏪</div>
+              <div>
+                <span class="csr-pillar-tag">Pillar 1 · Economic Justice</span>
+                <h4>Support Local Businesses</h4>
+              </div>
+            </div>
+            <p class="csr-pillar-desc">
+              Championing generational family messes, roadside tiffin carts, spice merchants in Avani Moola, and neighbourhood tea stalls over corporate chain franchises.
+            </p>
+            <ul class="csr-pillar-points">
+              <li>Direct UPI/Cash payments eliminate 25–30% aggregator platform commissions</li>
+              <li>Sustains local agrarian supply chains (country rice, unrefined cane jaggery, cold-pressed oils)</li>
+              <li>Protects micro-entrepreneurs against retail inflation</li>
+            </ul>
+            <a href="#artisan-directory" class="csr-pillar-action-link">View Local Merchant Guilds &rarr;</a>
+          </div>
+
+          <!-- Pillar 2: Protect Madurai Heritage -->
+          <div class="csr-pillar-card pillar-maroon">
+            <div class="csr-pillar-header">
+              <div class="csr-pillar-icon">🏛️</div>
+              <div>
+                <span class="csr-pillar-tag">Pillar 2 · Living Antiquity</span>
+                <h4>Protect Madurai Heritage</h4>
+              </div>
+            </div>
+            <p class="csr-pillar-desc">
+              Safeguarding 2,500-year-old Sangam-era urban layouts, 14 carved gopurams at Meenakshi Temple, Thirumalai Nayakkar Palace, and Jain cavern inscriptions at Samanar Malai.
+            </p>
+            <ul class="csr-pillar-points">
+              <li>Advocating respectful heritage trail walking and zero graffiti on granite monuments</li>
+              <li>Collaborating with local historians to document undocumented Pandya inscriptions</li>
+              <li>Preserving the concentric lotus street layout (Chithirai, Avani Moola, Masi, Veli)</li>
+            </ul>
+            <a href="tourism.html" class="csr-pillar-action-link">Explore Protected Heritage Sites &rarr;</a>
+          </div>
+
+          <!-- Pillar 3: Support Local Artisans -->
+          <div class="csr-pillar-card pillar-green">
+            <div class="csr-pillar-header">
+              <div class="csr-pillar-icon">🎨</div>
+              <div>
+                <span class="csr-pillar-tag">Pillar 3 · Fair Trade Crafts</span>
+                <h4>Support Local Artisans</h4>
+              </div>
+            </div>
+            <p class="csr-pillar-desc">
+              Direct market access for GI-tagged Madurai Sungudi handloom saree weavers, Vilachery terracotta clay sculptors, and brass idol casters in Puthu Mandapam.
+            </p>
+            <ul class="csr-pillar-points">
+              <li>Eliminates exploitative middlemen by publishing direct workshop GPS coordinates</li>
+              <li>Supports traditional botanical vat dyeing and hand-tied knot techniques</li>
+              <li>Preserves Navarathri clay Golu doll traditions in Vilachery village</li>
+            </ul>
+            <a href="#artisan-directory" class="csr-pillar-action-link">Meet Verified Artisans &rarr;</a>
+          </div>
+
+          <!-- Pillar 4: Responsible Tourism -->
+          <div class="csr-pillar-card pillar-gold">
+            <div class="csr-pillar-header">
+              <div class="csr-pillar-icon">🤝</div>
+              <div>
+                <span class="csr-pillar-tag">Pillar 4 · Cultural Respect</span>
+                <h4>Responsible Tourism</h4>
+              </div>
+            </div>
+            <p class="csr-pillar-desc">
+              Educating pilgrims and global explorers on sacred space sanctity, traditional temple dress codes, mobile phone lockers, and empathetic community interaction.
+            </p>
+            <ul class="csr-pillar-points">
+              <li>Strict observance of temple decorum and designated footwear deposit points</li>
+              <li>Ethical crowd navigation during Chithirai Thiruvizha & Alanganallur Jallikattu</li>
+              <li>Zero intrusive photography in inner sanctums and residential agraharams</li>
+            </ul>
+            <a href="#pledge-section" class="csr-pillar-action-link">Take the Responsible Pledge &rarr;</a>
+          </div>
+
+          <!-- Pillar 5: Clean Madurai & Vaigai Protection -->
+          <div class="csr-pillar-card pillar-blue">
+            <div class="csr-pillar-header">
+              <div class="csr-pillar-icon">🌿</div>
+              <div>
+                <span class="csr-pillar-tag">Pillar 5 · River & Eco-Sanitation</span>
+                <h4>Clean Madurai</h4>
+              </div>
+            </div>
+            <p class="csr-pillar-desc">
+              Active involvement in Vaigai River cleanup drives, Swachh Madurai temple corridor sanitation, and complete phase-out of single-use plastics around water bodies.
+            </p>
+            <ul class="csr-pillar-points">
+              <li>100% banana leaf dining advocacy across all featured messes and tiffin centers</li>
+              <li>Promotion of reusable cloth bags (manjappai) for flower and spice shopping</li>
+              <li>Community trash disposal points along holy temple theppakulam tanks</li>
+            </ul>
+            <a href="#eco-guide" class="csr-pillar-action-link">View Clean Travel Guide &rarr;</a>
+          </div>
+
+          <!-- Pillar 6: Eco-Friendly Travel -->
+          <div class="csr-pillar-card pillar-green">
+            <div class="csr-pillar-header">
+              <div class="csr-pillar-icon">🚲</div>
+              <div>
+                <span class="csr-pillar-tag">Pillar 6 · Low-Carbon Mobility</span>
+                <h4>Eco-Friendly Travel</h4>
+              </div>
+            </div>
+            <p class="csr-pillar-desc">
+              Encouraging walkable heritage circuits, electric auto-rickshaws, shared public transit buses, and suburban trains to explore surrounding rural taluks with minimal carbon footprint.
+            </p>
+            <ul class="csr-pillar-points">
+              <li>Concentric Masi Street walking trails minimize vehicular pollution in temple zones</li>
+              <li>Direct recommendations for shared electric battery rickshaws (e-autos)</li>
+              <li>Passenger train schedules connecting Madurai Junction to Sholavandan & Usilampatti</li>
+            </ul>
+            <a href="#eco-guide" class="csr-pillar-action-link">View Walking & Green Transit Routes &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURE DEMO SPOTLIGHT: "SUPPORT LOCAL" IN ACTION ============ -->
+  <section class="section" style="background:var(--cream-deep); padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">FUNCTIONAL CSR IN PRACTICE</p>
+          <h2>The "Support Local" Feature in Action</h2>
+        </div>
+        <p style="max-width:760px;">
+          On our website, CSR is not merely passive text. Every food delicacy, restaurant, temple, and artisan workshop features a dedicated <strong>"💚 Support Local"</strong> action button that reveals the direct community impact, fair payment guidelines, and indigenous family livelihoods supported. Try it below:
+        </p>
+      </div>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem; margin-top:2rem;">
+        <!-- Live Demo Card 1: Jigarthanda -->
+        <div class="card" style="background:var(--white);">
+          <div class="thumb">
+            <img src="images/famous-jigarthanda.jpg" alt="Famous Jigarthanda Madurai" />
+            <span class="badge" style="background:#1B5E20; color:#fff;">COMMUNITY HERO</span>
+          </div>
+          <div class="body">
+            <div class="card-head">
+              <h3>Famous Jigarthanda</h3>
+              <span class="rating">★ 4.8</span>
+            </div>
+            <div class="card-location-row">
+              <span class="pin-text">East Marret Street</span>
+              <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem;">₹60 – ₹140</span>
+            </div>
+            <p class="card-desc">
+              Supports local dairy herds, tribal badam pisin collectors, and native nannari root suppliers.
+            </p>
+            <div class="card-divider"></div>
+            <div class="card-footer-row">
+              <span class="card-price-pill" style="background:#E8F5E9; color:#1B5E20; border-color:#81C784;">GI Heritage</span>
+              <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
+                <button type="button" class="btn-support-local" onclick="window.openSupportLocalModal('jigarthanda', 'food')">💚 Support Local</button>
+                <a href="food-details.html?id=jigarthanda" class="view">Details &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Demo Card 2: Vilachery Pottery -->
+        <div class="card" style="background:var(--white);">
+          <div class="thumb">
+            <img src="images/vilachery-pottery.jpg" alt="Vilachery Pottery Village Madurai" />
+            <span class="badge" style="background:#1B5E20; color:#fff;">INDIGENOUS GUILD</span>
+          </div>
+          <div class="body">
+            <div class="card-head">
+              <h3>Vilachery Pottery Village</h3>
+              <span class="rating">★ 4.8</span>
+            </div>
+            <div class="card-location-row">
+              <span class="pin-text">Thirupparankundram Taluk</span>
+              <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem;">Free Entry</span>
+            </div>
+            <p class="card-desc">
+              Over 200 artisan families hand-sculpting clay Golu idols, terracotta horses, and earthen cookware.
+            </p>
+            <div class="card-divider"></div>
+            <div class="card-footer-row">
+              <span class="card-price-pill" style="background:#E8F5E9; color:#1B5E20; border-color:#81C784;">Clay Craft</span>
+              <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
+                <button type="button" class="btn-support-local" onclick="window.openSupportLocalModal('vilachery-pottery-village', 'place')">💚 Support Local</button>
+                <a href="place-details.html?id=vilachery-pottery-village" class="view">Details &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Demo Card 3: Amma Mess -->
+        <div class="card" style="background:var(--white);">
+          <div class="thumb">
+            <img src="images/amma-mess.jpg" alt="Amma Mess Madurai" />
+            <span class="badge" style="background:#1B5E20; color:#fff;">HERITAGE MESS</span>
+          </div>
+          <div class="body">
+            <div class="card-head">
+              <h3>Amma Mess</h3>
+              <span class="rating">★ 4.9</span>
+            </div>
+            <div class="card-location-row">
+              <span class="pin-text">West Perumal Maistry St</span>
+              <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem;">₹180 – ₹450</span>
+            </div>
+            <p class="card-desc">
+              Inventors of bone-marrow omelettes and Kari Dosa, sustaining regional spice farmers on banana leaves.
+            </p>
+            <div class="card-divider"></div>
+            <div class="card-footer-row">
+              <span class="card-price-pill" style="background:#E8F5E9; color:#1B5E20; border-color:#81C784;">Family Kitchen</span>
+              <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
+                <button type="button" class="btn-support-local" onclick="window.openSupportLocalModal('amma-mess', 'restaurant')">💚 Support Local</button>
+                <a href="restaurants.html" class="view">Details &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTERACTIVE VISITOR PLEDGE SECTION ============ -->
+  <section class="section" id="pledge-section">
+    <div class="container">
+      <div class="csr-pledge-section">
+        <div class="csr-pledge-inner">
+          <div class="csr-pledge-content">
+            <span class="csr-pillar-tag" style="color:#1B5E20; font-size:0.75rem;">BE A CONSCIOUS TRAVELER</span>
+            <h3>Take the Madurai Responsible Visitor Pledge</h3>
+            <p style="color:var(--muted); font-size:0.9rem;">
+              Join thousands of pilgrims, food explorers, and travelers in committing to preserve Madurai’s sanctity, living traditions, and indigenous livelihood.
+            </p>
+
+            <div class="csr-pledge-checklist">
+              <label class="csr-pledge-item">
+                <input type="checkbox" id="pledge1" checked />
+                <span><strong>Buy Direct:</strong> I pledge to buy authentic crafts & textiles directly from local weavers, clay sculptors, and vendors.</span>
+              </label>
+              <label class="csr-pledge-item">
+                <input type="checkbox" id="pledge2" checked />
+                <span><strong>Patronize Family Messes:</strong> I pledge to eat at local family-owned eateries and street food stalls using fresh banana leaves.</span>
+              </label>
+              <label class="csr-pledge-item">
+                <input type="checkbox" id="pledge3" checked />
+                <span><strong>Respect Temple Decorum:</strong> I pledge to follow temple dress codes, remove footwear respectfully, and maintain silence in sanctums.</span>
+              </label>
+              <label class="csr-pledge-item">
+                <input type="checkbox" id="pledge4" checked />
+                <span><strong>Zero Plastic Footprint:</strong> I pledge to carry a reusable water bottle, use cloth manjappai bags, and dispose of waste in designated bins.</span>
+              </label>
+              <label class="csr-pledge-item">
+                <input type="checkbox" id="pledge5" checked />
+                <span><strong>Eco-Friendly Mobility:</strong> I pledge to explore temple streets on foot or take shared electric auto-rickshaws to reduce urban congestion.</span>
+              </label>
+            </div>
+
+            <button type="button" class="btn-take-pledge" id="btnTakePledge">Sign the Responsible Visitor Pledge</button>
+
+            <div class="pledge-certificate-badge" id="pledgeCertBadge">
+              <h4 style="color:#1B5E20; margin-bottom:0.25rem;">🏅 Certified Responsible Madurai Explorer</h4>
+              <p style="font-size:0.82rem; color:#2E7D32; margin:0;">
+                Your pledge is officially recorded! Thank you for protecting the living soul of Tamil Nadu's ancient capital.
+              </p>
+            </div>
+          </div>
+
+          <div class="csr-pledge-counter-box">
+            <span style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); font-weight:700;">Live Community Pledges Signed</span>
+            <div class="csr-pledge-counter-num" id="pledgeCounterNum">1,482</div>
+            <p style="font-size:0.82rem; color:var(--brown-soft); margin-bottom:1rem;">
+              Conscious visitors have pledged to keep Madurai plastic-free, culturally vibrant, and economically supportive.
+            </p>
+            <div style="padding:0.75rem; background:#F1F8E9; border-radius:10px; border:1px solid #C8E6C9; font-size:0.8rem; color:#1B5E20;">
+              ✨ <strong>100% Free & Open Access</strong> — Every pledge signed helps support temple-town awareness campaigns.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCAL ECONOMIC IMPACT CALCULATOR ============ -->
+  <section class="section" style="padding-top:0.5rem; padding-bottom:2.5rem;">
+    <div class="container">
+      <div class="csr-calculator-section">
+        <div class="section-head" style="margin-bottom:1.5rem;">
+          <div>
+            <p class="eyebrow">COMMUNITY RETENTION METRICS</p>
+            <h3>Direct Economic Impact Calculator</h3>
+          </div>
+          <p style="max-width:760px;">
+            See how much your travel budget actually helps native Madurai families when you choose direct local messes, artisans, and independent stays over global platform intermediaries.
+          </p>
+        </div>
+
+        <div class="csr-calc-slider-wrap">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+            <label for="csrSpendSlider" style="font-weight:700; font-size:0.92rem; color:var(--maroon);">Your Estimated Direct Local Spend:</label>
+            <span id="csrSpendVal" style="font-family:var(--font-serif); font-size:1.4rem; color:var(--gold); font-weight:700;">₹2,000</span>
+          </div>
+          <input type="range" id="csrSpendSlider" class="csr-slider" min="500" max="10000" step="250" value="2000" aria-label="Spend slider">
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--muted); margin-top:0.3rem;">
+            <span>₹500 (Day Tour / Food Walk)</span>
+            <span>₹5,000 (Weekend Pilgrim)</span>
+            <span>₹10,000 (Heritage Stay & Handicrafts)</span>
+          </div>
+        </div>
+
+        <div class="csr-calc-results">
+          <div class="csr-calc-card highlight-green">
+            <h5>Retained in Madurai Economy</h5>
+            <b id="csrRetainedVal">₹1,820</b>
+            <span style="font-size:0.75rem; color:#2E7D32;">91% retention vs 28% for global intermediaries</span>
+          </div>
+          <div class="csr-calc-card">
+            <h5>Artisan & Mess Families Sustained</h5>
+            <b id="csrFamiliesVal">3 Families</b>
+            <span style="font-size:0.75rem; color:var(--muted);">Direct fair wages for cooks, weavers & potters</span>
+          </div>
+          <div class="csr-calc-card">
+            <h5>Carbon Emissions Reduced</h5>
+            <b id="csrCo2Val">28 kg CO₂</b>
+            <span style="font-size:0.75rem; color:var(--muted);">By choosing walking trails & green e-rickshaws</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VERIFIED ARTISANS & CULTURAL GUILDS DIRECTORY ============ -->
+  <section class="section" id="artisan-directory" style="background:#FFFBF2; padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">PRESERVING GI-TAGGED INDIGENOUS CRAFTS</p>
+          <h2>Verified Madurai Artisans & Guilds</h2>
+        </div>
+        <p style="max-width:760px;">
+          Meet the living hands preserving Madurai's craft legacy. Buy directly from their workshops with zero middlemen.
+        </p>
+      </div>
+
+      <!-- Filter chips for artisans -->
+      <div class="filter-bar artisan-filters" style="margin-top:1.5rem;">
+        <button class="chip active" data-filter="all">All Crafts & Guilds</button>
+        <button class="chip" data-filter="textiles">Sungudi Sarees & Handlooms</button>
+        <button class="chip" data-filter="pottery">Vilachery Terracotta & Dolls</button>
+        <button class="chip" data-filter="flowers">Madurai Malli Jasmine</button>
+        <button class="chip" data-filter="metal">Bronze, Brass & Sculptures</button>
+      </div>
+
+      <div class="artisan-grid">
+        <!-- Artisan 1: Sungudi Saree Handloom Guild -->
+        <div class="artisan-card" data-category="textiles">
+          <div class="artisan-thumb">
+            <img src="images/town-hall-road.jpg" alt="Madurai Sungudi Saree Weavers" loading="lazy" />
+            <span class="artisan-badge">GI TAGGED CRAFT</span>
+          </div>
+          <div class="artisan-body">
+            <h4>Kaithari Nagar Sungudi Weavers Guild</h4>
+            <div class="artisan-area">📍 South Masi Street & Kaithari Nagar, Madurai</div>
+            <p class="artisan-desc">
+              Saurashtrian heritage master weavers practicing traditional <em>bandhani</em> style knot-tying and organic vegetable dye extraction. Every saree takes 3–5 days of intensive handcraft.
+            </p>
+            <div class="artisan-actions">
+              <span style="font-size:0.75rem; font-weight:700; color:#1B5E20;">100% Direct Fair Price</span>
+              <a href="https://maps.google.com/?q=9.9150,78.1150" target="_blank" rel="noopener" class="btn-directions">Visit Workshop</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Artisan 2: Vilachery Terracotta & Golu Village -->
+        <div class="artisan-card" data-category="pottery">
+          <div class="artisan-thumb">
+            <img src="images/vilachery-pottery.jpg" alt="Vilachery Clay Sculptors" loading="lazy" />
+            <span class="artisan-badge">POTTERY CLUSTER</span>
+          </div>
+          <div class="artisan-body">
+            <h4>Vilachery Terracotta & Doll Sculptors</h4>
+            <div class="artisan-area">📍 Vilachery Village, Thirupparankundram Taluk</div>
+            <p class="artisan-desc">
+              Entire village dedicated to clay casting, baking, and hand-painting of Navarathri Golu dolls, clay lamps (agal vilakku), and sacred Ayyanar terracotta horses.
+            </p>
+            <div class="artisan-actions">
+              <span style="font-size:0.75rem; font-weight:700; color:#1B5E20;">Direct from Village Kilns</span>
+              <a href="https://maps.google.com/?q=9.8824,78.0718" target="_blank" rel="noopener" class="btn-directions">Visit Village</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Artisan 3: Madurai Malli Flower Knotters -->
+        <div class="artisan-card" data-category="flowers">
+          <div class="artisan-thumb">
+            <img src="images/madurai-flower-market.jpg" alt="Madurai Malli Jasmine Garland Knotters" loading="lazy" />
+            <span class="artisan-badge">GI TAGGED FLORAL</span>
+          </div>
+          <div class="artisan-body">
+            <h4>Mattuthavani Jasmine Knotters Guild</h4>
+            <div class="artisan-area">📍 Madurai Integrated Flower Market, Mattuthavani</div>
+            <p class="artisan-desc">
+              Generational floral artists weaving the world-famous thick-petaled Madurai Malli jasmine into temple garlands (maalais) and fragrant traditional hair ornamentation.
+            </p>
+            <div class="artisan-actions">
+              <span style="font-size:0.75rem; font-weight:700; color:#1B5E20;">Sustains Agrarian Women</span>
+              <a href="https://maps.google.com/?q=9.9392,78.1610" target="_blank" rel="noopener" class="btn-directions">Visit Flower Market</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Artisan 4: Puthu Mandapam Metal & Lamp Casters -->
+        <div class="artisan-card" data-category="metal">
+          <div class="artisan-thumb">
+            <img src="images/puthu-mandapam.jpg" alt="Puthu Mandapam Brass Artisans" loading="lazy" />
+            <span class="artisan-badge">1635 AD TRADITION</span>
+          </div>
+          <div class="artisan-body">
+            <h4>Puthu Mandapam Brass & Bell Guild</h4>
+            <div class="artisan-area">📍 Opposite Meenakshi East Tower, Madurai South</div>
+            <p class="artisan-desc">
+              Operating inside Tirumala Nayak’s 17th-century pillared choultry, sculpting brass oil lamps, temple bells, camphor plates, and bronze devotional figurines.
+            </p>
+            <div class="artisan-actions">
+              <span style="font-size:0.75rem; font-weight:700; color:#1B5E20;">Nayakkar Era Guild</span>
+              <a href="https://maps.google.com/?q=9.9198,78.1215" target="_blank" rel="noopener" class="btn-directions">Visit Choultry</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ECO-FRIENDLY TRAVEL & CONSCIOUS EXPLORATION GUIDE ============ -->
+  <section class="section" id="eco-guide" style="padding:3.5rem 0;">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">GREEN MOBILITY & SLOW TRAVEL</p>
+          <h2>Eco-Friendly Travel Guide across Madurai</h2>
+        </div>
+        <p style="max-width:760px;">
+          Explore Madurai's sacred quarters with minimal ecological disruption. Here are tested low-carbon itineraries and conscious travel tips:
+        </p>
+      </div>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap:1.5rem; margin-top:2rem;">
+        <div class="card" style="background:var(--white); padding:1.4rem;">
+          <h4 style="color:#1B5E20; font-size:1.15rem; margin-bottom:0.5rem;">🚶 The Concentric Lotus Walk (2.4 km)</h4>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.5; margin-bottom:0.75rem;">
+            Experience the Sangam city on foot. Start from Meenakshi East Gopuram &rarr; Puthu Mandapam &rarr; Avani Moola spice market &rarr; West Masi Street parotta corners &rarr; Kazimar Mosque. Zero carbon footprint and total cultural immersion.
+          </p>
+          <div style="font-size:0.78rem; font-weight:700; color:var(--maroon);">Best time: 6:00 AM – 9:00 AM or 5:30 PM – 8:30 PM</div>
+        </div>
+
+        <div class="card" style="background:var(--white); padding:1.4rem;">
+          <h4 style="color:#1B5E20; font-size:1.15rem; margin-bottom:0.5rem;">🛺 Shared Electric Autos (E-Rickshaws)</h4>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.5; margin-bottom:0.75rem;">
+            Over 300 battery-operated green e-rickshaws operate between Madurai Junction railway station, Periyar Bus Stand, and the 4 Veli Streets. Fare is typically ₹15–₹30 for short hops, cutting noise and smoke emissions.
+          </p>
+          <div style="font-size:0.78rem; font-weight:700; color:var(--maroon);">Available at: Periyar Station & Simmakkal Junction</div>
+        </div>
+
+        <div class="card" style="background:var(--white); padding:1.4rem;">
+          <h4 style="color:#1B5E20; font-size:1.15rem; margin-bottom:0.5rem;">🚂 Suburban Rail to Rural Taluks</h4>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.5; margin-bottom:0.75rem;">
+            Instead of private highway taxis, take comfortable Southern Railway passenger trains from Madurai Junction to Sholavandan (banana farms), Thirumangalam, or Samayanallur for under ₹20 per passenger.
+          </p>
+          <div style="font-size:0.78rem; font-weight:700; color:var(--maroon);">Departures every 45–60 mins from Madurai Junction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <p>Made for curious travellers, pilgrims and hungry hearts.</p>
+      <div style="margin: 1.25rem 0 0.75rem 0; display:flex; flex-wrap:wrap; justify-content:center; gap:1.25rem; font-size:0.875rem;">
+        <a href="index.html" style="color:var(--gold-soft); text-decoration:none;">Home</a>
+        <a href="tourism.html" style="color:var(--gold-soft); text-decoration:none;">Tourism</a>
+        <a href="food.html" style="color:var(--gold-soft); text-decoration:none;">Foods</a>
+        <a href="restaurants.html" style="color:var(--gold-soft); text-decoration:none;">Restaurants</a>
+        <a href="cafes.html" style="color:var(--gold-soft); text-decoration:none;">Cafes</a>
+        <a href="modern.html" style="color:var(--gold-soft); text-decoration:none;">Modern Madurai</a>
+        <a href="stays.html" style="color:var(--gold-soft); text-decoration:none;">Stays</a>
+        <a href="csr.html" style="color:var(--gold-soft); text-decoration:none;">CSR & Community</a>
+        <a href="about.html" style="color:var(--gold-soft); text-decoration:none;">About</a>
+        <a href="contact.html" style="color:var(--gold-soft); text-decoration:none;">Contact</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 &bull; Madurai Explorer Guide &bull; CSR & Community Initiative</div>
+      <p class="photo-credits-text">
+        Photo credits: Sourced from free open-access cultural archives including Wikimedia Commons, Unsplash, and Pexels.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/places.js"></script>
+  <script src="js/food.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.initCsrPage) {
+        window.initCsrPage();
+      }
+    });
+  </script>
+</body>
+
+</html>

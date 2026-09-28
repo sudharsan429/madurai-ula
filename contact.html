@@ -3,102 +3,329 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — Madurai Explorer</title>
+  <title>Contact & Visitor Support — மதுரை உலா (Madurai Ula)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header class="site-header">
-  <div class="nav-inner">
-    <a href="index.html" class="brand" aria-label="மதுரை உலா">
-      <span>மதுரை <em>உலா</em></span>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="explore.html">Tourism</a>
-      <a href="food.html">Food</a>
-      <a href="restaurants.html">Restaurants</a>
-      <a href="about.html">About</a>
-      <a href="contact.html" class="active">Contact</a>
-    </nav>
-  </div>
-</header>
+  <!-- ============ SITE HEADER ============ -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tourism.html">Tourism</a>
+        <a href="food.html">Foods</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="cafes.html">Cafes</a>
+        <a href="modern.html">Modern Madurai</a>
+        <a href="stays.html">Stays</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">REACH OUT</p>
-    <h2>Get in Touch</h2>
-    <p style="color:var(--muted); margin-top:0.4rem; max-width:54ch;">Spot an outdated timing, know a hidden mess we missed, or want to share local tips — send a note below.</p>
+  <!-- ============ HERO HEADER ============ -->
+  <section class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> / <span>Contact & Support</span></div>
+      <h1>Contact & Visitor Assistance</h1>
+      <p class="lede" style="font-family: var(--font-tamil); color: var(--gold); font-size: 1.15rem; margin-top: 0.3rem;">
+        தொடர்புக்கு & சுற்றுலா வழிகாட்டி
+      </p>
+      <p style="color: rgba(255,255,255,0.92); font-size: 1.05rem; max-width: 65ch; margin-top: 0.5rem; line-height: 1.6;">
+        Official tourism helplines, emergency assistance directories, physical tourist desks, and community feedback across Madurai district.
+      </p>
+    </div>
+  </section>
 
-    <div class="contact-grid" style="margin-top:2.5rem;">
-      <form id="contact-form" novalidate>
-        <div class="field">
-          <label for="name">Your Name</label>
-          <input id="name" name="name" type="text" placeholder="e.g. Anand Kumar" required>
-        </div>
-        <div class="field">
-          <label for="email">Email Address</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com" required>
-        </div>
-        <div class="field">
-          <label for="message">Message or Recommendation</label>
-          <textarea id="message" name="message" placeholder="Tell us about a spot or suggestion..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-orange">Send message &rarr;</button>
-        <p id="form-status" style="margin-top:1rem; color:var(--orange); font-weight:600; display:none;">Thank you! Your suggestion has been noted.</p>
-      </form>
+  <!-- ============ MAIN CONTENT ============ -->
+  <section class="section" style="padding-top: 3.5rem;">
+    <div class="container">
 
-      <div class="contact-info">
-        <div class="item">
-          <span aria-hidden="true" style="display:flex; align-items:center;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          </span>
-          <div>
-            <b>Based Around</b>
-            Madurai Main & Mattuthavani, Tamil Nadu, India
+      <!-- 1. EMERGENCY & TOURIST HELPLINES STRIP -->
+      <div style="margin-bottom: 3.5rem;">
+        <p class="eyebrow" style="color: var(--gold-soft); letter-spacing: 0.15em;">24/7 EMERGENCY & VISITOR HOTLINES</p>
+        <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.6rem;">Essential Tourist Helplines</h2>
+        <p style="color: var(--muted); max-width: 60ch; margin-bottom: 1.8rem;">Tap directly to connect with official government helplines, police patrol, or temple seva offices.</p>
+
+        <div class="helpline-grid">
+          <a href="tel:1363" class="helpline-card" title="Call National Tourist Helpline">
+            <div class="helpline-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </div>
+            <div class="helpline-info">
+              <h4>TTDC Tourism Helpline</h4>
+              <div class="phone-number">1363 / +91 44 2538 3333</div>
+              <p>Tamil Nadu Tourism 24/7 multi-language desk</p>
+            </div>
+          </a>
+
+          <a href="tel:04522344360" class="helpline-card" title="Call Meenakshi Temple Information Desk">
+            <div class="helpline-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </div>
+            <div class="helpline-info">
+              <h4>Meenakshi Temple Desk</h4>
+              <div class="phone-number">0452-2344360</div>
+              <p>Darshan timings, special passes & archanai seva</p>
+            </div>
+          </a>
+
+          <a href="tel:112" class="helpline-card" title="Call Madurai Tourist Police Control">
+            <div class="helpline-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div class="helpline-info">
+              <h4>Madurai Tourist Police</h4>
+              <div class="phone-number">112 / 100</div>
+              <p>City police control & temple security patrol</p>
+            </div>
+          </a>
+
+          <a href="tel:108" class="helpline-card" title="Call Medical & Ambulance Emergency">
+            <div class="helpline-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
+            </div>
+            <div class="helpline-info">
+              <h4>Medical Emergency Service</h4>
+              <div class="phone-number">108 / 102</div>
+              <p>Free state ambulance & urgent medical support</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. CONTACT FORM & VISITOR INFORMATION DESKS SPLIT -->
+      <div class="contact-grid">
+
+        <!-- Form Column -->
+        <div style="background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 2.4rem; box-shadow: var(--shadow-sm);">
+          <p class="eyebrow" style="color: var(--gold-soft); letter-spacing: 0.12em;">DIRECT MESSAGE</p>
+          <h3 style="font-size: 1.45rem; color: var(--brown); margin-bottom: 0.5rem;">Send a Note or Recommendation</h3>
+          <p style="color: var(--muted); font-size: 0.92rem; margin-bottom: 1.8rem; line-height: 1.6;">
+            Know a legendary banana-leaf mess we missed, want to report an updated entry fee or timing, or have feedback about your trip? We would love to hear from you.
+          </p>
+
+          <form id="contact-form" novalidate>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.1rem;">
+              <div class="field">
+                <label for="contactName">Your Name *</label>
+                <input id="contactName" name="name" type="text" placeholder="e.g. Anand Kumar" required>
+              </div>
+              <div class="field">
+                <label for="contactEmail">Email Address *</label>
+                <input id="contactEmail" name="email" type="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.1rem;">
+              <div class="field">
+                <label for="contactTopic">Inquiry Category *</label>
+                <select id="contactTopic" name="topic" style="border: 1px solid var(--line); background: var(--white); border-radius: var(--radius-sm); padding: 0.85rem 1rem; font-family: var(--font-sans); font-size: 0.95rem; color: var(--brown); outline: none;">
+                  <option value="spot">Suggest a new local spot / mess</option>
+                  <option value="timing">Update place timing or entry fee</option>
+                  <option value="guide">Guide & transport assistance</option>
+                  <option value="heritage">Heritage & historical inquiry</option>
+                  <option value="feedback">Website feedback / corrections</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="contactPlace">Place or Establishment Name (Optional)</label>
+                <input id="contactPlace" name="place" type="text" placeholder="e.g. Amma Mess, Keeladi...">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="contactMessage">Your Message or Suggestion *</label>
+              <textarea id="contactMessage" name="message" placeholder="Provide details, address clues, signature dishes, or recommendations..." required style="min-height: 130px;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-yellow" style="padding: 0.85rem 2.2rem; font-size: 1rem; font-weight: 700; width: fit-content;">
+              Send Message &rarr;
+            </button>
+            <p id="form-status" style="margin-top: 1rem; color: var(--green); font-weight: 600; font-size: 0.95rem; display: none;">
+              ✓ Thank you! Your recommendation has been received. Our community team reviews all suggestions.
+            </p>
+          </form>
+        </div>
+
+        <!-- Info & Physical Desks Column -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div class="contact-info" style="padding: 2.2rem;">
+            <p class="eyebrow" style="color: var(--gold-soft); letter-spacing: 0.12em; margin-bottom: 0.3rem;">PHYSICAL COUNTERS</p>
+            <h3 style="font-size: 1.3rem; color: var(--brown); margin-bottom: 0.6rem;">Tourist Information Centers</h3>
+            <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Official help counters located at major transit gateways across Madurai.</p>
+
+            <div class="item">
+              <span aria-hidden="true" style="color: var(--maroon);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </span>
+              <div>
+                <b>TTDC Tourist Information Office</b>
+                Hotel Tamil Nadu Complex, West Veli Street, Madurai Main — 625001
+                <div style="color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem;">Hours: 10:00 AM – 5:45 PM (Mon–Sat)</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <span aria-hidden="true" style="color: var(--maroon);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              </span>
+              <div>
+                <b>Railway Tourism Facilitation Counter</b>
+                Platform 1 Concourse, Madurai Junction Railway Station
+                <div style="color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem;">Open 24 Hours for train passenger guidance</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <span aria-hidden="true" style="color: var(--maroon);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+              </span>
+              <div>
+                <b>Mattuthavani Bus Terminal (MIBT) Desk</b>
+                Main Concourse, Mattuthavani Integrated Bus Stand
+                <div style="color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem;">Inter-city bus transit assistance</div>
+              </div>
+            </div>
+
+            <div class="item">
+              <span aria-hidden="true" style="color: var(--maroon);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </span>
+              <div>
+                <b>Email Support & Community Desk</b>
+                hello@maduraiula.guide · suggestions@maduraiula.guide
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="item">
-          <span aria-hidden="true" style="display:flex; align-items:center;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          </span>
-          <div>
-            <b>Email Us</b>
-            hello@maduraiexplorer.guide
-          </div>
-        </div>
-        <div class="item">
-          <span aria-hidden="true" style="display:flex; align-items:center;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          </span>
-          <div>
-            <b>Community Guide</b>
-            Curated by local food lovers and heritage enthusiasts
+
+          <!-- Embedded Leaflet Mini Map of Assistance Centers -->
+          <div style="background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 1.5rem; box-shadow: var(--shadow-sm);">
+            <h4 style="font-size: 1rem; color: var(--brown); margin-bottom: 0.75rem;">Information Centers Map</h4>
+            <div id="contactMiniMap" style="width: 100%; height: 210px; border-radius: var(--radius-sm); border: 1px solid var(--line);"></div>
           </div>
         </div>
       </div>
+
+      <!-- 3. VISITOR FREQUENTLY ASKED QUESTIONS (FAQS) -->
+      <div style="margin-top: 4.5rem;">
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 2.5rem auto;">
+          <p class="eyebrow" style="color: var(--gold-soft); letter-spacing: 0.15em;">TRAVELLER ESSENTIALS</p>
+          <h2 style="font-size: clamp(1.8rem, 3vw, 2.3rem); margin-bottom: 0.5rem;">Frequently Asked Questions</h2>
+          <p style="color: var(--muted); font-size: 0.98rem;">Common queries about visiting temples, cloakrooms, photography, and dress codes.</p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              What is the dress code for temples?
+            </h4>
+            <p>Traditional attire is strictly enforced at Meenakshi Amman Temple and major shrines. Men should wear dhoti, veshti with shirt, or formal trousers with shirt. Women should wear sarees, half-sarees, or churidar with dupatta. Shorts, lungis, and sleeveless tops are not allowed inside temple sanctums.</p>
+          </div>
+
+          <div class="faq-card">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              Where can I safely store shoes and phones?
+            </h4>
+            <p>Meenakshi Amman Temple operates dedicated official shoe-keeping counters and digital locker rooms outside all four gopuram entrances (South, West, East, North). Mobile phones and smart electronic devices are prohibited inside the sanctum and must be deposited in the official electronic lockers.</p>
+          </div>
+
+          <div class="faq-card">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              What are the best hours for Darshan?
+            </h4>
+            <p>Early mornings between 5:30 AM – 7:30 AM and afternoons around 4:00 PM – 5:30 PM are the best times to experience tranquil worship with shorter waiting times. Mid-morning (10 AM – 12 PM) and festive evenings can be crowded. Online Special Entry Darshan passes (₹100) are available via TN HR&CE portal.</p>
+          </div>
+
+          <div class="faq-card">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              How do I get around Madurai?
+            </h4>
+            <p>Within the central old town, walking, cycle-rickshaws, and auto-rickshaws are the most practical way to navigate the concentric temple streets. For longer trips across the district (Keeladi, Alagar Kovil, Thirupparankundram, Athisayam), app-based cabs (Uber/Ola) and local buses from Periyar and Mattuthavani operate regularly.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <a href="index.html" class="brand" aria-label="மதுரை உலா">
-      <span>மதுரை <em>உலா</em></span>
-    </a>
-    <p>Made for curious travellers and hungry hearts.</p>
-    <div class="footer-copy">&copy; 2026 &bull; Sample guide</div>
-  </div>
-</footer>
+  <!-- ============ SITE FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="brand" aria-label="மதுரை உலா">
+        <span>மதுரை <em>உலா</em></span>
+      </a>
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1.2rem; margin:1rem 0; font-size:0.9rem;">
+        <a href="index.html" style="color:var(--gold-soft); text-decoration:none;">Home</a>
+        <a href="tourism.html" style="color:var(--gold-soft); text-decoration:none;">Tourism</a>
+        <a href="food.html" style="color:var(--gold-soft); text-decoration:none;">Foods</a>
+        <a href="restaurants.html" style="color:var(--gold-soft); text-decoration:none;">Restaurants</a>
+        <a href="cafes.html" style="color:var(--gold-soft); text-decoration:none;">Cafes</a>
+        <a href="modern.html" style="color:var(--gold-soft); text-decoration:none;">Modern Madurai</a>
+        <a href="stays.html" style="color:var(--gold-soft); text-decoration:none;">Stays</a>
+        <a href="about.html" style="color:var(--gold-soft); text-decoration:none;">About</a>
+        <a href="contact.html" style="color:var(--gold-soft); text-decoration:none;">Contact</a>
+      </div>
+      <p>Made for curious travellers, pilgrims, and hungry hearts across Madurai District.</p>
+      <div class="footer-copy">&copy; 2026 &bull; Madurai District Guide</div>
+      <p class="photo-credits-text">
+        Photo credits: Sourced from free open-access cultural archives including Wikimedia Commons, Unsplash, and Pexels. All local institution names and registered trademarks are properties of their respective owners.
+      </p>
+    </div>
+  </footer>
 
-<script src="js/main.js"></script>
-<script>
-  document.querySelector("#contact-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    document.querySelector("#form-status").style.display = "block";
-    e.target.reset();
-  });
-</script>
+  <!-- ============ SCRIPTS ============ -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Contact Form Submit Listener
+      const contactForm = document.querySelector("#contact-form");
+      if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const status = document.querySelector("#form-status");
+          if (status) status.style.display = "block";
+          contactForm.reset();
+        });
+      }
+
+      // 2. Initialize Mini Map of Information Desks
+      const mapContainer = document.getElementById("contactMiniMap");
+      if (mapContainer && window.L) {
+        try {
+          const map = L.map("contactMiniMap").setView([9.9252, 78.1198], 12);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
+          }).addTo(map);
+
+          const desks = [
+            { name: "TTDC Tourist Information Office", lat: 9.9180, lng: 78.1145, info: "Hotel Tamil Nadu Complex, West Veli Street" },
+            { name: "Railway Tourism Counter", lat: 9.9172, lng: 78.1128, info: "Platform 1 Concourse, Madurai Junction" },
+            { name: "Mattuthavani MIBT Information", lat: 9.9385, lng: 78.1562, info: "Mattuthavani Integrated Bus Terminal" }
+          ];
+
+          desks.forEach(d => {
+            L.marker([d.lat, d.lng])
+              .addTo(map)
+              .bindPopup(`<b>${d.name}</b><br>${d.info}`);
+          });
+        } catch (err) {
+          console.warn("Contact mini map init error", err);
+        }
+      }
+    });
+  </script>
 </body>
 </html>

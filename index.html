@@ -33,6 +33,7 @@
         <a href="modern.html">Modern Madurai</a>
         <a href="stays.html">Stays</a>
         <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
@@ -437,12 +438,149 @@
     </div>
   </section>
 
+  <!-- ============ 9. VISITOR ASSISTANCE & CONTACT SECTION ============ -->
+  <section class="section home-contact-section" id="contact" style="padding: 4.5rem 0; background: var(--cream-soft); border-top: 1px solid var(--line);">
+    <div class="container">
+      <div class="section-head" style="text-align: center; max-width: 720px; margin: 0 auto 2.8rem auto;">
+        <p class="eyebrow" style="color: var(--gold-soft); letter-spacing: 0.15em;">COMMUNITY DESK & VISITOR ASSISTANCE</p>
+        <h2 style="font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 0.6rem;">Get in Touch With Us</h2>
+        <p style="color: var(--muted); font-size: 1.02rem;">Planning your visit, spot an updated timing or entry fee, or have a hidden food spot to recommend? Connect with our Madurai local community desk.</p>
+      </div>
+
+      <!-- Quick Emergency & Helpline Strip -->
+      <div class="helpline-grid">
+        <a href="tel:1363" class="helpline-card" title="Call National Tourist Helpline">
+          <div class="helpline-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <div class="helpline-info">
+            <h4>TTDC Tourist Helpline</h4>
+            <div class="phone-number">1363 / +91 44 2538 3333</div>
+            <p>24/7 Multi-language Tourist Assistance</p>
+          </div>
+        </a>
+
+        <a href="tel:04522344360" class="helpline-card" title="Call Meenakshi Temple Information Desk">
+          <div class="helpline-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </div>
+          <div class="helpline-info">
+            <h4>Meenakshi Temple Desk</h4>
+            <div class="phone-number">0452-2344360</div>
+            <p>Darshan inquiries & temple seva passes</p>
+          </div>
+        </a>
+
+        <a href="tel:112" class="helpline-card" title="Call Madurai Tourist Police">
+          <div class="helpline-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="helpline-info">
+            <h4>Police & Safety Control</h4>
+            <div class="phone-number">112 / 100</div>
+            <p>Madurai City Tourist Police Patrol</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Contact Form & Info Grid -->
+      <div class="contact-grid">
+        <div style="background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 2.2rem; box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 1.3rem; margin-bottom: 0.4rem; color: var(--brown);">Send a Note or Recommendation</h3>
+          <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Know an authentic banana-leaf mess, updated entry fee, or have feedback? Drop us a message.</p>
+
+          <form id="homeContactForm" novalidate>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              <div class="field" style="margin-bottom: 1rem;">
+                <label for="homeContactName">Your Name</label>
+                <input id="homeContactName" name="name" type="text" placeholder="e.g. Anand Kumar" required>
+              </div>
+              <div class="field" style="margin-bottom: 1rem;">
+                <label for="homeContactEmail">Email Address</label>
+                <input id="homeContactEmail" name="email" type="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div class="field" style="margin-bottom: 1rem;">
+              <label for="homeContactCategory">Topic / Category</label>
+              <select id="homeContactCategory" name="category" style="border: 1px solid var(--line); background: var(--white); border-radius: var(--radius-sm); padding: 0.85rem 1rem; font-family: var(--font-sans); font-size: 0.96rem; color: var(--brown); outline: none;">
+                <option value="spot">Suggest a new local spot / mess</option>
+                <option value="update">Update place timings or entry fee</option>
+                <option value="guide">Guide & itinerary inquiry</option>
+                <option value="feedback">General website feedback</option>
+              </select>
+            </div>
+
+            <div class="field" style="margin-bottom: 1.2rem;">
+              <label for="homeContactMessage">Your Message</label>
+              <textarea id="homeContactMessage" name="message" placeholder="Write your message, review, or recommended spot details..." style="min-height: 110px;" required></textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+              <button type="submit" class="btn btn-yellow" style="padding: 0.8rem 2rem; font-weight: 700;">Submit Message &rarr;</button>
+              <a href="contact.html" style="color: var(--orange); font-weight: 600; font-size: 0.9rem; text-decoration: none;">View Full Contact Page & FAQs &rarr;</a>
+            </div>
+            <p id="homeContactStatus" style="margin-top: 1rem; color: var(--green); font-weight: 600; font-size: 0.92rem; display: none;">✓ Thank you! Your recommendation has been received by our community team.</p>
+          </form>
+        </div>
+
+        <div class="contact-info" style="box-shadow: var(--shadow-sm); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 2.2rem; background: var(--white);">
+          <h3 style="font-size: 1.25rem; color: var(--brown); margin-bottom: 0.6rem;">Visitor Information Desks</h3>
+          <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Official help counters operated for travelers arriving in Madurai.</p>
+
+          <div class="item">
+            <span aria-hidden="true" style="color: var(--maroon);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </span>
+            <div>
+              <b>TTDC Tourist Information Office</b>
+              Hotel Tamil Nadu Complex, West Veli Street, Madurai Main — 625001
+              <div style="color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem;">Open Mon–Sat: 10:00 AM – 5:45 PM</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <span aria-hidden="true" style="color: var(--maroon);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            </span>
+            <div>
+              <b>Railway Tourism Facilitation Counter</b>
+              Platform 1 Concourse, Madurai Junction Railway Station
+              <div style="color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem;">Open 24 Hours for train passenger inquiries</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <span aria-hidden="true" style="color: var(--maroon);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </span>
+            <div>
+              <b>Email & Community Help Desk</b>
+              hello@maduraiula.guide · feedback@maduraiula.guide
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <a href="index.html" class="brand" aria-label="மதுரை உலா">
         <span>மதுரை <em>உலா</em></span>
       </a>
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1.2rem; margin:1rem 0; font-size:0.9rem;">
+        <a href="index.html" style="color:var(--gold-soft); text-decoration:none;">Home</a>
+        <a href="tourism.html" style="color:var(--gold-soft); text-decoration:none;">Tourism</a>
+        <a href="food.html" style="color:var(--gold-soft); text-decoration:none;">Foods</a>
+        <a href="restaurants.html" style="color:var(--gold-soft); text-decoration:none;">Restaurants</a>
+        <a href="cafes.html" style="color:var(--gold-soft); text-decoration:none;">Cafes</a>
+        <a href="modern.html" style="color:var(--gold-soft); text-decoration:none;">Modern Madurai</a>
+        <a href="stays.html" style="color:var(--gold-soft); text-decoration:none;">Stays</a>
+        <a href="about.html" style="color:var(--gold-soft); text-decoration:none;">About</a>
+        <a href="contact.html" style="color:var(--gold-soft); text-decoration:none;">Contact</a>
+      </div>
       <p>Made for curious travellers, pilgrims, and hungry hearts across Madurai District.</p>
       <div class="footer-copy">&copy; 2026 &bull; Madurai District Guide</div>
       <p class="photo-credits-text">
@@ -533,6 +671,17 @@
 
       // 10. Distance & Geolocation Controls
       initDistanceControls("#curated-grid");
+
+      // 11. Home Contact Form
+      const homeForm = document.querySelector("#homeContactForm");
+      if (homeForm) {
+        homeForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const status = document.querySelector("#homeContactStatus");
+          if (status) status.style.display = "block";
+          homeForm.reset();
+        });
+      }
     });
   </script>
 </body>

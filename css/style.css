@@ -1459,6 +1459,88 @@ section[style*="var(--cream-deep)"] {
   margin-bottom: 0.2rem;
 }
 
+/* Helpline & Contact Cards */
+.helpline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+.helpline-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+}
+.helpline-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(122, 46, 29, 0.12);
+  border-color: var(--gold);
+}
+.helpline-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-circle);
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--maroon);
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+}
+.helpline-info h4 {
+  font-size: 0.95rem;
+  color: var(--brown);
+  margin: 0 0 0.2rem 0;
+  font-weight: 700;
+}
+.helpline-info .phone-number {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--orange);
+  letter-spacing: 0.01em;
+}
+.helpline-info p {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0.15rem 0 0 0;
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.8rem;
+}
+.faq-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 1.4rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.faq-card h4 {
+  font-size: 0.98rem;
+  color: var(--brown);
+  margin: 0 0 0.45rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+}
+.faq-card p {
+  font-size: 0.88rem;
+  color: var(--brown-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* =========================================================================
    FOOTER (Screenshot 2)
    ========================================================================= */

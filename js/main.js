@@ -1630,10 +1630,16 @@ function wireTalukFilter(selectSelector, cardSelector, onChange) {
   const select = document.querySelector(selectSelector);
   if (!select) return;
   select.addEventListener("change", () => {
-    const taluk = select.value.toLowerCase();
+    const taluk = select.value.toLowerCase().trim();
     document.querySelectorAll(cardSelector).forEach(card => {
-      const cardTaluk = (card.dataset.taluk || "").toLowerCase();
-      const matches = taluk === "all" || cardTaluk.includes(taluk);
+      const cardTaluk = (card.dataset.taluk || "").toLowerCase().trim();
+      let matches = taluk === "all" || cardTaluk.includes(taluk);
+      if (!matches && (taluk.includes("tirupparankundram") || taluk.includes("thirupparankundram"))) {
+        matches = cardTaluk.includes("tirupparankundram") || cardTaluk.includes("thirupparankundram");
+      }
+      if (!matches && (taluk.includes("thirumangalam") || taluk.includes("tirumangalam"))) {
+        matches = cardTaluk.includes("thirumangalam") || cardTaluk.includes("tirumangalam");
+      }
       card.dataset.matchesTaluk = matches ? "1" : "0";
     });
     if (onChange) onChange();

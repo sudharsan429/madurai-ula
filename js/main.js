@@ -348,7 +348,8 @@ function findPlaceOrFoodItem(id) {
     typeof CAFES !== "undefined" ? CAFES : [],
     typeof MODERN_SPOTS !== "undefined" ? MODERN_SPOTS : [],
     typeof STAYS !== "undefined" ? STAYS : [],
-    typeof FOODS !== "undefined" ? FOODS : []
+    typeof FOODS !== "undefined" ? FOODS : [],
+    typeof CSR_MAP_LOCATIONS !== "undefined" ? CSR_MAP_LOCATIONS : []
   ];
   for (const pool of pools) {
     if (Array.isArray(pool)) {
@@ -1046,7 +1047,7 @@ function getSupportLocalDetails(item, itemType) {
     };
   }
 
-  if (item.id === "meenakshi-temple" || item.id === "thirupparankundram-temple" || item.id === "alagar-kovil" || type.includes("tourism") || type.includes("temple")) {
+  if (item.id === "meenakshi-temple" || item.id === "thirupparankundram-temple" || item.id === "alagar-kovil" || type.includes("tourism") || type.includes("temple") || type.includes("heritage")) {
     return {
       pillar1: "Temple Artisan & Vendor Ecosystem",
       desc1: "Sustains hundreds of garland knotters stringing GI Madurai Malli (jasmine), brass lamp makers in Puthu Mandapam, and local heritage guides.",
@@ -1054,6 +1055,28 @@ function getSupportLocalDetails(item, itemType) {
       desc2: "Protects ancient Pandya, Nayak, and Sangam stone architecture, intricate granite gopurams, and traditional ritual ecosystems.",
       pillar3: "Responsible Traveler Tip",
       desc3: "Adhere to the traditional dress code, deposit shoes at official stands, avoid disposable plastic around temple perimeters, and purchase authentic flower garlands."
+    };
+  }
+
+  if (type.includes("artisan") || type.includes("craft") || type.includes("pottery") || type.includes("textile") || item.id.includes("artisan") || item.id.includes("pottery") || item.id.includes("sungudi")) {
+    return {
+      pillar1: "100% Direct Fair Value to Artisans",
+      desc1: "Your support directly reaches master clay sculptors, Sungudi weavers, and metal casters without intermediary commercial markups.",
+      pillar2: "Living Cultural Heritage",
+      desc2: "Preserves centuries of generational knowledge in GI-tagged Sungudi textile knotting, Vilachery terracotta clay molding, and temple brass casting.",
+      pillar3: "Responsible Traveler Tip",
+      desc3: "Visit village workshops directly, respect the time invested in slow craftsmanship, and choose authentic handcrafted pieces over machine replicas."
+    };
+  }
+
+  if (type.includes("eco") || item.id.includes("eco") || item.id.includes("river") || item.id.includes("walk")) {
+    return {
+      pillar1: "Vaigai Basin & Urban Ecology Protection",
+      desc1: "Helps maintain green buffer zones, public riverside pedestrian paths, and clean micro-habitats in Madurai.",
+      pillar2: "Low-Carbon Sustainable Mobility",
+      desc2: "Reduces vehicular emissions, promotes slow walkable exploration, and protects ancient sacred water tanks (theppakulam).",
+      pillar3: "Responsible Traveler Tip",
+      desc3: "Carry a reusable water bottle, leave no plastic waste behind, and respect native flora along water bodies."
     };
   }
 
@@ -1179,13 +1202,580 @@ window.openSupportLocalModal = function(id, itemType) {
 };
 
 // =========================================================================
-// CSR & COMMUNITY PAGE CONTROLLERS (Pledge, Calculator, Directory)
+// =========================================================================
+// CSR LOCATIONS DATASET FOR COMMUNITY MAP & CSR MODULE
+// =========================================================================
+const CSR_MAP_LOCATIONS = [
+  // 🟢 Local Businesses
+  {
+    id: "famous-jigarthanda",
+    name: "Famous Jigarthanda",
+    category: "business",
+    badgeLabel: "Local Business",
+    badgeIcon: "🟢",
+    color: "#1B5E20",
+    location: "East Marret Street",
+    lat: 9.9180,
+    lng: 78.1235,
+    description: "Madurai's iconic cooling herbal milk drink supporting tribal badam pisin harvesters and native dairy farmers.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9180,78.1235"
+  },
+  {
+    id: "murugan-idli-shop",
+    name: "Murugan Idli Shop",
+    category: "business",
+    badgeLabel: "Local Business",
+    badgeIcon: "🟢",
+    color: "#1B5E20",
+    location: "West Masi Street",
+    lat: 9.9155,
+    lng: 78.1139,
+    description: "World-famed cloud-soft idlis served on fresh banana leaves with four signature stone-ground chutneys.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9155,78.1139"
+  },
+  {
+    id: "amma-mess",
+    name: "Amma Mess",
+    category: "business",
+    badgeLabel: "Local Business",
+    badgeIcon: "🟢",
+    color: "#1B5E20",
+    location: "West Perumal Maistry Street",
+    lat: 9.9160,
+    lng: 78.1180,
+    description: "Iconic family mess famous for Kari Dosa and authentic banana leaf meals supporting regional spice growers.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9160,78.1180"
+  },
+  {
+    id: "konar-kadai",
+    name: "Konar Kadai",
+    category: "business",
+    badgeLabel: "Local Business",
+    badgeIcon: "🟢",
+    color: "#1B5E20",
+    location: "North Veli Street, Simmakkal",
+    lat: 9.9275,
+    lng: 78.1250,
+    description: "Eight-decade-old heritage tiffin institution sustaining indigenous agrarian and sheep farming livelihoods.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9275,78.1250"
+  },
+  {
+    id: "nagalakshmi-sweets",
+    name: "Nagalakshmi Traditional Sweets",
+    category: "business",
+    badgeLabel: "Local Business",
+    badgeIcon: "🟢",
+    color: "#1B5E20",
+    location: "South Avani Moola Street",
+    lat: 9.9172,
+    lng: 78.1192,
+    description: "Generational sweet-makers crafting handmade murukku, seedai, and halwa with native country butter.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9172,78.1192"
+  },
+
+  // 🟡 Artisans
+  {
+    id: "vilachery-pottery",
+    name: "Vilachery Pottery",
+    category: "artisan",
+    badgeLabel: "Local Artisan",
+    badgeIcon: "🎨",
+    color: "#F59E0B",
+    location: "Vilachery",
+    lat: 9.8824,
+    lng: 78.0718,
+    description: "Traditional clay crafts & terracotta Golu dolls crafted by 200+ artisan households.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.8824,78.0718"
+  },
+  {
+    id: "vilachery-pottery-village",
+    name: "Vilachery Terracotta & Doll Kilns",
+    category: "artisan",
+    badgeLabel: "Local Artisan",
+    badgeIcon: "🎨",
+    color: "#F59E0B",
+    location: "Vilachery Village",
+    lat: 9.8835,
+    lng: 78.0730,
+    description: "Hand-sculpted Navarathri Golu dolls, clay lamps, and sacred Ayyanar terracotta horses.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.8835,78.0730"
+  },
+  {
+    id: "kaithari-sungudi",
+    name: "Kaithari Nagar Sungudi Weavers",
+    category: "artisan",
+    badgeLabel: "Local Artisan",
+    badgeIcon: "🎨",
+    color: "#F59E0B",
+    location: "South Masi Street",
+    lat: 9.9150,
+    lng: 78.1150,
+    description: "Authentic GI-tagged tie-and-dye handloom cotton sarees crafted using traditional knot-tying.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9150,78.1150"
+  },
+  {
+    id: "puthu-mandapam-crafts",
+    name: "Puthu Mandapam Brass Artisans",
+    category: "artisan",
+    badgeLabel: "Local Artisan",
+    badgeIcon: "🎨",
+    color: "#F59E0B",
+    location: "Opposite Meenakshi East Tower",
+    lat: 9.9198,
+    lng: 78.1215,
+    description: "17th-century Nayakkar-era bronze, bell-metal casting, devotional idols and brass oil lamps.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9198,78.1215"
+  },
+  {
+    id: "mattuthavani-jasmine",
+    name: "Mattuthavani Jasmine Knotters",
+    category: "artisan",
+    badgeLabel: "Local Artisan",
+    badgeIcon: "🎨",
+    color: "#F59E0B",
+    location: "Integrated Flower Market",
+    lat: 9.9392,
+    lng: 78.1610,
+    description: "Generational garland knotters weaving GI-tagged Madurai Malli jasmine into exquisite garlands.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9392,78.1610"
+  },
+
+  // 🔵 Heritage Sites
+  {
+    id: "meenakshi-temple",
+    name: "Meenakshi Amman Temple",
+    category: "heritage",
+    badgeLabel: "Heritage Site",
+    badgeIcon: "🔵",
+    color: "#0288D1",
+    location: "Madurai City Center",
+    lat: 9.9195,
+    lng: 78.1193,
+    description: "2,500-year-old living architectural marvel with 14 towering gopurams and thousands of sculpted deities.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9195,78.1193"
+  },
+  {
+    id: "thirumalai-nayak-palace",
+    name: "Thirumalai Nayakkar Palace",
+    category: "heritage",
+    badgeLabel: "Heritage Site",
+    badgeIcon: "🔵",
+    color: "#0288D1",
+    location: "Palace Road, Madurai",
+    lat: 9.9150,
+    lng: 78.1235,
+    description: "1636 AD Indo-Saracenic royal wonder featuring majestic stucco-ornamented pillars and royal courtyards.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9150,78.1235"
+  },
+  {
+    id: "samanar-malai",
+    name: "Samanar Malai Jain Caverns",
+    category: "heritage",
+    badgeLabel: "Heritage Site",
+    badgeIcon: "🔵",
+    color: "#0288D1",
+    location: "Keelakuyilkudi Hills",
+    lat: 9.9304,
+    lng: 78.0550,
+    description: "1st-century BCE Jain ascetic rock-cut beds, Tamil-Brahmi script inscriptions, and peaceful rock hillock.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9304,78.0550"
+  },
+  {
+    id: "theppakulam",
+    name: "Vandiyur Mariamman Theppakulam",
+    category: "heritage",
+    badgeLabel: "Heritage Site",
+    badgeIcon: "🔵",
+    color: "#0288D1",
+    location: "Theppakulam, Madurai",
+    lat: 9.9161,
+    lng: 78.1528,
+    description: "Gigantic 1645 AD sacred square reservoir connected to Vaigai river by underground masonry channels.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9161,78.1528"
+  },
+  {
+    id: "koodal-azhagar",
+    name: "Koodal Azhagar Temple",
+    category: "heritage",
+    badgeLabel: "Heritage Site",
+    badgeIcon: "🔵",
+    color: "#0288D1",
+    location: "Near Madurai Junction",
+    lat: 9.9142,
+    lng: 78.1132,
+    description: "Ancient Divya Desam temple dedicated to Lord Vishnu in three divine postures: standing, sitting, and reclining.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9142,78.1132"
+  },
+
+  // 🌿 Eco-Friendly Places
+  {
+    id: "vaigai-river-walk",
+    name: "Vaigai River Ecological Corridor",
+    category: "eco",
+    badgeLabel: "Eco-Friendly Place",
+    badgeIcon: "🌿",
+    color: "#10B981",
+    location: "Albert Victor Bridge Bank",
+    lat: 9.9248,
+    lng: 78.1230,
+    description: "Protected historic river corridor with native riparian flora, community cleanup points, and bird trails.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9248,78.1230"
+  },
+  {
+    id: "rajaji-park-greens",
+    name: "Rajaji Park & Botanical Grove",
+    category: "eco",
+    badgeLabel: "Eco-Friendly Place",
+    badgeIcon: "🌿",
+    color: "#10B981",
+    location: "Goripalayam, Madurai",
+    lat: 9.9298,
+    lng: 78.1325,
+    description: "Urban biodiversity park with century-old shade trees, solar walkways, and rainwater percolation pits.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9298,78.1325"
+  },
+  {
+    id: "concentric-lotus-walk",
+    name: "Concentric Lotus Walking Circuit",
+    category: "eco",
+    badgeLabel: "Eco-Friendly Place",
+    badgeIcon: "🌿",
+    color: "#10B981",
+    location: "Chithirai & Masi Streets",
+    lat: 9.9192,
+    lng: 78.1198,
+    description: "Zero-emission pedestrian-only heritage walk tracing ancient town planning around Meenakshi Temple.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=9.9192,78.1198"
+  },
+  {
+    id: "kutladampatti-falls",
+    name: "Kutladampatti Eco-Forest Falls",
+    category: "eco",
+    badgeLabel: "Eco-Friendly Place",
+    badgeIcon: "🌿",
+    color: "#10B981",
+    location: "Sirumalai Reserve Foothills",
+    lat: 10.1118,
+    lng: 78.0125,
+    description: "Natural freshwater cascade surrounded by biodiverse dry-deciduous forest with strict plastic-ban rules.",
+    directions: "https://www.google.com/maps/dir/?api=1&destination=10.1118,78.0125"
+  }
+];
+window.CSR_MAP_LOCATIONS = CSR_MAP_LOCATIONS;
+
+// =========================================================================
+// CSR POINTS & BADGES GAMIFICATION CONTROLLER
+// =========================================================================
+const CSR_BADGES = [
+  { id: "pilgrim", min: 0, max: 40, icon: "🥉", title: "Conscious Pilgrim", next: "🌱 Responsible Explorer", nextTarget: 41 },
+  { id: "explorer", min: 41, max: 75, icon: "🌱", title: "Responsible Explorer", next: "🌿 Sustainable Champion", nextTarget: 76 },
+  { id: "champion", min: 76, max: 115, icon: "🌿", title: "Sustainable Champion", next: "🏆 Madurai Heritage Guardian", nextTarget: 116 },
+  { id: "guardian", min: 116, max: 99999, icon: "🏆", title: "Madurai Heritage Guardian", next: "Master Rank Achieved!", nextTarget: 116 }
+];
+
+function getCsrPoints() {
+  const val = localStorage.getItem("madurai_csr_points");
+  if (val === null) {
+    // Initial score per user prompt: 65 (🌱 Responsible Explorer)
+    localStorage.setItem("madurai_csr_points", "65");
+    return 65;
+  }
+  return parseInt(val, 10) || 65;
+}
+
+function getCsrBadgeInfo(points) {
+  for (let i = 0; i < CSR_BADGES.length; i++) {
+    const b = CSR_BADGES[i];
+    if (points >= b.min && points <= b.max) {
+      return b;
+    }
+  }
+  return CSR_BADGES[CSR_BADGES.length - 1];
+}
+
+function showCsrToast(msg) {
+  let toast = document.getElementById("csrToastNotification");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "csrToastNotification";
+    toast.className = "csr-toast";
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = msg;
+  toast.classList.add("active");
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => {
+    toast.classList.remove("active");
+  }, 3500);
+}
+
+function updateCsrGamifyUI(prevPoints, currentPoints) {
+  const ptsEl = document.getElementById("csrPointsValue");
+  const iconEl = document.getElementById("csrBadgeIcon");
+  const titleEl = document.getElementById("csrBadgeTitle");
+  const nextLabelEl = document.getElementById("csrTierNextLabel");
+  const percentEl = document.getElementById("csrTierPercent");
+  const barFillEl = document.getElementById("csrTierBarFill");
+
+  if (!ptsEl) return;
+
+  // Number counter animation
+  const duration = 600;
+  const start = prevPoints;
+  const startTime = performance.now();
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const val = Math.floor(start + (currentPoints - start) * eased);
+    ptsEl.textContent = val;
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      ptsEl.textContent = currentPoints;
+    }
+  }
+  requestAnimationFrame(step);
+
+  const badge = getCsrBadgeInfo(currentPoints);
+  if (iconEl) iconEl.textContent = badge.icon;
+  if (titleEl) titleEl.textContent = badge.title;
+
+  // Progress Bar computation
+  let pct = 100;
+  if (badge.id === "pilgrim") {
+    pct = Math.round((currentPoints / 40) * 100);
+    if (nextLabelEl) nextLabelEl.textContent = `Progress to 🌱 Responsible Explorer (${41 - currentPoints} pts to go)`;
+  } else if (badge.id === "explorer") {
+    // Range 41 - 75
+    pct = Math.min(100, Math.round(((currentPoints - 40) / (75 - 40)) * 100));
+    if (nextLabelEl) nextLabelEl.textContent = `Progress to 🌿 Sustainable Champion (${76 - currentPoints} pts to go)`;
+  } else if (badge.id === "champion") {
+    // Range 76 - 115
+    pct = Math.min(100, Math.round(((currentPoints - 75) / (115 - 75)) * 100));
+    if (nextLabelEl) nextLabelEl.textContent = `Progress to 🏆 Madurai Heritage Guardian (${116 - currentPoints} pts to go)`;
+  } else {
+    pct = 100;
+    if (nextLabelEl) nextLabelEl.textContent = "🏆 Master Guardian Rank Achieved!";
+  }
+
+  if (percentEl) percentEl.textContent = `${pct}%`;
+  if (barFillEl) barFillEl.style.width = `${pct}%`;
+
+  // Update tier mark active styling
+  const tMarks = {
+    pilgrim: document.getElementById("tmPilgrim"),
+    explorer: document.getElementById("tmExplorer"),
+    champion: document.getElementById("tmChampion"),
+    guardian: document.getElementById("tmGuardian")
+  };
+  Object.keys(tMarks).forEach(k => {
+    if (tMarks[k]) tMarks[k].classList.remove("active");
+  });
+  if (tMarks[badge.id]) tMarks[badge.id].classList.add("active");
+}
+
+window.earnCsrPoints = function(actionKey, points, label) {
+  const current = getCsrPoints();
+  const next = current + points;
+  localStorage.setItem("madurai_csr_points", String(next));
+
+  const prevBadge = getCsrBadgeInfo(current);
+  const nextBadge = getCsrBadgeInfo(next);
+
+  updateCsrGamifyUI(current, next);
+
+  if (nextBadge.id !== prevBadge.id) {
+    showCsrToast(`🎉 <strong>LEVEL UP!</strong> You unlocked ${nextBadge.icon} <strong>${nextBadge.title}</strong>! (+${points} PTS)`);
+  } else {
+    showCsrToast(`✨ <strong>+${points} CSR Points!</strong> ${label}`);
+  }
+
+  // Record in action log
+  const logEl = document.getElementById("csrActionsLog");
+  if (logEl) {
+    const item = document.createElement("div");
+    item.className = "csr-log-item";
+    item.innerHTML = `<span>✓ ${label}</span> <span class="log-pts">+${points} PTS</span>`;
+    logEl.insertBefore(item, logEl.firstChild);
+  }
+};
+
+window.scrollToPledgeSection = function() {
+  const el = document.getElementById("pledge-section");
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+// =========================================================================
+// CSR COMMUNITY MAP CONTROLLER (Leaflet + OpenStreetMap)
+// =========================================================================
+function createCsrCategoryPinIcon(category, color) {
+  let iconEmoji = "🟢";
+  if (category === "artisan") iconEmoji = "🟡";
+  else if (category === "heritage") iconEmoji = "🔵";
+  else if (category === "eco") iconEmoji = "🌿";
+
+  return L.divIcon({
+    className: 'csr-custom-marker-wrapper',
+    html: `
+      <div class="csr-pin-bubble" style="background:${color};" title="${category}">
+        <span class="csr-pin-inner">${iconEmoji}</span>
+      </div>`,
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -28]
+  });
+}
+
+window.handleMapSupportClick = function(id, category) {
+  let pts = 10;
+  let label = "Local Business Support";
+  if (category === "artisan") {
+    pts = 20;
+    label = "Artisan Supported";
+  } else if (category === "eco") {
+    pts = 15;
+    label = "Eco Travel";
+  }
+
+  if (window.earnCsrPoints) {
+    window.earnCsrPoints(`map_${id}`, pts, label);
+  }
+
+  if (window.openSupportLocalModal) {
+    window.openSupportLocalModal(id, category);
+  }
+};
+
+function initCsrCommunityMap() {
+  const container = document.getElementById("csrCommunityMap");
+  if (!container || !window.L) return;
+
+  // Madurai central coordinates
+  const mapCenter = [9.922, 78.119];
+  const map = L.map("csrCommunityMap", {
+    scrollWheelZoom: false,
+    zoomControl: true
+  }).setView(mapCenter, 12);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  const markerLayerGroup = L.layerGroup().addTo(map);
+  const markers = [];
+
+  CSR_MAP_LOCATIONS.forEach(loc => {
+    const pinIcon = createCsrCategoryPinIcon(loc.category, loc.color);
+    const marker = L.marker([loc.lat, loc.lng], { icon: pinIcon });
+
+    const badgeClass = `badge-${loc.category}`;
+    const popupContent = `
+      <div class="csr-map-popup">
+        <h4>${loc.name}</h4>
+        <div class="csr-popup-badge ${badgeClass}">${loc.badgeIcon} ${loc.badgeLabel}</div>
+        <div class="csr-popup-loc">📍 ${loc.location}</div>
+        <p class="csr-popup-desc">${loc.description}</p>
+        <div class="csr-popup-actions">
+          <button type="button" class="btn-popup-support" onclick="window.handleMapSupportClick('${loc.id}', '${loc.category}')">Support Local</button>
+          <a class="btn-popup-directions" href="${loc.directions}" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+      </div>
+    `;
+
+    marker.bindPopup(popupContent, {
+      className: 'csr-leaflet-popup',
+      maxWidth: 280
+    });
+
+    marker.locData = loc;
+    markerLayerGroup.addLayer(marker);
+    markers.push(marker);
+  });
+
+  // Filter Buttons Handler
+  const filterBtns = document.querySelectorAll("#csrMapFilters .csr-map-filter-btn");
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const category = btn.dataset.category || "all";
+      markerLayerGroup.clearLayers();
+
+      const visibleLatLngs = [];
+      markers.forEach(m => {
+        if (category === "all" || m.locData.category === category) {
+          markerLayerGroup.addLayer(m);
+          visibleLatLngs.push([m.locData.lat, m.locData.lng]);
+        }
+      });
+
+      if (visibleLatLngs.length > 0) {
+        map.fitBounds(L.latLngBounds(visibleLatLngs), { padding: [40, 40], maxZoom: 14 });
+      }
+    });
+  });
+}
+
+// =========================================================================
+// CSR IMPACT DASHBOARD CONTROLLER (Animated Stats)
+// =========================================================================
+function initCsrImpactDashboard() {
+  const dashBizEl = document.getElementById("dashLocalBiz");
+  const dashArtisanEl = document.getElementById("dashArtisans");
+  const dashPledgeEl = document.getElementById("dashVisitorPledges");
+
+  const storedPledges = parseInt(localStorage.getItem("madurai_csr_pledges") || "0", 10);
+  const basePledges = 120;
+  const totalPledges = basePledges + storedPledges;
+
+  function runCounter(el, target) {
+    if (!el) return;
+    const duration = 1200;
+    const startTime = performance.now();
+    function tick(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(target * eased);
+      el.textContent = current;
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = target;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  runCounter(dashBizEl, 25);
+  runCounter(dashArtisanEl, 40);
+  runCounter(dashPledgeEl, totalPledges);
+}
+
+// =========================================================================
+// MASTER CSR & COMMUNITY PAGE INITIALIZATION
 // =========================================================================
 function initCsrPage() {
-  // 1. Interactive Pledge Controller
+  // 1. Initialize Impact Dashboard
+  initCsrImpactDashboard();
+
+  // 2. Initialize Community Map
+  initCsrCommunityMap();
+
+  // 3. Initialize Points & Badges
+  const pts = getCsrPoints();
+  updateCsrGamifyUI(pts, pts);
+
+  // 4. Interactive Visitor Pledge Controller
   const pledgeBtn = document.getElementById("btnTakePledge");
   const pledgeCountEl = document.getElementById("pledgeCounterNum");
   const pledgeCertEl = document.getElementById("pledgeCertBadge");
+  const dashPledgeEl = document.getElementById("dashVisitorPledges");
   const baseCount = 1482;
   const storedPledges = parseInt(localStorage.getItem("madurai_csr_pledges") || "0", 10);
   const totalPledges = baseCount + storedPledges;
@@ -1224,6 +1814,10 @@ function initCsrPage() {
         pledgeCountEl.textContent = (baseCount + newStored).toLocaleString();
       }
 
+      if (dashPledgeEl) {
+        dashPledgeEl.textContent = (120 + newStored);
+      }
+
       if (pledgeCertEl) {
         pledgeCertEl.classList.add("active");
       }
@@ -1231,10 +1825,15 @@ function initCsrPage() {
       pledgeBtn.textContent = "✓ Pledge Signed Successfully!";
       pledgeBtn.disabled = true;
       pledgeBtn.style.background = "#2E7D32";
+
+      // Award +20 Points for Taking Pledge
+      if (window.earnCsrPoints) {
+        window.earnCsrPoints("pledge_signed", 20, "Signed Responsible Visitor Pledge");
+      }
     });
   }
 
-  // 2. Economic Impact Calculator Controller
+  // 5. Economic Impact Calculator Controller
   const slider = document.getElementById("csrSpendSlider");
   const spendValEl = document.getElementById("csrSpendVal");
   const retainedValEl = document.getElementById("csrRetainedVal");
@@ -1258,7 +1857,7 @@ function initCsrPage() {
     updateCalculator(parseInt(slider.value, 10));
   }
 
-  // 3. Artisan Directory Filter Chips
+  // 6. Artisan Directory Filter Chips
   const chips = document.querySelectorAll(".artisan-filters .chip");
   const artisanCards = document.querySelectorAll(".artisan-card");
   chips.forEach(chip => {

@@ -67,6 +67,48 @@
     </div>
   </section>
 
+  <!-- ============ 1. CSR IMPACT DASHBOARD ============ -->
+  <section class="section csr-impact-section" style="padding-top:0.25rem; padding-bottom:1.5rem;">
+    <div class="container">
+      <div class="csr-impact-dashboard">
+        <div class="csr-impact-header">
+          <span class="csr-eyebrow-pill">🌱 CSR IMPACT</span>
+          <h2>Empowering Madurai’s Grassroots Community</h2>
+          <p>Real-time metrics tracking our verified network of traditional enterprises, artisan kilns, and committed mindful visitors.</p>
+        </div>
+        <div class="csr-impact-cards">
+          <!-- Stat 1: Local Businesses -->
+          <div class="csr-impact-card">
+            <div class="csr-impact-icon-wrap" style="background:#E8F5E9; color:#1B5E20;">🏪</div>
+            <div class="csr-impact-info">
+              <span class="csr-impact-label">Local Businesses</span>
+              <div class="csr-impact-number" id="dashLocalBiz" data-target="25">25</div>
+              <span class="csr-impact-subtext">Verified family messes, food stalls & merchants</span>
+            </div>
+          </div>
+          <!-- Stat 2: Artisans Supported -->
+          <div class="csr-impact-card">
+            <div class="csr-impact-icon-wrap" style="background:#FFF8E1; color:#F57F17;">🎨</div>
+            <div class="csr-impact-info">
+              <span class="csr-impact-label">Artisans Supported</span>
+              <div class="csr-impact-number" id="dashArtisans" data-target="40">40</div>
+              <span class="csr-impact-subtext">Sungudi weavers, clay sculptors & brass guilds</span>
+            </div>
+          </div>
+          <!-- Stat 3: Visitor Pledges -->
+          <div class="csr-impact-card">
+            <div class="csr-impact-icon-wrap" style="background:#E1F5FE; color:#0277BD;">🤝</div>
+            <div class="csr-impact-info">
+              <span class="csr-impact-label">Visitor Pledges</span>
+              <div class="csr-impact-number" id="dashVisitorPledges" data-target="120">120</div>
+              <span class="csr-impact-subtext">Conscious explorers taking the zero-plastic pledge</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ 6-PILLAR CSR HIERARCHY TREE ============ -->
   <section class="section" style="padding-top:0.5rem; padding-bottom:2rem;">
     <div class="container">
@@ -203,6 +245,47 @@
             </ul>
             <a href="#eco-guide" class="csr-pillar-action-link">View Walking & Green Transit Routes &rarr;</a>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. CSR COMMUNITY MAP ============ -->
+  <section class="section" id="csr-community-map-section" style="padding-top:1rem; padding-bottom:2.5rem;">
+    <div class="container">
+      <div class="csr-map-wrapper">
+        <div class="csr-map-header">
+          <div>
+            <span class="csr-eyebrow-pill">🗺️ CSR COMMUNITY MAP</span>
+            <h2 style="margin-top:0.4rem;">Interactive Madurai Conscious Map</h2>
+            <p style="color:var(--muted); font-size:0.95rem; margin-top:0.35rem; max-width:760px;">
+              Locate verified traditional messes, indigenous craft workshops, sacred monuments, and low-carbon green zones across Madurai. Click any marker to view community impact, support local directly, and get GPS directions.
+            </p>
+          </div>
+
+          <div class="csr-map-legend" id="csrMapFilters">
+            <button type="button" class="csr-map-filter-btn active" data-category="all">
+              <span class="csr-filter-dot" style="background:#3B2A1A;"></span> All Places (<span id="csrCountAll">19</span>)
+            </button>
+            <button type="button" class="csr-map-filter-btn" data-category="business">
+              <span class="csr-filter-dot" style="background:#1B5E20;"></span> 🟢 Local Business (<span id="csrCountBiz">5</span>)
+            </button>
+            <button type="button" class="csr-map-filter-btn" data-category="artisan">
+              <span class="csr-filter-dot" style="background:#F59E0B;"></span> 🟡 Artisan (<span id="csrCountArtisan">5</span>)
+            </button>
+            <button type="button" class="csr-map-filter-btn" data-category="heritage">
+              <span class="csr-filter-dot" style="background:#0288D1;"></span> 🔵 Heritage Site (<span id="csrCountHeritage">5</span>)
+            </button>
+            <button type="button" class="csr-map-filter-btn" data-category="eco">
+              <span class="csr-filter-dot" style="background:#10B981;"></span> 🌿 Eco-Friendly Place (<span id="csrCountEco">4</span>)
+            </button>
+          </div>
+        </div>
+
+        <div id="csrCommunityMap" class="csr-community-map-canvas"></div>
+        <div class="csr-map-hint">
+          <span>💡 <em>Click any pin on the map to explore community details, award CSR Points, and navigate via Google Maps.</em></span>
+          <span style="font-weight:700; color:var(--maroon);">Powered by Leaflet & OpenStreetMap</span>
         </div>
       </div>
     </div>
@@ -414,6 +497,135 @@
             <h5>Carbon Emissions Reduced</h5>
             <b id="csrCo2Val">28 kg CO₂</b>
             <span style="font-size:0.75rem; color:var(--muted);">By choosing walking trails & green e-rickshaws</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. CSR POINTS & BADGE SYSTEM ============ -->
+  <section class="section csr-gamify-section" id="csr-points-section" style="padding-top:1rem; padding-bottom:3rem;">
+    <div class="container">
+      <div class="csr-gamify-box">
+        <div class="csr-gamify-grid">
+          <!-- Left: User Points & Badge Status -->
+          <div class="csr-gamify-status-card">
+            <span class="csr-eyebrow-pill" style="background:rgba(255,255,255,0.22); color:#FFF; border-color:rgba(255,255,255,0.4);">🏆 GAMIFIED CONSCIOUS TOURISM</span>
+            <h3 style="color:#FFFDEB; margin-top:0.6rem; font-size:1.6rem;">Your CSR Points & Badge</h3>
+            <p style="color:#E8F5E9; font-size:0.9rem; margin-bottom:1.4rem;">
+              Every ethical decision enriches Madurai's artisans and preserves living heritage. Accumulate points and level up your official badge status!
+            </p>
+
+            <div class="csr-points-banner">
+              <div class="csr-points-main">
+                <span class="csr-points-label">Your CSR Points</span>
+                <div class="csr-points-val-wrap">
+                  <span class="csr-points-num" id="csrPointsValue">65</span>
+                  <span class="csr-points-pts">PTS</span>
+                </div>
+              </div>
+              <div class="csr-badge-badge">
+                <div class="csr-badge-avatar" id="csrBadgeIcon">🌱</div>
+                <div class="csr-badge-text">
+                  <span class="csr-badge-sub">Current Rank</span>
+                  <strong class="csr-badge-name" id="csrBadgeTitle">Responsible Explorer</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tier progress bar -->
+            <div class="csr-tier-progress-wrap">
+              <div class="csr-tier-progress-header">
+                <span id="csrTierNextLabel">Progress to 🌿 Sustainable Champion</span>
+                <span id="csrTierPercent">86%</span>
+              </div>
+              <div class="csr-tier-bar-bg">
+                <div class="csr-tier-bar-fill" id="csrTierBarFill" style="width: 86%;"></div>
+              </div>
+              <div class="csr-tier-marks">
+                <span class="tier-mark" id="tmPilgrim">🥉 Pilgrim (0)</span>
+                <span class="tier-mark active" id="tmExplorer">🌱 Explorer (40)</span>
+                <span class="tier-mark" id="tmChampion">🌿 Champion (75)</span>
+                <span class="tier-mark" id="tmGuardian">🏆 Guardian (120)</span>
+              </div>
+            </div>
+
+            <div class="csr-points-history">
+              <span style="font-size:0.75rem; color:#E8F5E9; text-transform:uppercase; letter-spacing:0.06em; font-weight:700;">Recent Earned Actions</span>
+              <div id="csrActionsLog" class="csr-actions-log">
+                <div class="csr-log-item"><span>💚 Initial Responsible Explorer Base</span> <span class="log-pts">+65 PTS</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: How to Earn Points Interactive Actions -->
+          <div class="csr-gamify-actions-wrap">
+            <h4 style="color:var(--maroon); font-size:1.3rem; margin-bottom:0.35rem;">Take Conscious Action & Earn Points</h4>
+            <p style="color:var(--muted); font-size:0.88rem; margin-bottom:1.25rem;">
+              Click below to complete sustainable actions or interact with the map pins to boost your impact score in real-time:
+            </p>
+
+            <div class="csr-activity-list">
+              <!-- Activity 1: Support Local -->
+              <div class="csr-activity-card">
+                <div class="csr-activity-icon" style="background:#E8F5E9; color:#1B5E20;">💚</div>
+                <div class="csr-activity-info">
+                  <div class="csr-activity-title-row">
+                    <h5>Support Local</h5>
+                    <span class="csr-points-badge">+10 PTS</span>
+                  </div>
+                  <p>Patronize a traditional family mess, street food vendor, or tea stall on banana leaves.</p>
+                </div>
+                <button type="button" class="btn-earn-action" onclick="window.earnCsrPoints('support_local', 10, 'Support Local Business')">
+                  Support Local 💚
+                </button>
+              </div>
+
+              <!-- Activity 2: Support Artisan -->
+              <div class="csr-activity-card">
+                <div class="csr-activity-icon" style="background:#FFF8E1; color:#B45309;">🎨</div>
+                <div class="csr-activity-info">
+                  <div class="csr-activity-title-row">
+                    <h5>Support Artisan</h5>
+                    <span class="csr-points-badge">+20 PTS</span>
+                  </div>
+                  <p>Direct purchase from Vilachery clay kilns, Sungudi handloom weavers, or brass artisans.</p>
+                </div>
+                <button type="button" class="btn-earn-action" onclick="window.earnCsrPoints('support_artisan', 20, 'Support Artisan')">
+                  Support Artisan 🎨
+                </button>
+              </div>
+
+              <!-- Activity 3: Eco Travel -->
+              <div class="csr-activity-card">
+                <div class="csr-activity-icon" style="background:#E0F2FE; color:#0369A1;">🌿</div>
+                <div class="csr-activity-info">
+                  <div class="csr-activity-title-row">
+                    <h5>Eco Travel</h5>
+                    <span class="csr-points-badge">+15 PTS</span>
+                  </div>
+                  <p>Travel via electric e-rickshaws, suburban passenger trains, or walkable temple loops.</p>
+                </div>
+                <button type="button" class="btn-earn-action" onclick="window.earnCsrPoints('eco_travel', 15, 'Eco-Friendly Travel')">
+                  Choose Green Transit 🌿
+                </button>
+              </div>
+
+              <!-- Activity 4: Take Pledge -->
+              <div class="csr-activity-card">
+                <div class="csr-activity-icon" style="background:#F3E8FF; color:#7E22CE;">🤝</div>
+                <div class="csr-activity-info">
+                  <div class="csr-activity-title-row">
+                    <h5>Take Pledge</h5>
+                    <span class="csr-points-badge">+20 PTS</span>
+                  </div>
+                  <p>Sign the 5 commitments of the official Madurai Responsible Visitor Pledge.</p>
+                </div>
+                <button type="button" class="btn-earn-action" onclick="window.scrollToPledgeSection()">
+                  Take Pledge 🤝
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

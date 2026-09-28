@@ -8,4 +8,7 @@ Desktop.ini
 # Temporary files & session logs
 *.log
 *.tmp
+*.orig.jpg
+*.orig.*
+real_madurai_temple.jpg
 realistic-track-pant-preserving-tshirt-model.json

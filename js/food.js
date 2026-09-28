@@ -631,7 +631,7 @@ const FOOD_ICONS = {
 function foodCardHTML(food) {
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${food.latitude},${food.longitude}`;
   return `
-    <article class="card" data-category="${food.category}" data-taluk="${food.taluk}" data-name="${food.name} ${food.area} ${food.categoryLabel} ${food.tagline}">
+    <article class="card" data-id="${food.id}" data-lat="${food.latitude}" data-lng="${food.longitude}" data-area="${food.area || ''}" data-distance="${food.distanceFromMeenakshiTemple || 0}" data-category="${food.category}" data-taluk="${food.taluk}" data-name="${food.name} ${food.area} ${food.categoryLabel} ${food.tagline}">
       <div class="thumb">
         <img src="${food.image}" alt="${food.imageAlt || food.name}" loading="lazy" onerror="handleImageFallback(this, '${food.name.replace(/'/g, "\\'")}')" />
         <span class="badge">${food.categoryLabel}</span>

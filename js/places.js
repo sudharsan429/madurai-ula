@@ -24,6 +24,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 0.0,
     mapLink: "https://maps.google.com/?q=9.9195,78.1193",
     tagline: "The city's beating heart, crowned by fourteen carved gopurams.",
+    entryFee: "Free General Entry · Special Darshan ₹100 / ₹50",
+    entryFeeShort: "Free · Darshan ₹100",
     description: "Meenakshi Amman Temple is the reason Madurai is often called the temple city. Its fourteen gopurams, the tallest rising over 170 feet, are covered top to bottom in painted stucco figures of gods, demons and dancers. Inside, the Hall of a Thousand Pillars and the golden lotus tank draw pilgrims through halls in continuous worship for over a thousand years.",
     location: "Netaji Road, Madurai Main",
     timings: "5:00 AM – 12:30 PM, 4:00 PM – 9:30 PM",
@@ -57,6 +59,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 3.1,
     mapLink: "https://maps.google.com/?q=9.9304,78.1396",
     tagline: "The blood-stained shawl Gandhi wore, and the story around it.",
+    entryFee: "Free Admission (Photography: ₹50)",
+    entryFeeShort: "Free Admission",
     description: "Housed in the 17th-century Rani Mangammal Palace, this museum traces India's independence struggle with a particular focus on Gandhi's ties to Madurai — where he first adopted the loincloth in 1921. Houses personal artefacts and the preserved blood-stained dhoti.",
     location: "Tamukkam, Alagar Kovil Road",
     timings: "10:00 AM – 5:45 PM, closed Fridays",
@@ -88,6 +92,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 1.2,
     mapLink: "https://maps.google.com/?q=9.9150,78.1235",
     tagline: "A 17th-century Indo-Saracenic courtyard built to impress.",
+    entryFee: "₹10 (Adults), ₹5 (Children) · Sound & Light Show ₹50",
+    entryFeeShort: "₹10 / ₹5 · Show ₹50",
     description: "Built in 1636 by King Thirumalai Nayak, this palace blends Dravidian and Islamic architectural styles into soaring stucco arches and a vast open courtyard. The scale of the Swarga Vilasam (Celestial Pavilion) still gives a sense of Nayak-era ambition. Evening sound-and-light shows retell the king's story.",
     location: "Palace Road, near Meenakshi Temple",
     timings: "9:00 AM – 5:00 PM (Light show 6:30 PM)",
@@ -120,6 +126,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 1.5,
     mapLink: "https://maps.google.com/?q=9.9275,78.1250",
     tagline: "The river that shaped the city's temple-town layout.",
+    entryFee: "Free Public Access",
+    entryFeeShort: "Free Access",
     description: "The Vaigai river runs through the heart of Madurai and has shaped its history, agriculture and temple geography for millennia. The promenade near Albert Victor Bridge offers tranquil sunrise panoramas and is the focal point of the grand Chithirai festival.",
     location: "Vaigai North Bank Promenade",
     timings: "Open all day; best at sunrise or sunset",
@@ -145,6 +153,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 21.0,
     mapLink: "https://maps.google.com/?q=10.0748,78.2140",
     tagline: "A forest-edge Vishnu temple with its own hill and legend.",
+    entryFee: "Free General Entry · Special Darshan ₹20 / ₹50",
+    entryFeeShort: "Free · Darshan ₹20",
     description: "Set at the base of the scenic Alagar Hills northeast of the city, Alagar Kovil is dedicated to Lord Vishnu as Kallazhagar. During the Chithirai festival, the deity travels from here toward Madurai on a golden horse, drawing hundreds of thousands of pilgrims.",
     location: "Alagar Kovil, Alagar Hills",
     timings: "6:00 AM – 12:30 PM, 4:00 PM – 8:00 PM",
@@ -170,6 +180,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 0.9,
     mapLink: "https://maps.google.com/?q=9.9155,78.1139",
     tagline: "A three-in-one Vishnu shrine hidden in the old town.",
+    entryFee: "Free General Entry · Special Darshan ₹20",
+    entryFeeShort: "Free · Darshan ₹20",
     description: "This ancient temple is unusual for depicting the deity in three postures — standing, seated and reclining — across three tiers. It sits quietly in Madurai's older residential lanes, a short stroll from Meenakshi Temple.",
     location: "Town Hall Road, Madurai Main",
     timings: "6:00 AM – 1:00 PM, 4:00 PM – 8:30 PM",
@@ -195,6 +207,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 24.5,
     mapLink: "https://maps.google.com/?q=10.0864,78.2256",
     tagline: "A hillside Murugan shrine reached by forest steps.",
+    entryFee: "Free General Entry",
+    entryFeeShort: "Free Entry",
     description: "The sixth holy abode (Arupadaiveedu) of Lord Murugan, Pazhamudhir Solai sits inside a protected forest atop Alagar Hills. Legend links this spot to poetess Avvaiyar and the scorched fruit episode.",
     location: "Upper Alagar Hills",
     timings: "6:00 AM – 7:30 PM",
@@ -220,6 +234,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 0.2,
     mapLink: "https://maps.google.com/?q=9.9197,78.1209",
     tagline: "Tailors and textile stalls inside a 16th-century pillared hall.",
+    entryFee: "Free Public Entry",
+    entryFeeShort: "Free Entry",
     description: "Built by Thirumalai Nayak facing the Meenakshi Temple's eastern tower, this pillared hall houses rows of tailors and textile stalls. Getting Madurai's famous sungudi cotton stitched happens under carved 400-year-old monolithic columns.",
     location: "East Chithirai Street, Madurai Main",
     timings: "9:30 AM – 9:00 PM",
@@ -245,6 +261,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 16.5,
     mapLink: "https://maps.google.com/?q=10.0465,78.0934",
     tagline: "The world-famous Jallikattu bull-taming arena of Tamil Nadu.",
+    entryFee: "Free Public Viewing (Special Pongal Passes via Govt)",
+    entryFeeShort: "Free Viewing",
     description: "Alanganallur is globally famous for hosting the grandest Jallikattu festival every January during Pongal celebrations. Renowned for indigenous Kangayam temple bulls and fearless tamers, the historic vadivasal draws tens of thousands of visitors from across the globe.",
     location: "Alanganallur Vadivasal, Vadipatti Taluk",
     timings: "Open all day; Festival event in mid-January",
@@ -270,6 +288,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 22.0,
     mapLink: "https://maps.google.com/?q=10.1118,78.1186",
     tagline: "Sacred rural bull festival celebrated on Mattu Pongal day.",
+    entryFee: "Free Public Viewing",
+    entryFeeShort: "Free Viewing",
     description: "Palamedu's Jallikattu takes place along the dry riverbed of Manjhamalai river on Mattu Pongal. Deeply rooted in agrarian village rituals, temple bulls are offered first worship before sprinting through the village corridor.",
     location: "Manjhamalai Riverbed, Palamedu",
     timings: "Open all day; Active during Mattu Pongal",
@@ -295,6 +315,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 6.5,
     mapLink: "https://maps.google.com/?q=9.8762,78.1147",
     tagline: "The opening clash of the Pongal Jallikattu season in Madurai.",
+    entryFee: "Free Public Viewing",
+    entryFeeShort: "Free Viewing",
     description: "Avaniyapuram kicks off the Madurai Jallikattu season on Thai Pongal day. Thousands gather around the main village street transformed into a high-octane arena where local youths display traditional bull-embracing courage.",
     location: "Main Street, Avaniyapuram",
     timings: "Open all day; Event on Thai Pongal day",
@@ -320,6 +342,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 8.5,
     mapLink: "https://maps.google.com/?q=9.8767,78.0712",
     tagline: "The first of Lord Murugan's six abodes, carved into living stone.",
+    entryFee: "Free General Entry · Special Darshan ₹20 / ₹100",
+    entryFeeShort: "Free · Darshan ₹20",
     description: "Dating back to the 8th-century Pandya era, this rock-cut temple is the First Arupadaiveedu of Lord Murugan, where his celestial wedding with Deivayanai took place. The sanctum and pillared halls are carved directly into a steep granite hill.",
     location: "Hill Base, Thirupparankundram",
     timings: "5:30 AM – 1:00 PM, 4:00 PM – 9:00 PM",
@@ -345,6 +369,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 10.5,
     mapLink: "https://maps.google.com/?q=9.9238,78.0564",
     tagline: "2,000-year-old Jain rock carvings, cave beds and a lotus pond.",
+    entryFee: "Free Public Access (Protected Monument)",
+    entryFeeShort: "Free Access",
     description: "A serene rocky ridge in Keelakuyilkudi where Jain monks lived and meditated from the 1st century BCE to the 9th century CE. Rock-cut bas-relief sculptures of Mahavira and Parsvanatha, ancient Tamil-Brahmi and Vatteluttu inscriptions, and stone beds sit above a calm lotus pond.",
     location: "Keelakuyilkudi Village, west of Madurai",
     timings: "6:00 AM – 6:00 PM",
@@ -370,6 +396,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 68.0,
     mapLink: "https://maps.google.com/?q=10.0543,77.5910",
     tagline: "The monumental 1959 dam across the sacred river Vaigai.",
+    entryFee: "₹10 (Adults), ₹5 (Children)",
+    entryFeeShort: "₹10 / ₹5",
     description: "Built across the Vaigai river in 1959, the Vaigai Dam irrigates thousands of acres across Madurai, Dindigul, and Sivagangai. Beautiful manicured gardens, children's park, and viewing bridges make it a favourite day outing for families.",
     location: "Vaigai Reservoir, Vadipatti-Andipatti Highway",
     timings: "6:00 AM – 6:00 PM",
@@ -395,6 +423,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 12.0,
     mapLink: "https://maps.google.com/?q=9.9537,78.2045",
     tagline: "One of the 108 Divya Desams famous for its Chakrathazhwar shrine.",
+    entryFee: "Free General Entry · Special Darshan ₹20",
+    entryFeeShort: "Free · Darshan ₹20",
     description: "Dedicated to Lord Vishnu as Kalamegaperumal and Mohini Avatharam, this 108 Divya Desam temple is famed for its sixteen-armed Chakrathazhwar (Sudarshana) with Narasimha on the reverse, covered in carved astrological mantras.",
     location: "Thirumohur Village, Melur Road",
     timings: "7:00 AM – 12:30 PM, 4:00 PM – 8:30 PM",
@@ -420,6 +450,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 18.0,
     mapLink: "https://maps.google.com/?q=10.0242,78.0264",
     tagline: "The sacred spot where the palm-leaf manuscript swam upstream.",
+    entryFee: "Free General Entry",
+    entryFeeShort: "Free Entry",
     description: "Set gracefully along the northern bank of the Vaigai near Sholavandan, this Paadal Petra Shiva temple is where Sambandar's palm leaf manuscript floated upstream against the river current in the 7th century.",
     location: "Vaigai North Bank, Thiruvedagam",
     timings: "6:30 AM – 11:30 AM, 4:30 PM – 7:30 PM",
@@ -445,6 +477,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 1.0,
     mapLink: "https://maps.google.com/?q=9.9142,78.1132",
     tagline: "The oldest mosque in Madurai, established in the 13th century.",
+    entryFee: "Free Public Access",
+    entryFeeShort: "Free Access",
     description: "Founded in the 13th century by Hazrat Kazi Syed Tajuddin who received the land from Pandya king Sadavarman Sundara Pandyan, this historic mosque accommodates 2,500 worshippers and houses the sacred Madurai Maqbara dargah.",
     location: "Kazimar Street, near Periyar Bus Stand",
     timings: "5:00 AM – 10:00 PM",
@@ -470,6 +504,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 4.5,
     mapLink: "https://maps.google.com/?q=9.9161,78.1528",
     tagline: "Huge 17th-century temple reservoir with a central Maiya Mandapam.",
+    entryFee: "Free Public Access (Open Reservoir)",
+    entryFeeShort: "Free Access",
     description: "One of the largest temple tanks in South India, measuring over 300 meters on each side, built by King Thirumalai Nayak in 1645. In Thai month (Jan/Feb), the dazzling Float Festival (Theppa Thiruvizha) takes place with illuminated rafts circling the central pavilion.",
     location: "Vandiyur, East Madurai",
     timings: "Open all day; evening illuminated lighting",
@@ -495,6 +531,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 8.0,
     mapLink: "https://maps.google.com/?q=9.8785,78.0715",
     tagline: "Ancient Jain caves, rock-cut carvings and historic inscriptions.",
+    entryFee: "Free Public Access",
+    entryFeeShort: "Free Access",
     description: "Located around the iconic Thirupparankundram hill, these ancient caves and rock inscriptions provide evidence of the area's older religious and cultural history. Best for history lovers, archaeology enthusiasts, rock inscriptions, and photography.",
     location: "Thirupparankundram Hill slopes",
     timings: "6:00 AM – 6:00 PM",
@@ -520,6 +558,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 12.5,
     mapLink: "https://maps.google.com/?q=9.8631,78.1882",
     tagline: "Sangam-era urban civilization on the Vaigai river basin.",
+    entryFee: "Free Public Access (Excavation Trenches)",
+    entryFeeShort: "Free Access",
     description: "Keeladi is important for understanding the ancient urban and cultural history of the Vaigai river region. See archaeological remains, excavation-related displays, ancient artefacts, and deep urban roots dating back to the Sangam era.",
     location: "Keeladi, southeast of Madurai",
     timings: "9:00 AM – 5:30 PM",
@@ -545,6 +585,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 12.3,
     mapLink: "https://maps.google.com/?q=9.8615,78.1870",
     tagline: "State-of-the-art museum displaying discoveries from Keeladi excavations.",
+    entryFee: "₹15 (Adults), ₹5 (Children), ₹200 (Foreigners)",
+    entryFeeShort: "₹15 / ₹5",
     description: "The museum helps visitors understand the archaeological discoveries associated with the Keeladi excavations. Best for students, history enthusiasts, and archaeology lovers.",
     location: "Keeladi Main Road",
     timings: "9:00 AM – 5:00 PM, closed Fridays",
@@ -570,6 +612,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 0.8,
     mapLink: "https://maps.google.com/?q=9.9142,78.1147",
     tagline: "Historic Shiva temple where the divine grants benefits in this life and the next.",
+    entryFee: "Free General Entry",
+    entryFeeShort: "Free Entry",
     description: "Arulmigu Immaiyilum Nanmai Tharuvar Temple is an identifiable historic temple in the city near Periyar. Celebrated as the shrine where Lord Shiva worshipped Himself in the form of a Shiva Lingam.",
     location: "West Masi Street / Periyar",
     timings: "6:00 AM – 12:00 PM, 4:30 PM – 9:00 PM",
@@ -595,6 +639,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 5.5,
     mapLink: "https://maps.google.com/?q=9.9248,78.1635",
     tagline: "Madurai's revered guardian deity and traditional folk shrine.",
+    entryFee: "Free Public Entry",
+    entryFeeShort: "Free Entry",
     description: "Arulmigu Pandi Muneeswaran Temple exemplifies Madurai's vibrant local deity tradition. Worshipped as the protective guardian deity of the city, attracting thousands for traditional folk prayers, bell offerings, and vow fulfillment.",
     location: "Melamadai, Ring Road",
     timings: "6:00 AM – 1:00 PM, 4:00 PM – 9:00 PM",
@@ -620,6 +666,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 10.0,
     mapLink: "https://maps.google.com/?q=9.9615,78.1882",
     tagline: "Gigantic elephant-shaped monolithic rock with ancient heritage.",
+    entryFee: "Free Public Access",
+    entryFeeShort: "Free Access",
     description: "Best for rock formations and historical surroundings. Yanaimalai looks like a colossal seated elephant and features ancient 8th-century rock-cut temples, Jain inscriptions, and scenic countryside paths.",
     location: "Narasingam / Othakadai",
     timings: "Open all day; best at sunrise and sunset",
@@ -645,6 +693,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 30.0,
     mapLink: "https://maps.google.com/?q=10.1250,78.0162",
     tagline: "Scenic forest waterfall for a refreshing nature trip outside central Madurai.",
+    entryFee: "Free Public Entry",
+    entryFeeShort: "Free Entry",
     description: "Best for a short nature trip outside central Madurai. Located in a tranquil reserve forest near Vadipatti, Kutladampatti Falls cascades down 90 feet over natural rocks, providing a serene escape for families and nature enthusiasts.",
     location: "Vadipatti Taluk, northwest of Madurai",
     timings: "7:00 AM – 5:00 PM (seasonal flow)",
@@ -670,6 +720,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 0.4,
     mapLink: "https://maps.google.com/?q=9.9160,78.1180",
     tagline: "Traditional commercial side of Madurai: temple streets, shopping and food.",
+    entryFee: "Free Public Access",
+    entryFeeShort: "Free Access",
     description: "Great for experiencing the traditional commercial side of Madurai. The four concentric Masi Streets are renowned for authentic Sungudi cotton sarees, brass utensils, traditional snacks, tiffin stalls, and vibrant shops around the temple.",
     location: "Masi Streets, surrounding Meenakshi Temple",
     timings: "9:00 AM – 10:30 PM",
@@ -695,6 +747,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 0.1,
     mapLink: "https://maps.google.com/?q=9.9192,78.1198",
     tagline: "Around the temple and traditional city centre.",
+    entryFee: "Free Public Access",
+    entryFeeShort: "Free Access",
     description: "Around the temple and traditional city centre. Encircling the Meenakshi Temple walls, the Chithirai Streets are famous for fresh jasmine garlands (Madurai Malli), puja items, bronze statues, and quintessential temple-town character.",
     location: "Perimeter of Meenakshi Temple",
     timings: "5:00 AM – 10:00 PM",
@@ -720,6 +774,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 0.6,
     mapLink: "https://maps.google.com/?q=9.9168,78.1155",
     tagline: "Food, clothing, local shopping and everyday Madurai atmosphere.",
+    entryFee: "Free Public Access",
+    entryFeeShort: "Free Access",
     description: "Good for food, clothing, local shopping, and experiencing everyday Madurai atmosphere. Town Hall Road connects Periyar with the temple zone, packed with vegetarian restaurants, sweet stalls, tiffin shops, and clothing stores.",
     location: "Town Hall Road, connecting Periyar to West Tower",
     timings: "8:00 AM – 10:30 PM",
@@ -745,6 +801,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 6.8,
     mapLink: "https://maps.google.com/?q=9.9450,78.1560",
     tagline: "Best for experiencing local trade and fresh produce.",
+    entryFee: "Free Public Access",
+    entryFeeShort: "Free Access",
     description: "Best for experiencing local trade and fresh produce. The bustling wholesale market at Mattuthavani showcases the agricultural pulse of southern Tamil Nadu, from piles of fresh produce to early morning flower auctions.",
     location: "Mattuthavani, East Madurai",
     timings: "4:00 AM – 8:00 PM",
@@ -770,6 +828,8 @@ const PLACES = [
     distanceFromMeenakshiTemple: 0.9,
     mapLink: "https://maps.google.com/?q=9.9148,78.1255",
     tagline: "Busy traditional commercial area near the historic core with evening snacks.",
+    entryFee: "Free Public Access",
+    entryFeeShort: "Free Access",
     description: "A busy traditional commercial area near the historic core of Madurai. Centered around the 1840 cast-iron lamp post, Vilakkuthoon is famous for food, commercial streets, evening snacks, traditional shops, and famous chilled Jigarthanda.",
     location: "Vilakkuthoon, South Masi Street junction",
     timings: "9:00 AM – 11:00 PM",
@@ -959,6 +1019,8 @@ const MODERN_SPOTS = [
     type: "Public Library & Cultural Centre",
     openingHours: "8:00 AM – 8:00 PM (Every day)",
     entryFee: "Free Public Admission",
+    entryFeeShort: "Free Admission",
+    officialUrl: "https://kalaignarcentenarylibrary.tn.gov.in/",
     facilities: ["3.5 Lakh Books", "Children's Interactive Theatre", "Science Park", "High-Speed WiFi", "Central AC", "Cafeteria"]
   },
   {
@@ -983,6 +1045,7 @@ const MODERN_SPOTS = [
     type: "Shopping Mall & Entertainment",
     openingHours: "10:00 AM – 10:00 PM",
     entryFee: "Free Mall Entry",
+    entryFeeShort: "Free Mall Entry",
     facilities: ["INOX 5-Screen Multiplex", "Multi-Cuisine Food Court", "Gaming Zone", "Underground Parking", "Branded Retail"]
   },
   {
@@ -1007,6 +1070,7 @@ const MODERN_SPOTS = [
     type: "Retail Mall",
     openingHours: "10:30 AM – 9:30 PM",
     entryFee: "Free Admission",
+    entryFeeShort: "Free Admission",
     facilities: ["Fashion Department Stores", "Electronics Showroom", "Dessert Kiosks", "Covered Parking"]
   },
   {
@@ -1031,6 +1095,7 @@ const MODERN_SPOTS = [
     type: "Public Park & Fountain",
     openingHours: "4:30 PM – 9:00 PM",
     entryFee: "₹10 (Adults), ₹5 (Children)",
+    entryFeeShort: "₹10 / ₹5 (Gate)",
     facilities: ["Musical Dancing Fountain", "Fiber-Optic Light Trees", "Walking Trails", "Children's Play Corner"]
   },
   {
@@ -1054,7 +1119,8 @@ const MODERN_SPOTS = [
     description: "Located right next to the Gandhi Memorial Museum, this long-standing municipal children's park features miniature toy train rides, carousel rides, and shaded lawns ideal for evening unwinding.",
     type: "Public Park & Rides",
     openingHours: "9:00 AM – 8:30 PM",
-    entryFee: "₹15",
+    entryFee: "₹15 per person",
+    entryFeeShort: "₹15 Entry",
     facilities: ["Miniature Toy Train", "Amusement Rides", "Shaded Benches", "Snack Kiosks"]
   },
   {
@@ -1079,6 +1145,10 @@ const MODERN_SPOTS = [
     type: "Water & Theme Park",
     openingHours: "10:30 AM – 6:30 PM",
     entryFee: "₹700 – ₹900 (varies by height/package)",
+    entryFeeShort: "₹700 – ₹900",
+    officialUrl: "https://athisayampark.com/",
+    phone: "+91 97869 66881",
+    helpline: "0452-2463848",
     facilities: ["Giant Wave Pool", "Multi-Lane Racing Slides", "Dry Amusement Coasters", "Locker Facilities", "Food Courts"]
   }
 ];
@@ -1817,7 +1887,7 @@ const CATEGORY_ICONS = {
 function placeCardHTML(place) {
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${place.latitude},${place.longitude}`;
   return `
-    <article class="card" data-category="${place.category}" data-taluk="${place.taluk}" data-distance="${place.distanceFromMeenakshiTemple || 0}" data-name="${place.name} ${place.area} ${place.categoryLabel} ${place.tagline}">
+    <article class="card" data-id="${place.id}" data-lat="${place.latitude}" data-lng="${place.longitude}" data-area="${place.area || ''}" data-category="${place.category}" data-taluk="${place.taluk}" data-distance="${place.distanceFromMeenakshiTemple || 0}" data-name="${place.name} ${place.area} ${place.categoryLabel} ${place.tagline}">
       <div class="thumb">
         <img src="${place.image}" alt="${place.imageAlt || place.name}" loading="lazy" onerror="handleImageFallback(this, '${place.name.replace(/'/g, "\\'")}')" />
         <span class="badge">${place.categoryLabel}</span>
@@ -1835,8 +1905,11 @@ function placeCardHTML(place) {
         <p class="card-desc">${place.tagline}</p>
         <div class="card-divider"></div>
         <div class="card-footer-row">
-          <a href="place-details.html?id=${place.id}" class="view">View details <span class="arrow">&rarr;</span></a>
-          <button type="button" class="btn-book-action" onclick="window.openBookingModal && window.openBookingModal('${place.id}', 'place')">Book Tickets</button>
+          <span class="card-price-pill" title="Entry: ${place.entryFee || 'Free Entry'}">${place.entryFeeShort || 'Free Entry'}</span>
+          <div style="display:flex; align-items:center; gap:0.35rem; min-width:0;">
+            <a href="place-details.html?id=${place.id}" class="view">Details <span class="arrow">&rarr;</span></a>
+            <button type="button" class="btn-book-action ${(place.id === 'meenakshi-temple' || place.id === 'thirumalai-nayak-palace' || place.id === 'keeladi-museum' || place.id === 'thirupparankundram-temple' || place.id === 'alagar-kovil') ? '' : 'btn-book-free'}" onclick="window.openBookingModal && window.openBookingModal('${place.id}', 'place')">${(place.id === 'meenakshi-temple' || place.id === 'thirumalai-nayak-palace' || place.id === 'keeladi-museum' || place.id === 'thirupparankundram-temple' || place.id === 'alagar-kovil') ? 'Passes' : 'Entry Info'}</button>
+          </div>
         </div>
         <div class="card-actions">
           <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
@@ -1850,7 +1923,7 @@ function cafeCardHTML(c) {
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${c.latitude},${c.longitude}`;
   const tagsHtml = (c.tags || []).map(t => `<span class="cafe-tag">${t}</span>`).join("");
   return `
-    <article class="card" data-category="cafes" data-taluk="${c.taluk}" data-distance="${c.distanceFromMeenakshiTemple || 0}" data-name="${c.name} ${c.area} ${c.specialties || ''} ${c.categoryLabel}">
+    <article class="card" data-id="${c.id}" data-lat="${c.latitude}" data-lng="${c.longitude}" data-area="${c.area || ''}" data-category="cafes" data-taluk="${c.taluk}" data-distance="${c.distanceFromMeenakshiTemple || 0}" data-name="${c.name} ${c.area} ${c.specialties || ''} ${c.categoryLabel}">
       <div class="thumb">
         <img src="${c.image}" alt="${c.imageAlt || c.name}" loading="lazy" onerror="handleImageFallback(this, '${c.name.replace(/'/g, "\\'")}')" />
         <span class="badge" style="background:var(--cream-deep); color:var(--brown);">${c.categoryLabel}</span>
@@ -1883,8 +1956,22 @@ function cafeCardHTML(c) {
 function modernSpotCardHTML(m) {
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${m.latitude},${m.longitude}`;
   const facHtml = (m.facilities || []).slice(0, 3).map(f => `<span class="cafe-tag">${f}</span>`).join("");
+  const feeLabel = m.entryFeeShort || m.entryFee;
+  let actionBtnHtml = '';
+  if (m.id === 'kalaignar-library') {
+    actionBtnHtml = `<a href="${m.officialUrl || 'https://kalaignarcentenarylibrary.tn.gov.in/'}" target="_blank" rel="noopener noreferrer" class="btn-book-action btn-book-portal" title="Official Tamil Nadu Government Library Portal">Library Portal ↗</a>`;
+  } else if (m.id === 'athisayam-park') {
+    actionBtnHtml = `<button type="button" class="btn-book-action" onclick="window.openBookingModal && window.openBookingModal('${m.id}', 'modern')">Book Tickets</button>`;
+  } else if (m.id === 'vishaal-de-mall') {
+    actionBtnHtml = `<button type="button" class="btn-book-action" onclick="window.openBookingModal && window.openBookingModal('${m.id}', 'modern')">Movie Tickets</button>`;
+  } else if (m.id === 'eco-park' || m.id === 'rajaji-park') {
+    actionBtnHtml = `<button type="button" class="btn-book-action btn-book-counter" onclick="window.openBookingModal && window.openBookingModal('${m.id}', 'modern')">Ticket Info</button>`;
+  } else {
+    actionBtnHtml = `<button type="button" class="btn-book-action btn-book-free" onclick="window.openBookingModal && window.openBookingModal('${m.id}', 'modern')">Visitor Info</button>`;
+  }
+
   return `
-    <article class="card" data-category="modern" data-taluk="${m.taluk}" data-distance="${m.distanceFromMeenakshiTemple || 0}" data-name="${m.name} ${m.area} ${m.type} ${m.tagline}">
+    <article class="card" data-id="${m.id}" data-lat="${m.latitude}" data-lng="${m.longitude}" data-area="${m.area || ''}" data-category="modern" data-taluk="${m.taluk}" data-distance="${m.distanceFromMeenakshiTemple || 0}" data-name="${m.name} ${m.area} ${m.type} ${m.tagline}">
       <div class="thumb">
         <img src="${m.image}" alt="${m.imageAlt || m.name}" loading="lazy" onerror="handleImageFallback(this, '${m.name.replace(/'/g, "\\'")}')" />
         <span class="badge" style="background:#0288D1; color:#fff;">${m.categoryLabel}</span>
@@ -1896,15 +1983,15 @@ function modernSpotCardHTML(m) {
         </div>
         <div class="card-location-row">
           <span class="pin-text">${m.area}</span>
-          <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem; background:var(--gold-soft); color:var(--brown);">${m.entryFee}</span>
+          <span class="badge" style="position:static; padding:0.15rem 0.45rem; font-size:0.68rem;">${m.taluk}</span>
         </div>
         <div class="cafe-tags">${facHtml}</div>
         <div class="meta-duration">${m.openingHours}</div>
         <p class="card-desc">${m.tagline}</p>
         <div class="card-divider"></div>
         <div class="card-footer-row">
-          <span class="card-price-pill">${m.entryFee}</span>
-          <button type="button" class="btn-book-action" onclick="window.openBookingModal && window.openBookingModal('${m.id}', 'modern')">Book Entry</button>
+          <span class="card-price-pill" title="Entry: ${m.entryFee}">${feeLabel}</span>
+          ${actionBtnHtml}
         </div>
         <div class="card-actions">
           <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn-directions">Directions</a>
@@ -1917,7 +2004,7 @@ function modernSpotCardHTML(m) {
 function restaurantCardHTML(r) {
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}`;
   return `
-    <article class="card" data-category="restaurants" data-taluk="${r.taluk}" data-distance="${r.distanceFromMeenakshiTemple || 0}" data-name="${r.name} ${r.area} ${r.categoryLabel} ${r.specialties || ''}">
+    <article class="card" data-id="${r.id}" data-lat="${r.latitude}" data-lng="${r.longitude}" data-area="${r.area || ''}" data-category="restaurants" data-taluk="${r.taluk}" data-distance="${r.distanceFromMeenakshiTemple || 0}" data-name="${r.name} ${r.area} ${r.categoryLabel} ${r.specialties || ''}">
       <div class="thumb">
         <img src="${r.image}" alt="${r.imageAlt || r.name}" loading="lazy" onerror="handleImageFallback(this, '${r.name.replace(/'/g, "\\'")}')" />
         <span class="badge">${r.categoryLabel}</span>
@@ -1949,7 +2036,7 @@ function restaurantCardHTML(r) {
 function stayCardHTML(s) {
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${s.latitude},${s.longitude}`;
   return `
-    <article class="card" data-category="stays" data-tier="${s.tier}" data-taluk="${s.taluk}" data-distance="${s.distanceFromMeenakshiTemple || 0}" data-name="${s.name} ${s.area} ${s.categoryLabel} ${s.tagline}">
+    <article class="card" data-id="${s.id}" data-lat="${s.latitude}" data-lng="${s.longitude}" data-area="${s.area || ''}" data-category="stays" data-tier="${s.tier}" data-taluk="${s.taluk}" data-distance="${s.distanceFromMeenakshiTemple || 0}" data-name="${s.name} ${s.area} ${s.categoryLabel} ${s.tagline}">
       <div class="thumb">
         <img src="${s.image}" alt="${s.imageAlt || s.name}" loading="lazy" onerror="handleImageFallback(this, '${s.name.replace(/'/g, "\\'")}')" />
         <span class="badge">${s.categoryLabel}</span>
@@ -2040,7 +2127,9 @@ function renderPlaceDetail() {
   const mount = document.querySelector("#place-detail");
   if (!mount) return;
   const id = getParam("id");
-  const place = PLACES.find(p => p.id === id) || PLACES[0];
+  const place = (typeof PLACES !== "undefined" ? PLACES.find(p => p.id === id) : null) ||
+                (typeof MODERN_SPOTS !== "undefined" ? MODERN_SPOTS.find(m => m.id === id) : null) ||
+                (typeof PLACES !== "undefined" ? PLACES[0] : {});
 
   document.title = `${place.name} — Madurai Explorer`;
   const crumb = document.querySelector("#detail-crumb");
@@ -2062,15 +2151,18 @@ function renderPlaceDetail() {
   const locEl = mount.querySelector("#meta-location");
   if (locEl) locEl.textContent = place.address;
   const timeEl = mount.querySelector("#meta-timings");
-  if (timeEl) timeEl.textContent = place.timings;
+  if (timeEl) timeEl.textContent = place.timings || place.openingHours || "Open Daily";
   const catEl = mount.querySelector("#meta-category");
   if (catEl) catEl.textContent = `${place.categoryLabel} · ${place.taluk} Taluk`;
+  const feeEl = mount.querySelector("#meta-entry-fee");
+  if (feeEl) feeEl.textContent = place.entryFee || "Free Public Access";
   const descEl = mount.querySelector("#detail-description");
   if (descEl) descEl.textContent = place.description;
 
   const hlEl = mount.querySelector("#highlight-list");
   if (hlEl) {
-    hlEl.innerHTML = place.highlights.map(h => `<li>${h}</li>`).join("");
+    const list = place.highlights || place.facilities || [];
+    hlEl.innerHTML = list.map(h => `<li>${h}</li>`).join("");
   }
 
   // Embedded Map & Directions Button in Detail View
@@ -2151,4 +2243,5 @@ if (typeof window !== "undefined") {
   window.MODERN_SPOTS = MODERN_SPOTS;
   window.RESTAURANTS = RESTAURANTS;
   window.STAYS = STAYS;
+  window.calculateHaversineDistance = calculateHaversineDistance;
 }

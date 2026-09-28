@@ -470,7 +470,13 @@ h1, h2, h3, h4 {
 .hero-gradient-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 12, 6, 0.45) 0%, rgba(35, 20, 12, 0.65) 50%, rgba(20, 12, 6, 0.88) 100%);
+  background: linear-gradient(
+    180deg, 
+    rgba(14, 8, 4, 0.58) 0%, 
+    rgba(20, 10, 5, 0.22) 35%, 
+    rgba(18, 10, 5, 0.42) 65%, 
+    rgba(14, 8, 4, 0.90) 100%
+  );
   z-index: 2;
   pointer-events: none;
 }
@@ -519,17 +525,99 @@ h1, h2, h3, h4 {
 .hero-slide-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(212, 175, 55, 0.5);
+  gap: 0.55rem;
+  background: rgba(18, 12, 7, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.55);
   color: var(--gold-soft);
-  padding: 0.35rem 0.9rem;
+  padding: 0.4rem 1.15rem;
   border-radius: var(--radius-pill);
   font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.9rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+.hero-slide-badge .badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+  display: inline-block;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.7; }
+}
+
+/* Active Landmark Showcase Card at Bottom-Left */
+.hero-slide-info-card {
+  position: absolute;
+  bottom: 2rem;
+  left: 2.5rem;
+  z-index: 10;
+  background: rgba(18, 12, 7, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  max-width: 380px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+.hero-slide-info-card:hover {
+  border-color: var(--gold);
+  background: rgba(18, 12, 7, 0.88);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 16px rgba(212, 175, 55, 0.25);
+}
+.slide-indicator-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+.slide-indicator-num {
+  background: rgba(212, 175, 55, 0.2);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+.slide-indicator-loc {
+  color: var(--gold-soft);
   font-weight: 600;
-  margin-bottom: 1rem;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+.slide-indicator-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: 0.2rem;
+}
+.slide-indicator-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 900px) {
+  .hero-slide-info-card {
+    display: none;
+  }
 }
 
 /* Floating Locator Card (Screenshot 5) */
@@ -814,9 +902,9 @@ section[style*="var(--cream-deep)"] {
   color: var(--brown);
   background: var(--cream);
   border: 1px solid var(--line);
-  padding: 0.14rem 0.5rem;
+  padding: 0.16rem 0.55rem;
   border-radius: var(--radius-pill);
-  max-width: 130px;
+  max-width: 145px;
   min-width: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -1543,6 +1631,33 @@ section[style*="var(--cream-deep)"] {
   background: #E65100;
   color: #ffffff !important;
 }
+.btn-book-portal {
+  background: linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 100%);
+  border-color: #0288D1;
+  color: #0369A1 !important;
+}
+.btn-book-portal:hover {
+  background: #0288D1;
+  color: #ffffff !important;
+}
+.btn-book-counter {
+  background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%);
+  border-color: #7E22CE;
+  color: #6B21A8 !important;
+}
+.btn-book-counter:hover {
+  background: #7E22CE;
+  color: #ffffff !important;
+}
+.btn-book-free {
+  background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
+  border-color: #94A3B8;
+  color: #334155 !important;
+}
+.btn-book-free:hover {
+  background: #475569;
+  color: #ffffff !important;
+}
 
 /* =========================================================================
    HOME PAGE KEN BURNS IMAGE SLIDER
@@ -1631,49 +1746,79 @@ section[style*="var(--cream-deep)"] {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: var(--white);
-  width: 48px;
-  height: 48px;
+  background: rgba(18, 12, 7, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  color: var(--gold);
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: all 0.25s ease;
   z-index: 10;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
 }
 .slider-arrow:hover {
   background: var(--gold);
   color: var(--brown);
+  border-color: var(--gold-soft);
   transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.65);
 }
-.slider-arrow.prev { left: 1.5rem; }
-.slider-arrow.next { right: 1.5rem; }
+.slider-arrow.prev { left: 1.8rem; }
+.slider-arrow.next { right: 1.8rem; }
+@media (max-width: 768px) {
+  .slider-arrow.prev { left: 0.6rem; width: 38px; height: 38px; font-size: 1rem; }
+  .slider-arrow.next { right: 0.6rem; width: 38px; height: 38px; font-size: 1rem; }
+}
 .slider-dots {
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 2rem;
   right: 2.5rem;
   display: flex;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 0.55rem;
   z-index: 10;
+  background: rgba(18, 12, 7, 0.58);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+@media (max-width: 768px) {
+  .slider-dots {
+    bottom: 1.2rem;
+    right: 50%;
+    transform: translateX(50%);
+  }
 }
 .slider-dot {
-  width: 13px;
-  height: 13px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  border: 2px solid var(--white);
+  background: rgba(255, 255, 255, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slider-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.25);
 }
 .slider-dot.active {
+  width: 28px;
+  border-radius: 6px;
   background: var(--gold);
-  transform: scale(1.3);
   border-color: var(--gold-soft);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
 }
 
 /* =========================================================================
@@ -2002,6 +2147,277 @@ section[style*="var(--cream-deep)"] {
 .btn-near-me:hover {
   background: var(--gold-soft);
   transform: scale(1.03);
+}
+.btn-near-me.active {
+  background: var(--maroon) !important;
+  color: var(--white) !important;
+  border: 1px solid var(--gold) !important;
+  box-shadow: 0 3px 10px rgba(122, 46, 29, 0.35);
+}
+
+/* User Proximity Badges on Cards */
+.user-proximity-badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 4;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.22rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(4px);
+  color: var(--maroon);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  pointer-events: none;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  animation: fadeInProximity 0.3s ease;
+}
+
+.user-proximity-badge.is-closest {
+  background: var(--maroon);
+  color: #fff;
+  border: 1px solid var(--gold);
+  box-shadow: 0 3px 12px rgba(122, 46, 29, 0.5);
+  animation: pulseClosest 2.4s infinite ease-in-out;
+}
+
+@keyframes pulseClosest {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@keyframes fadeInProximity {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Leaflet Map User Beacon Pin */
+.user-gps-marker-wrap {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-gps-marker-pin {
+  font-size: 1.5rem;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+  transform: translateY(-4px);
+}
+.user-gps-marker-pulse {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(2, 136, 209, 0.45);
+  border: 2px solid #0288D1;
+  animation: gpsBeacon 1.8s infinite ease-out;
+  z-index: 1;
+}
+@keyframes gpsBeacon {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* Location Picker Modal */
+.near-me-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 18, 11, 0.65);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.near-me-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.near-me-modal-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gold);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  max-width: 620px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.95) translateY(12px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.near-me-modal-backdrop.active .near-me-modal-card {
+  transform: scale(1) translateY(0);
+}
+.near-me-modal-header {
+  padding: 1.1rem 1.4rem;
+  background: var(--cream-light);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.near-me-modal-header h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--maroon);
+}
+.near-me-modal-header p {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.near-me-modal-close {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  color: var(--brown);
+  font-size: 1.3rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.near-me-modal-close:hover {
+  background: var(--maroon);
+  color: #fff;
+}
+.near-me-modal-body {
+  padding: 1.25rem 1.4rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.near-me-gps-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold) 0%, #E6C265 100%);
+  color: var(--brown);
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: 1px solid rgba(122, 46, 29, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.near-me-gps-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(212, 175, 55, 0.35);
+}
+.near-me-modal-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0.2rem 0;
+}
+.near-me-modal-divider::before,
+.near-me-modal-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.near-me-landmark-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.6rem;
+}
+.near-me-landmark-btn {
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.near-me-landmark-btn:hover {
+  border-color: var(--maroon);
+  background: var(--cream-light);
+  transform: translateY(-1px);
+}
+.near-me-landmark-btn.is-active {
+  border-color: var(--maroon);
+  background: #fdf5f2;
+}
+.near-me-landmark-icon {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+.near-me-landmark-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.near-me-landmark-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brown);
+  line-height: 1.25;
+}
+.near-me-landmark-area {
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.near-me-modal-footer {
+  padding: 0.85rem 1.4rem;
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.near-me-modal-reset-btn {
+  background: transparent;
+  border: 1px dashed var(--muted);
+  color: var(--muted);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.near-me-modal-reset-btn:hover {
+  border-color: var(--maroon);
+  color: var(--maroon);
 }
 
 /* Amenity Tags for Cafes */

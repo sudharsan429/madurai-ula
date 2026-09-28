@@ -258,14 +258,16 @@ function initKenBurnsSlider() {
   let current = 0;
   let timer = null;
 
-  // Build dots
+  // Build dots with landmark title tooltips
   if (dotsContainer) {
     dotsContainer.innerHTML = "";
-    slides.forEach((_, i) => {
+    slides.forEach((slide, i) => {
       const dot = document.createElement("button");
       dot.type = "button";
       dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
-      dot.setAttribute("aria-label", `Slide ${i + 1}`);
+      const title = slide.dataset.title || `Slide ${i + 1}`;
+      dot.setAttribute("aria-label", title);
+      dot.setAttribute("title", title);
       dot.addEventListener("click", () => {
         goToSlide(i);
         startAutoplay();
@@ -298,7 +300,7 @@ function initKenBurnsSlider() {
 
   function startAutoplay() {
     stopAutoplay();
-    timer = setInterval(nextSlide, 5000);
+    timer = setInterval(nextSlide, 5500);
   }
 
   function stopAutoplay() {
@@ -617,50 +619,175 @@ function getBookingOptionsFor(item, itemType) {
     ];
   }
 
-  // 3. MODERN ATTRACTIONS / THEME PARKS / MALLS
+  // 3. MODERN ATTRACTIONS / THEME PARKS / MALLS / LIBRARIES
   if (type === "modern" || (item.category && item.category === "parks") || name.toLowerCase().includes("athisayam")) {
     const isAthisayam = name.toLowerCase().includes("athisayam");
-    return [
-      isAthisayam ? {
-        platform: "Athisayam Official",
-        badge: "Official Ticket Portal",
-        tagClass: "badge-govt",
-        title: "Book Water Park Tickets",
-        desc: "Official e-ticketing portal for entry tickets, family packages, water rides, and amusement park passes.",
-        actionUrl: "https://athisayam.in/",
-        actionText: "Book Official Tickets ↗",
-        btnClass: "btn-booking-blue"
-      } : {
-        platform: "BookMyShow",
-        badge: "Movies & Events",
-        tagClass: "badge-bms",
-        title: "BookMyShow Madurai",
-        desc: "Book movie theater tickets, mall entertainment, and local weekend events.",
-        actionUrl: "https://in.bookmyshow.com/explore/home/madurai",
-        actionText: "Book on BookMyShow ↗",
-        btnClass: "btn-booking-red"
-      },
-      {
-        platform: "Direct Cab & Transit",
-        badge: "Door-to-door Transport",
-        tagClass: "badge-transit",
-        title: "Book Cab to Venue",
-        desc: `Hail an auto or cab directly to ${area} with upfront pricing and zero parking hassle.`,
-        actionUrl: `https://m.uber.com/ul/?action=setPickup&client_id=uber&pickup=my_location&dropoff[latitude]=${item.latitude || 9.9252}&dropoff[longitude]=${item.longitude || 78.1198}&dropoff[nickname]=${encName}`,
-        actionText: "Book Taxi / Cab ↗",
-        btnClass: "btn-booking-green"
-      },
-      {
-        platform: "TTDC Tourism",
-        badge: "State Sightseeing",
-        tagClass: "badge-ttdc",
-        title: "TTDC Madurai Day Packages",
-        desc: "Curated sightseeing and transport packages operated by Tamil Nadu Tourism Development Corporation.",
-        actionUrl: "https://www.ttdconline.com/",
-        actionText: "View TTDC Packages ↗",
-        btnClass: "btn-booking-gold"
-      }
-    ];
+    const isLibrary = item.id === "kalaignar-library" || /library|books|centenary/i.test(name);
+    const isPark = item.id === "eco-park" || item.id === "rajaji-park" || /eco park|rajaji|waterfall/i.test(name);
+    const isMall = item.id === "vishaal-de-mall" || item.id === "milan-mall" || /mall|shopping/i.test(name);
+
+    if (isLibrary) {
+      return [
+        {
+          platform: "Kalaignar Centenary Library Portal",
+          badge: "Official Govt Portal",
+          tagClass: "badge-govt",
+          title: "Library Digital Archives & Catalog",
+          desc: "Official Government of Tamil Nadu portal for book catalog, membership registration, and 3.5 lakh reading collections across 6 floors.",
+          actionUrl: "https://kalaignarcentenarylibrary.tn.gov.in/",
+          actionText: "Visit Library Portal ↗",
+          btnClass: "btn-booking-blue"
+        },
+        {
+          platform: "Free Public Admission",
+          badge: "100% Free Entry",
+          tagClass: "badge-direct",
+          title: "Public Walk-in Guidelines",
+          desc: "Entry is completely free. Open 8:00 AM – 8:00 PM daily. Air-conditioned study halls, children's interactive theatre, science park, and Braille section are open to all without booking.",
+          actionUrl: `https://maps.google.com/?q=${item.latitude || 9.9472},${item.longitude || 78.1368}`,
+          actionText: "View Timings & Location ↗",
+          btnClass: "btn-booking-green"
+        },
+        {
+          platform: "Direct Cab & Transit",
+          badge: "Door-to-door Transport",
+          tagClass: "badge-transit",
+          title: "Book Cab to New Natham Road",
+          desc: `Direct vehicle transport to ${area}, Madurai with upfront pricing and zero parking hassle.`,
+          actionUrl: `https://m.uber.com/ul/?action=setPickup&client_id=uber&pickup=my_location&dropoff[latitude]=${item.latitude || 9.9472}&dropoff[longitude]=${item.longitude || 78.1368}&dropoff[nickname]=${encName}`,
+          actionText: "Book Cab to Library ↗",
+          btnClass: "btn-booking-orange"
+        }
+      ];
+    }
+
+    if (isPark) {
+      const isEco = item.id === "eco-park" || /eco/i.test(name);
+      return [
+        {
+          platform: "Gate Ticket Counter",
+          badge: "On-Spot Ticketing",
+          tagClass: "badge-direct",
+          title: isEco ? "Entry: ₹10 (Adults) · ₹5 (Children)" : "Entry: ₹15 per person",
+          desc: isEco
+            ? "Counter tickets issued at the gate. Evening musical dancing fountain shows held every evening at 6:30 PM & 7:45 PM."
+            : "Tickets available at the entrance counter. Toy train rides and carousel rides available inside for ₹10–₹20.",
+          actionUrl: `https://maps.google.com/?q=${item.latitude || 9.9345},${item.longitude || 78.1382}`,
+          actionText: "View Park Hours & Location ↗",
+          btnClass: "btn-booking-maroon"
+        },
+        {
+          platform: "Direct Cab & Transit",
+          badge: "Door-to-door Transport",
+          tagClass: "badge-transit",
+          title: `Book Cab to ${name}`,
+          desc: `Hail an auto or cab directly to ${area} with upfront pricing and zero parking hassle.`,
+          actionUrl: `https://m.uber.com/ul/?action=setPickup&client_id=uber&pickup=my_location&dropoff[latitude]=${item.latitude || 9.9345}&dropoff[longitude]=${item.longitude || 78.1382}&dropoff[nickname]=${encName}`,
+          actionText: "Book Cab to Spot ↗",
+          btnClass: "btn-booking-green"
+        },
+        {
+          platform: "Madurai City Corporation",
+          badge: "Civic Amenities",
+          tagClass: "badge-govt",
+          title: "Public Recreation Guidelines",
+          desc: "Maintained by the Madurai City Municipal Corporation with landscaped pathways and children's play area.",
+          actionUrl: `https://www.google.com/maps/search/?api=1&query=${encName}+Madurai`,
+          actionText: "View Reviews & Photos ↗",
+          btnClass: "btn-booking-blue"
+        }
+      ];
+    }
+
+    if (isMall) {
+      const isVishaal = item.id === "vishaal-de-mall" || /vishaal/i.test(name);
+      return [
+        isVishaal ? {
+          platform: "BookMyShow (INOX Cinemas)",
+          badge: "Multiplex Movies",
+          tagClass: "badge-bms",
+          title: "Book INOX Movie Tickets",
+          desc: "5-screen multiplex showing latest Tamil, English, Telugu and Hindi movies with Dolby Atmos sound.",
+          actionUrl: "https://in.bookmyshow.com/explore/cinemas-madurai/inox-vishaal-de-mall-chokkikulam/INMA",
+          actionText: "Book Movie Tickets on BMS ↗",
+          btnClass: "btn-booking-red"
+        } : {
+          platform: "Free Mall Entry",
+          badge: "100% Free Entry",
+          tagClass: "badge-direct",
+          title: "Free Walk-in Shopping & Dining",
+          desc: "No admission charge for general entry, department stores, retail shops, and dessert parlours.",
+          actionUrl: `https://maps.google.com/?q=${item.latitude || 9.9288},${item.longitude || 78.1482}`,
+          actionText: "View Mall Location & Stores ↗",
+          btnClass: "btn-booking-blue"
+        },
+        {
+          platform: "Direct Cab & Transit",
+          badge: "Door-to-door Transport",
+          tagClass: "badge-transit",
+          title: `Book Cab to ${name}`,
+          desc: `Direct pickup and drop right at the main entrance in ${area}.`,
+          actionUrl: `https://m.uber.com/ul/?action=setPickup&client_id=uber&pickup=my_location&dropoff[latitude]=${item.latitude || 9.9392}&dropoff[longitude]=${item.longitude || 78.1365}&dropoff[nickname]=${encName}`,
+          actionText: "Book Cab to Mall ↗",
+          btnClass: "btn-booking-green"
+        },
+        {
+          platform: "Food Court & Dining",
+          badge: "Multi-Cuisine",
+          tagClass: "badge-swiggy",
+          title: "Food Court & Kiosks",
+          desc: "Explore dining options, global fast-food chains, South Indian tiffin, and dessert counters.",
+          actionUrl: `https://www.google.com/maps/search/?api=1&query=${encName}+Madurai`,
+          actionText: "View Dining Options ↗",
+          btnClass: "btn-booking-orange"
+        }
+      ];
+    }
+
+    if (isAthisayam) {
+      return [
+        {
+          platform: "Athisayam Official Website",
+          badge: "Official Website Portal",
+          tagClass: "badge-govt",
+          title: "Book Water Park Tickets",
+          desc: "Official website for Athisayam Theme Park: explore water rides, wave pools, entry passes (₹700–₹900), and seasonal packages.",
+          actionUrl: "https://athisayampark.com/",
+          actionText: "Open Official Website ↗",
+          btnClass: "btn-booking-blue"
+        },
+        {
+          platform: "Ticket Office & Booking Helpline",
+          badge: "Phone Booking & Rates",
+          tagClass: "badge-direct",
+          title: "Call Ticket Helpline (+91 97869 66881)",
+          desc: "Official ticket helpline: +91 97869 66881 / 0452-2463848. Tap to call directly to confirm current ticket pricing (₹700–₹900), water slide timings, and group/family packages.",
+          actionUrl: "tel:+919786966881",
+          actionText: "Call Ticket Office 📞",
+          btnClass: "btn-booking-maroon"
+        },
+        {
+          platform: "Entrance Gate Counter",
+          badge: "On-Spot Gate Ticketing",
+          tagClass: "badge-govt",
+          title: "Buy Tickets at Entrance Counter",
+          desc: "Tickets are issued directly at the Paravai entrance counter on Madurai-Dindigul Road. Open daily 10:30 AM – 6:00 PM for giant wave pools and water slides.",
+          actionUrl: `https://www.google.com/maps/dir/?api=1&destination=${item.latitude || 9.9925},${item.longitude || 78.0742}`,
+          actionText: "Directions to Entrance ↗",
+          btnClass: "btn-booking-gold"
+        },
+        {
+          platform: "Direct Highway Cab",
+          badge: "Door-to-door Transport",
+          tagClass: "badge-transit",
+          title: "Book Highway Cab to Paravai (12 km)",
+          desc: "Comfortable AC transit along Madurai-Dindigul Road directly to the water park gate.",
+          actionUrl: `https://m.uber.com/ul/?action=setPickup&client_id=uber&pickup=my_location&dropoff[latitude]=${item.latitude || 9.9925}&dropoff[longitude]=${item.longitude || 78.0742}&dropoff[nickname]=${encName}`,
+          actionText: "Book Highway Cab ↗",
+          btnClass: "btn-booking-green"
+        }
+      ];
+    }
   }
 
   // 4. TOURISM / TEMPLES / HISTORICAL MONUMENTS / MUSEUMS
@@ -1079,11 +1206,133 @@ function initLeafletDistrictMap(containerId = "districtMap", options = {}) {
 // =========================================================================
 // 4. DISTANCE SORTING & GEOLOCATION ("Near Me")
 // =========================================================================
+
+// Ensure Haversine Distance is globally available
+if (typeof window.calculateHaversineDistance !== "function") {
+  window.calculateHaversineDistance = function(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Earth radius in km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return Math.round(R * c * 10) / 10;
+  };
+}
+
+const MADURAI_LANDMARKS = [
+  { id: "meenakshi", name: "Meenakshi Amman Temple", shortName: "Meenakshi Temple", area: "Madurai Main (City Center)", lat: 9.9195, lng: 78.1193, icon: "🏛️" },
+  { id: "junction", name: "Madurai Railway Junction", shortName: "Madurai Junction", area: "West Veli St / Railway Station", lat: 9.9167, lng: 78.1120, icon: "🚆" },
+  { id: "mattuthavani", name: "Mattuthavani Bus Stand (MGR)", shortName: "Mattuthavani", area: "Integrated Bus Terminus, East", lat: 9.9472, lng: 78.1540, icon: "🚌" },
+  { id: "arappalayam", name: "Arappalayam Bus Stand", shortName: "Arappalayam", area: "North-West Madurai Bus Stand", lat: 9.9328, lng: 78.1065, icon: "🚌" },
+  { id: "simmakkal", name: "Simmakkal & North Veli", shortName: "Simmakkal", area: "River Bridge / Food Streets", lat: 9.9298, lng: 78.1262, icon: "🍨" },
+  { id: "goripalayam", name: "Goripalayam & Tamukkam", shortName: "Goripalayam", area: "Gandhi Museum / Collectorate", lat: 9.9315, lng: 78.1325, icon: "🏛️" },
+  { id: "annanagar", name: "Anna Nagar & Teppakulam", shortName: "Anna Nagar", area: "East Madurai / Vandiyur Tank", lat: 9.9160, lng: 78.1480, icon: "🏢" },
+  { id: "kknagar", name: "KK Nagar & Court Area", shortName: "KK Nagar", area: "Cafes & Shopping District", lat: 9.9322, lng: 78.1495, icon: "☕" },
+  { id: "tirupparankundram", name: "Tirupparankundram Temple", shortName: "Tirupparankundram", area: "South Madurai (Hill Shrine)", lat: 9.8762, lng: 78.0720, icon: "🛕" },
+  { id: "airport", name: "Madurai Airport", shortName: "Airport", area: "South-East (Avaniyapuram)", lat: 9.8345, lng: 78.0934, icon: "✈️" },
+  { id: "alanganallur", name: "Alanganallur / Vadipatti", shortName: "Alanganallur", area: "North Madurai (Jallikattu Arena)", lat: 10.0465, lng: 78.0845, icon: "🌾" }
+];
+
+function showLocationPickerModal(options = {}) {
+  const { reason = "", onSelect, onReset, onGps } = options;
+  let backdrop = document.getElementById("nearMeModalBackdrop");
+
+  if (!backdrop) {
+    backdrop = document.createElement("div");
+    backdrop.id = "nearMeModalBackdrop";
+    backdrop.className = "near-me-modal-backdrop";
+    document.body.appendChild(backdrop);
+  }
+
+  const subMessage = reason || "Choose your starting point in Madurai or auto-detect using device GPS:";
+
+  const landmarkButtonsHtml = MADURAI_LANDMARKS.map(l => `
+    <button type="button" class="near-me-landmark-btn" data-lat="${l.lat}" data-lng="${l.lng}" data-name="${l.shortName}" data-full="${l.name}">
+      <span class="near-me-landmark-icon">${l.icon}</span>
+      <span class="near-me-landmark-info">
+        <span class="near-me-landmark-name">${l.name}</span>
+        <span class="near-me-landmark-area">${l.area}</span>
+      </span>
+    </button>
+  `).join("");
+
+  backdrop.innerHTML = `
+    <div class="near-me-modal-card" role="dialog" aria-modal="true" aria-labelledby="nearMeModalTitle">
+      <div class="near-me-modal-header">
+        <div>
+          <h3 id="nearMeModalTitle">📍 Find Places Near You</h3>
+          <p id="nearMeModalDesc">${subMessage}</p>
+        </div>
+        <button type="button" class="near-me-modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="near-me-modal-body">
+        <button type="button" class="near-me-gps-btn" id="nearMeModalGpsBtn">
+          <span>📡</span> Auto-Detect My Current Device GPS Location
+        </button>
+        <div class="near-me-modal-divider"><span>Or Choose a Madurai Landmark</span></div>
+        <div class="near-me-landmark-grid">
+          ${landmarkButtonsHtml}
+        </div>
+      </div>
+      <div class="near-me-modal-footer">
+        <button type="button" class="near-me-modal-reset-btn" id="nearMeModalResetBtn">↩️ Reset to Default Order</button>
+        <button type="button" class="chip" id="nearMeModalCancelBtn" style="padding:0.4rem 1rem;">Close</button>
+      </div>
+    </div>
+  `;
+
+  // Animate open
+  requestAnimationFrame(() => {
+    backdrop.classList.add("active");
+  });
+
+  function closeModal() {
+    backdrop.classList.remove("active");
+  }
+
+  backdrop.querySelector(".near-me-modal-close").addEventListener("click", closeModal);
+  backdrop.querySelector("#nearMeModalCancelBtn").addEventListener("click", closeModal);
+  backdrop.addEventListener("click", (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+
+  backdrop.querySelector("#nearMeModalGpsBtn").addEventListener("click", () => {
+    closeModal();
+    if (onGps) onGps();
+  });
+
+  backdrop.querySelector("#nearMeModalResetBtn").addEventListener("click", () => {
+    closeModal();
+    if (onReset) onReset();
+  });
+
+  backdrop.querySelectorAll(".near-me-landmark-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const lat = parseFloat(btn.dataset.lat);
+      const lng = parseFloat(btn.dataset.lng);
+      const shortName = btn.dataset.name;
+      const fullName = btn.dataset.full;
+      closeModal();
+      if (onSelect) onSelect(lat, lng, shortName, fullName);
+    });
+  });
+}
+
 function initDistanceControls(gridSelector) {
   const sortSelect = document.querySelector("#sortSelect");
   const nearMeBtn = document.querySelector("#nearMeBtn");
   const grid = document.querySelector(gridSelector);
   if (!grid) return;
+
+  // 1. Tag default DOM order on cards
+  const initialCards = Array.from(grid.querySelectorAll(".card"));
+  initialCards.forEach((card, idx) => {
+    if (!card.dataset.defaultIndex) {
+      card.dataset.defaultIndex = String(idx);
+    }
+  });
 
   function reorderCards(comparator) {
     const cards = Array.from(grid.querySelectorAll(".card"));
@@ -1091,17 +1340,21 @@ function initDistanceControls(gridSelector) {
     cards.forEach(card => grid.appendChild(card));
   }
 
-  // Sort by Distance from Meenakshi Temple
+  // 2. Sort Select (Featured / Distance / Rating)
   if (sortSelect) {
     sortSelect.addEventListener("change", () => {
       const val = sortSelect.value;
-      if (val === "distance") {
+      if (val === "default") {
+        resetNearMe();
+      } else if (val === "distance") {
+        clearNearMeState();
         reorderCards((a, b) => {
           const distA = parseFloat(a.dataset.distance || (a.dataset.name.match(/(\d+\.?\d*)\s*km/) || [0, 999])[1]);
           const distB = parseFloat(b.dataset.distance || (b.dataset.name.match(/(\d+\.?\d*)\s*km/) || [0, 999])[1]);
           return distA - distB;
         });
       } else if (val === "rating") {
+        clearNearMeState();
         reorderCards((a, b) => {
           const rA = parseFloat(a.querySelector(".rating") ? a.querySelector(".rating").textContent.replace("★", "") : 0);
           const rB = parseFloat(b.querySelector(".rating") ? b.querySelector(".rating").textContent.replace("★", "") : 0);
@@ -1111,58 +1364,263 @@ function initDistanceControls(gridSelector) {
     });
   }
 
-  // "Near Me" Geolocation Button
-  if (nearMeBtn) {
-    nearMeBtn.addEventListener("click", () => {
-      if (!navigator.geolocation) {
-        alert("Geolocation is not supported by your browser.");
-        return;
+  function clearNearMeState() {
+    window._currentNearMeLocation = null;
+    grid.querySelectorAll(".user-proximity-badge").forEach(el => el.remove());
+    if (nearMeBtn) {
+      nearMeBtn.classList.remove("active");
+      nearMeBtn.innerHTML = "Near Me";
+      nearMeBtn.title = "Sort places by proximity to your location";
+    }
+    if (window._activeDistrictMap && window.L) {
+      if (window._userLocationMarker) {
+        window._activeDistrictMap.removeLayer(window._userLocationMarker);
+        window._userLocationMarker = null;
       }
-      nearMeBtn.textContent = "Locating you...";
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          const userLat = pos.coords.latitude;
-          const userLng = pos.coords.longitude;
-          nearMeBtn.textContent = "✓ Sorted by proximity to you";
-          nearMeBtn.style.background = "var(--maroon)";
-          nearMeBtn.style.color = "var(--white)";
+      if (window._userLocationCircle) {
+        window._activeDistrictMap.removeLayer(window._userLocationCircle);
+        window._userLocationCircle = null;
+      }
+    }
+  }
 
-          // Re-sort cards using user's GPS
-          if (typeof calculateHaversineDistance === "function") {
-            const cards = Array.from(grid.querySelectorAll(".card"));
-            cards.forEach(card => {
-              const placeId = (card.querySelector("a.view") ? card.querySelector("a.view").getAttribute("href").split("=")[1] : null);
-              const allItems = [
-                ...(window.PLACES || []),
-                ...(window.RESTAURANTS || []),
-                ...(window.CAFES || []),
-                ...(window.MODERN_SPOTS || []),
-                ...(window.STAYS || []),
-                ...(window.FOODS || [])
-              ];
-              const item = allItems.find(p => p.id === placeId);
-              if (item) {
-                const distKm = calculateHaversineDistance(userLat, userLng, item.latitude, item.longitude);
-                card.dataset.userDist = distKm;
-                const locRow = card.querySelector(".card-location-row .pin-text");
-                if (locRow) {
-                  locRow.innerHTML = `${item.area} <span style="color:var(--maroon); font-weight:700;">(Nearest to you)</span>`;
-                }
-              }
-            });
-            cards.sort((a, b) => parseFloat(a.dataset.userDist || 999) - parseFloat(b.dataset.userDist || 999));
-            cards.forEach(card => grid.appendChild(card));
-          }
-        },
-        (err) => {
-          console.warn("Geolocation error", err);
-          nearMeBtn.textContent = "Near Me (Enable Location)";
-          alert("Could not access your location. Please ensure location permissions are enabled.");
-        },
-        { enableHighAccuracy: true, timeout: 8000 }
-      );
+  function resetNearMe() {
+    clearNearMeState();
+    reorderCards((a, b) => parseFloat(a.dataset.defaultIndex || 0) - parseFloat(b.dataset.defaultIndex || 0));
+    if (sortSelect) sortSelect.value = "default";
+    if (window._activeDistrictMap) {
+      window._activeDistrictMap.setView([9.9252, 78.1198], 11);
+    }
+  }
+
+  function updateClosestBadge(cards) {
+    const visibleCards = cards.filter(c => c.style.display !== "none" && parseFloat(c.dataset.userDist || 9999) < 9999);
+    const closestCard = visibleCards[0] || cards.find(c => parseFloat(c.dataset.userDist || 9999) < 9999);
+
+    cards.forEach(card => {
+      const badge = card.querySelector(".user-proximity-badge");
+      if (!badge) return;
+      const dist = parseFloat(card.dataset.userDist || 9999);
+      if (dist >= 9999) return;
+
+      const isClosest = (card === closestCard);
+      const formattedDist = dist < 1 ? `${Math.round(dist * 1000)} m` : `${dist.toFixed(1)} km`;
+
+      badge.classList.toggle("is-closest", isClosest);
+      badge.innerHTML = isClosest
+        ? `⭐ Nearest (${formattedDist})`
+        : `📍 ${formattedDist} away`;
     });
   }
+
+  function applyNearMe(userLat, userLng, locationLabel) {
+    const calcDist = (typeof calculateHaversineDistance === "function") 
+      ? calculateHaversineDistance 
+      : window.calculateHaversineDistance;
+
+    const cards = Array.from(grid.querySelectorAll(".card"));
+    
+    // Master data items fallback
+    const allItems = [
+      ...(window.PLACES || []),
+      ...(window.RESTAURANTS || []),
+      ...(window.CAFES || []),
+      ...(window.MODERN_SPOTS || []),
+      ...(window.STAYS || []),
+      ...(window.FOODS || [])
+    ];
+
+    cards.forEach(card => {
+      let lat = parseFloat(card.dataset.lat);
+      let lng = parseFloat(card.dataset.lng);
+
+      if (isNaN(lat) || isNaN(lng)) {
+        const placeId = card.dataset.id || (card.querySelector("a.view") ? card.querySelector("a.view").getAttribute("href").split("=")[1] : null);
+        const cardTitle = card.querySelector("h3") ? card.querySelector("h3").textContent.trim().toLowerCase() : "";
+        const item = allItems.find(p => (placeId && p.id === placeId) || (cardTitle && p.name.toLowerCase() === cardTitle));
+        if (item) {
+          lat = item.latitude;
+          lng = item.longitude;
+          card.dataset.lat = lat;
+          card.dataset.lng = lng;
+          card.dataset.id = item.id;
+        }
+      }
+
+      if (!isNaN(lat) && !isNaN(lng) && typeof calcDist === "function") {
+        const distKm = calcDist(userLat, userLng, lat, lng);
+        card.dataset.userDist = distKm;
+      } else {
+        card.dataset.userDist = 9999;
+      }
+
+      // Add or update proximity badge
+      let badge = card.querySelector(".user-proximity-badge");
+      const thumb = card.querySelector(".thumb");
+      if (!badge && thumb) {
+        badge = document.createElement("span");
+        badge.className = "user-proximity-badge";
+        thumb.appendChild(badge);
+      }
+    });
+
+    // Sort cards ascending by proximity
+    cards.sort((a, b) => parseFloat(a.dataset.userDist || 9999) - parseFloat(b.dataset.userDist || 9999));
+    cards.forEach(card => grid.appendChild(card));
+
+    // Update closest highlight
+    updateClosestBadge(cards);
+
+    // Update Near Me Button
+    if (nearMeBtn) {
+      nearMeBtn.classList.add("active");
+      nearMeBtn.innerHTML = `📍 Near: ${locationLabel} <span style="font-size:0.75rem;">▾</span>`;
+      nearMeBtn.title = "Click to change location or reset sorting";
+    }
+
+    // Save active reference
+    window._currentNearMeLocation = { lat: userLat, lng: userLng, label: locationLabel };
+
+    // Update interactive Leaflet District Map if loaded
+    if (window._activeDistrictMap && window.L) {
+      const map = window._activeDistrictMap;
+
+      if (window._userLocationMarker) {
+        map.removeLayer(window._userLocationMarker);
+      }
+      if (window._userLocationCircle) {
+        map.removeLayer(window._userLocationCircle);
+      }
+
+      const userIcon = L.divIcon({
+        className: "user-gps-marker-wrap",
+        html: `
+          <div class="user-gps-marker-pulse"></div>
+          <div class="user-gps-marker-pin">📍</div>
+        `,
+        iconSize: [32, 32],
+        iconAnchor: [16, 30]
+      });
+
+      window._userLocationMarker = L.marker([userLat, userLng], {
+        icon: userIcon,
+        zIndexOffset: 2500
+      }).addTo(map);
+
+      window._userLocationMarker.bindPopup(`
+        <div style="font-family:var(--font-sans); padding:0.25rem; min-width:180px;">
+          <div style="font-weight:700; color:var(--maroon); font-size:0.95rem; margin-bottom:0.2rem;">
+            📍 Your Reference Point
+          </div>
+          <div style="font-size:0.85rem; color:#444; margin-bottom:0.4rem;">
+            ${locationLabel}
+          </div>
+          <div style="font-size:0.78rem; color:var(--brown); background:var(--cream-deep); padding:0.25rem 0.5rem; border-radius:4px; font-weight:600;">
+            Places sorted by distance from here
+          </div>
+        </div>
+      `).openPopup();
+
+      window._userLocationCircle = L.circle([userLat, userLng], {
+        radius: 1400,
+        color: "#7A2E1D",
+        fillColor: "#D4AF37",
+        fillOpacity: 0.16,
+        weight: 2,
+        dashArray: "4, 6"
+      }).addTo(map);
+
+      // Fit bounds to user location + top 3 nearest items
+      const bounds = L.latLngBounds([[userLat, userLng]]);
+      cards.slice(0, 3).forEach(c => {
+        const cLat = parseFloat(c.dataset.lat);
+        const cLng = parseFloat(c.dataset.lng);
+        if (!isNaN(cLat) && !isNaN(cLng)) bounds.extend([cLat, cLng]);
+      });
+      map.fitBounds(bounds, { padding: [55, 55], maxZoom: 15 });
+    }
+  }
+
+  function startGpsLocate() {
+    if (!navigator.geolocation) {
+      showLocationPickerModal({
+        reason: "Device GPS is not supported by your browser. Please select a spot in Madurai below to find places near you:",
+        onSelect: (lat, lng, name) => applyNearMe(lat, lng, name),
+        onReset: resetNearMe,
+        onGps: startGpsLocate
+      });
+      return;
+    }
+
+    if (nearMeBtn) nearMeBtn.innerHTML = "<span>⏳</span> Locating...";
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const userLat = pos.coords.latitude;
+        const userLng = pos.coords.longitude;
+        const calcDist = (typeof calculateHaversineDistance === "function") 
+          ? calculateHaversineDistance 
+          : window.calculateHaversineDistance;
+
+        const distFromMadurai = typeof calcDist === "function" 
+          ? calcDist(userLat, userLng, 9.9252, 78.1198) 
+          : 0;
+
+        if (distFromMadurai <= 75) {
+          applyNearMe(userLat, userLng, "Your Location (GPS)");
+        } else {
+          // User is outside Madurai
+          applyNearMe(userLat, userLng, `GPS (~${Math.round(distFromMadurai)}km)`);
+          showLocationPickerModal({
+            reason: `📍 We detected your device at ~${Math.round(distFromMadurai)} km from Madurai. Places are sorted from your position, or choose a Madurai spot below for local distances:`,
+            onSelect: (lat, lng, name) => applyNearMe(lat, lng, name),
+            onReset: resetNearMe,
+            onGps: startGpsLocate
+          });
+        }
+      },
+      (err) => {
+        console.warn("Geolocation notice:", err.message || err);
+        if (nearMeBtn) {
+          nearMeBtn.classList.remove("active");
+          nearMeBtn.innerHTML = "Near Me";
+        }
+        showLocationPickerModal({
+          reason: "📍 Device GPS was unavailable or blocked. Choose your location in Madurai below to immediately find places near you:",
+          onSelect: (lat, lng, name) => applyNearMe(lat, lng, name),
+          onReset: resetNearMe,
+          onGps: startGpsLocate
+        });
+      },
+      { enableHighAccuracy: false, timeout: 4500, maximumAge: 120000 }
+    );
+  }
+
+  // 3. Near Me Button Click
+  if (nearMeBtn) {
+    nearMeBtn.addEventListener("click", () => {
+      if (nearMeBtn.classList.contains("active")) {
+        // Already active -> open picker to allow switching or resetting
+        const currentLabel = window._currentNearMeLocation ? window._currentNearMeLocation.label : "";
+        showLocationPickerModal({
+          reason: currentLabel ? `Currently sorted near: <strong>${currentLabel}</strong>. Choose another spot or reset:` : "",
+          onSelect: (lat, lng, name) => applyNearMe(lat, lng, name),
+          onReset: resetNearMe,
+          onGps: startGpsLocate
+        });
+      } else {
+        startGpsLocate();
+      }
+    });
+  }
+
+  // Hook into card visibility changes so ⭐ Nearest stays on closest visible card
+  const observer = new MutationObserver(() => {
+    if (window._currentNearMeLocation) {
+      updateClosestBadge(Array.from(grid.querySelectorAll(".card")));
+    }
+  });
+  observer.observe(grid, { attributes: true, subtree: true, attributeFilter: ["style", "class"] });
 }
 
 // =========================================================================
